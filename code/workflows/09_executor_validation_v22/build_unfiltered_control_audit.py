@@ -23,6 +23,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from grain_test_sql.contract import MetricContract
+from grain_test_sql.evidence_scope import UNRESTRICTED_POLICY
 from grain_test_sql.pipeline import run_pipeline
 from grain_test_sql.schema_registry import SchemaRegistry
 
@@ -126,7 +127,10 @@ def main() -> None:
                     safe_sql, strategy = V21.build_safe_control(fault, result, contract)
                 else:
                     safe_sql, strategy = v22_control
-                safe_result = run_pipeline(safe_sql, registry, contract).to_dict()
+                safe_result = run_pipeline(
+                    safe_sql, registry, contract,
+                    evidence_scope_policy=UNRESTRICTED_POLICY,
+                ).to_dict()
                 control.update(
                     {
                         "control_status": safe_result["status"],

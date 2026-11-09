@@ -114,8 +114,10 @@ From this directory, run:
 ```
 
 `manifest.json` records expected row counts for the principal datasets and
-SHA-256 checksums for all exported data, result, and final-label provenance
-files. The verification command does not require benchmark databases.
+SHA-256 checksums for the packaged code, scripts, dependencies declaration,
+documentation, data, results, and final-label provenance files. This includes
+the dynamically loaded controlled-validity audit helper. The verification
+command does not require benchmark databases.
 It also recomputes all twelve LLM judge summary rows (four methods, each with
 two generator pools and one pooled row) from the packaged predictions,
 `inputs/natural/`, and `data/human_labels.tsv`, and checks JSON/TSV consistency.
@@ -153,6 +155,16 @@ controlled challenge/control pairs. Outputs are written to
 `code/artifacts/reproduced/`. No LLM API call is made. The script refuses to
 overwrite a non-empty natural output directory; set `NATURAL_OUT` and
 `CONTROLLED_OUT` to choose other locations.
+
+The two studies use different, explicit evidence-admission policies. Natural
+candidate verification uses `supported`: ranking-only TST evidence is deferred
+and does not confirm a violation. Controlled executor validation uses
+`unrestricted` to measure whether the executor constructs a valid replayable
+witness, including exploratory TST witnesses. Its 365 triggered witnesses
+include 10 TST cases; they are not 365 confirmed violations under the natural
+candidate decision rule. The 580 controlled challenges produce 365 triggers,
+191 non-triggers, and 24 invalid witnesses; 579 matched controls complete with
+zero false triggers. The controlled output summary records this policy.
 
 The LLM baseline scores are recomputed from frozen predictions without new API
 calls. Other baseline and ablation files are frozen reported summaries; their

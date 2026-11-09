@@ -30,6 +30,910 @@
     "control_false_triggers": 0
   },
   "files": {
+    "LICENSE": {
+      "sha256": "afaf7c256718792c6dcbcacc3a3b3c75801c2fa6865319a25e1c91366ab5ad76",
+      "bytes": 4324
+    },
+    "README.md": {
+      "sha256": "93a04cbe01ae8993333afe88620fcf528da768d86bb70bb800e194206a8e9a9f",
+      "bytes": 10209
+    },
+    "THIRD_PARTY_NOTICES.md": {
+      "sha256": "89e60427ab2bfbec50448be12bed8a75ec2622f7b1d9738d20b1ef41946083c4",
+      "bytes": 3794
+    },
+    "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.jsonl": {
+      "sha256": "11849aca6e20aa8206e3aa5ae3f46cab87b570c38db6c781bf35e4d6e9aa6049",
+      "bytes": 1943854
+    },
+    "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.manifest.json": {
+      "sha256": "52c8d6625f8efa97858d69652896b43dfd6890156b24a023cc9a807c314e376c",
+      "bytes": 1843
+    },
+    "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.jsonl": {
+      "sha256": "fec47039ce797c9ef06534c26b763817be07ff133a61f144f03ae87fc606e69a",
+      "bytes": 210675
+    },
+    "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.manifest.json": {
+      "sha256": "a3cd594647e9a4bc2c55b93dd9d337b52bb268b9c99117a56e538ca542c4600c",
+      "bytes": 718
+    },
+    "code/artifacts/datasets/bird/eval/bird_eval_set.jsonl": {
+      "sha256": "4c63f5ef48fb6d5899475bd4cf748b9f048c4946ad75343d08ff65e33f678ddd",
+      "bytes": 6165228
+    },
+    "code/artifacts/datasets/bird/eval/registries/california_schools.yaml": {
+      "sha256": "d19424fa738c5c9233b2002f29830f2e7bf89c100e09e58731b593b5a988d221",
+      "bytes": 2739
+    },
+    "code/artifacts/datasets/bird/eval/registries/card_games.yaml": {
+      "sha256": "0e0e097e3b66a6b9dbf05d8fdf78871f9d31aa0f8e1199625b3f486d1cc7923d",
+      "bytes": 3889
+    },
+    "code/artifacts/datasets/bird/eval/registries/codebase_community.yaml": {
+      "sha256": "f333d335fbd0fe15b365509e9857b480b86556bacf382337b2fd40ac23b29694",
+      "bytes": 4738
+    },
+    "code/artifacts/datasets/bird/eval/registries/debit_card_specializing.yaml": {
+      "sha256": "9f807b51f969bc96fb877d01d4e065f4da2345b114d89d7c61c6919d0b416430",
+      "bytes": 1135
+    },
+    "code/artifacts/datasets/bird/eval/registries/european_football_2.yaml": {
+      "sha256": "09af599c5eba42709cff2cec7ed50d96c4948e32bb0c20518472fa1b12ab0068",
+      "bytes": 23403
+    },
+    "code/artifacts/datasets/bird/eval/registries/financial.yaml": {
+      "sha256": "62ce89fc26803f714af80eda234f71859234713fa967403c3d862ab3ca0e2205",
+      "bytes": 3381
+    },
+    "code/artifacts/datasets/bird/eval/registries/formula_1.yaml": {
+      "sha256": "84c7283b13909203699fe7cdc18586f8d0cb83fbaa143dd8a1ea15dcc54d09f8",
+      "bytes": 7214
+    },
+    "code/artifacts/datasets/bird/eval/registries/student_club.yaml": {
+      "sha256": "0938a558d3366f9c849cc767235c49d967a8e84270d7ca1893960a460d509798",
+      "bytes": 3394
+    },
+    "code/artifacts/datasets/bird/eval/registries/superhero.yaml": {
+      "sha256": "ae168c37e88c2e9435155b1789501eb996bfa6cd34a4dcfa10efebe28f08a505",
+      "bytes": 4241
+    },
+    "code/artifacts/datasets/bird/eval/registries/thrombosis_prediction.yaml": {
+      "sha256": "3db45cb2b4ab65d19bbfbdfd7560211a599dd08d928518471a5bd8bcb0bffdd5",
+      "bytes": 1784
+    },
+    "code/artifacts/datasets/bird/eval/registries/toxicology.yaml": {
+      "sha256": "cb88bd3a6d1088cdccef168b4455f848e714b86915b0e974cc25c2725e31e0de",
+      "bytes": 1584
+    },
+    "code/artifacts/datasets/spider/eval/registries/academic.yaml": {
+      "sha256": "d0ba9d7719a77d511a8a8381aaecf0caf15e2e7e80dd13e6664552ec8d8149ce",
+      "bytes": 4472
+    },
+    "code/artifacts/datasets/spider/eval/registries/activity_1.yaml": {
+      "sha256": "91a47cd4597e6b4b519bc1e574767509c35fb4eb4f4b55b73a2b65cd19b9ca6f",
+      "bytes": 1484
+    },
+    "code/artifacts/datasets/spider/eval/registries/aircraft.yaml": {
+      "sha256": "1f3f3915b9668b452893e3c4cd73baba9c05df771439e90ee38168dc5f29249e",
+      "bytes": 1902
+    },
+    "code/artifacts/datasets/spider/eval/registries/allergy_1.yaml": {
+      "sha256": "d6878d31edbd58a060897ebb608d2f106bb8ab2b128f0bb88b05251d7fa68eee",
+      "bytes": 818
+    },
+    "code/artifacts/datasets/spider/eval/registries/apartment_rentals.yaml": {
+      "sha256": "3136fc1ebf9ffb3133fc9cdca13b8185c6ccdf34fa76cffc5a99d07a70ec717e",
+      "bytes": 2509
+    },
+    "code/artifacts/datasets/spider/eval/registries/architecture.yaml": {
+      "sha256": "77fb3e79381ffb93a10b2d2ba1c3461c7998c31362d91250d6c7f52e593123fb",
+      "bytes": 980
+    },
+    "code/artifacts/datasets/spider/eval/registries/assets_maintenance.yaml": {
+      "sha256": "5608f3f1dd65988e1a8bf6060e68a6c4eedde959b1caf3abbc139abd22dc99f4",
+      "bytes": 6554
+    },
+    "code/artifacts/datasets/spider/eval/registries/baseball_1.yaml": {
+      "sha256": "0f192fb1b47cd501d72e8aea7d3dec6a802b420167a0958a8bef9f5e3efa4a2c",
+      "bytes": 12307
+    },
+    "code/artifacts/datasets/spider/eval/registries/battle_death.yaml": {
+      "sha256": "4f494496ea6f53a2a5b7fa2a8c793b02ada8262d854085ae3a659a1547f8c923",
+      "bytes": 1026
+    },
+    "code/artifacts/datasets/spider/eval/registries/behavior_monitoring.yaml": {
+      "sha256": "efad9ecb92d4852aaf91eda9e563691d7d9b130f1868123ca28e89c7fc739bf8",
+      "bytes": 5184
+    },
+    "code/artifacts/datasets/spider/eval/registries/bike_1.yaml": {
+      "sha256": "f4ae90e3f714e303113ef24f421c1dd2846420d185c99378f3ead4e54e4817b7",
+      "bytes": 1760
+    },
+    "code/artifacts/datasets/spider/eval/registries/body_builder.yaml": {
+      "sha256": "90f8be49d2eb214dcfa434dee6844e6d1dedff8ed4567900b119682f154f4428",
+      "bytes": 624
+    },
+    "code/artifacts/datasets/spider/eval/registries/book_2.yaml": {
+      "sha256": "060d3895afcd2fd6b350b00ac663cf7f3c61337716b15ff7e358b06a4676a3e3",
+      "bytes": 562
+    },
+    "code/artifacts/datasets/spider/eval/registries/browser_web.yaml": {
+      "sha256": "65f10a6b86940f556e07c3d2d5b1f302692f3d3fead45681d81b88674158f884",
+      "bytes": 920
+    },
+    "code/artifacts/datasets/spider/eval/registries/candidate_poll.yaml": {
+      "sha256": "c42f9ea5b46f57e6d60b23fa4fa93580963763ac7bcdf7395110a84aebd35a41",
+      "bytes": 692
+    },
+    "code/artifacts/datasets/spider/eval/registries/car_1.yaml": {
+      "sha256": "7798b3bf012174632df5f07cd1500290fbad1b9342e746d1739843f4eaba5108",
+      "bytes": 1903
+    },
+    "code/artifacts/datasets/spider/eval/registries/chinook_1.yaml": {
+      "sha256": "c95785eeaa55832fd6775f04a621adff2b95104b6124de136bf56fffd0fff10d",
+      "bytes": 4310
+    },
+    "code/artifacts/datasets/spider/eval/registries/cinema.yaml": {
+      "sha256": "a1f717b88ed2975c09b7c2e3e6ef5f498b01faf4dd66eaac15690783f2544bea",
+      "bytes": 1015
+    },
+    "code/artifacts/datasets/spider/eval/registries/city_record.yaml": {
+      "sha256": "f987b4d1840d43ff7c9257adb6492903a7fd7ad508c749ef818e66df15ab7b36",
+      "bytes": 1376
+    },
+    "code/artifacts/datasets/spider/eval/registries/climbing.yaml": {
+      "sha256": "697296f8aa868121d83dbbfedfa2a38917f5c063f26b9fee97e475e5ad424746",
+      "bytes": 633
+    },
+    "code/artifacts/datasets/spider/eval/registries/club_1.yaml": {
+      "sha256": "7944ce0d48b4ef2848feb541afa51146d7cebd63904f1e885553e691c31556e7",
+      "bytes": 888
+    },
+    "code/artifacts/datasets/spider/eval/registries/coffee_shop.yaml": {
+      "sha256": "3c731f2dddafcb2a26f951bb3e493e2e6c80a512e1ad9a5fbca9e34d9741ffb6",
+      "bytes": 1210
+    },
+    "code/artifacts/datasets/spider/eval/registries/college_1.yaml": {
+      "sha256": "5fb8e8e953127508be4ae1c021d56e8c12189be6fe8ada0a54ad2647d2c7312d",
+      "bytes": 3177
+    },
+    "code/artifacts/datasets/spider/eval/registries/college_2.yaml": {
+      "sha256": "7220e9a4f1f539aafd70c48a7cd41dd2230a93231057a40acb794e35a6107721",
+      "bytes": 5347
+    },
+    "code/artifacts/datasets/spider/eval/registries/college_3.yaml": {
+      "sha256": "6e47621cda64e18ab5e38e831c9ece9832121287fb9c5455343aaaad025449f9",
+      "bytes": 2849
+    },
+    "code/artifacts/datasets/spider/eval/registries/company_1.yaml": {
+      "sha256": "f70156f9fc1347cfa7969001c77f82b225fd15d6298ac9c44e12b6a41e8659dd",
+      "bytes": 1104
+    },
+    "code/artifacts/datasets/spider/eval/registries/company_employee.yaml": {
+      "sha256": "14fea24c14494ddda6cc71a5b9bbf8cd3c5da334b4a6e2aa1610f81268a4bc00",
+      "bytes": 1035
+    },
+    "code/artifacts/datasets/spider/eval/registries/company_office.yaml": {
+      "sha256": "cccd04dae48a121604a207fc8a6a809cd20585ced3eaeb9e9e28a520e02c1b81",
+      "bytes": 1010
+    },
+    "code/artifacts/datasets/spider/eval/registries/concert_singer.yaml": {
+      "sha256": "60d5da6ab64b878b671db66288e00b42d0dc1082e73f48a8119eb70bfcf21c2a",
+      "bytes": 1376
+    },
+    "code/artifacts/datasets/spider/eval/registries/county_public_safety.yaml": {
+      "sha256": "820ad449805831b7b4f98d5ceb2f9ace25947652dfdfc1f9a7c63f8fe6665946",
+      "bytes": 816
+    },
+    "code/artifacts/datasets/spider/eval/registries/course_teach.yaml": {
+      "sha256": "b437b4f3879b942bd66e18108ef03dbad76721c98cf8d384439d51ac1f958ecc",
+      "bytes": 859
+    },
+    "code/artifacts/datasets/spider/eval/registries/cre_Doc_Control_Systems.yaml": {
+      "sha256": "751d74311ff8347f6da2fa71d7ea46d07dcda8089b1c204f2a5dded6a8749c2c",
+      "bytes": 4682
+    },
+    "code/artifacts/datasets/spider/eval/registries/cre_Doc_Template_Mgt.yaml": {
+      "sha256": "54d9f449587721d5ee90ca755fdb4ae8270ebb6dd4502d88b0dc59f8f563bf8a",
+      "bytes": 1504
+    },
+    "code/artifacts/datasets/spider/eval/registries/cre_Doc_Tracking_DB.yaml": {
+      "sha256": "45fdc95f95e9d2d26817abc5abb7b7a7a7cbb58f84515d18f0c096ba3de079eb",
+      "bytes": 4072
+    },
+    "code/artifacts/datasets/spider/eval/registries/cre_Docs_and_Epenses.yaml": {
+      "sha256": "ba2088f309767007ab6cd827f25fd2fd913632e296e3fcfdf00c3b0a88ff6da9",
+      "bytes": 2414
+    },
+    "code/artifacts/datasets/spider/eval/registries/cre_Drama_Workshop_Groups.yaml": {
+      "sha256": "0c7d67968a9799be99a586ff117522f7f6f086b3688f6324922b492a932ce23a",
+      "bytes": 9128
+    },
+    "code/artifacts/datasets/spider/eval/registries/cre_Theme_park.yaml": {
+      "sha256": "21315911bca708bb1f9aba2bfadc0ee8a3d1dbda8ad3a08cf7522289173fcca6",
+      "bytes": 5703
+    },
+    "code/artifacts/datasets/spider/eval/registries/csu_1.yaml": {
+      "sha256": "1ed93af039b4dbe2cc8bb00698fc886ec911887ffa6142d07b15f6280e8f5e38",
+      "bytes": 1895
+    },
+    "code/artifacts/datasets/spider/eval/registries/culture_company.yaml": {
+      "sha256": "88970513835aedff7367cfecbaa4994bc71e1e6abc3f1d3dbec02fa87f782f18",
+      "bytes": 1101
+    },
+    "code/artifacts/datasets/spider/eval/registries/customer_complaints.yaml": {
+      "sha256": "cd647d25d0fde28853ea724450798b44c62f1da9836150d23f7ddfd9f5fb3dbe",
+      "bytes": 1711
+    },
+    "code/artifacts/datasets/spider/eval/registries/customer_deliveries.yaml": {
+      "sha256": "41b9554e3dbc5425f0ea107c570fafe448d7659d45aff0241dacaf656f86d93c",
+      "bytes": 5444
+    },
+    "code/artifacts/datasets/spider/eval/registries/customers_and_addresses.yaml": {
+      "sha256": "498b3fbb3ea328234a947ca2cf167b54f1fa56f9b155e44134754914a49ed0d6",
+      "bytes": 2584
+    },
+    "code/artifacts/datasets/spider/eval/registries/customers_and_invoices.yaml": {
+      "sha256": "6e0b6aaff81c64ab1c1e30e12ffa79a02ee0fdb93153d15e6955a2eef87ce41f",
+      "bytes": 4492
+    },
+    "code/artifacts/datasets/spider/eval/registries/customers_and_products_contacts.yaml": {
+      "sha256": "8afdebf7d4745d54c03fa5738601a60d8183608216b1317cc816f07a35a560e9",
+      "bytes": 2432
+    },
+    "code/artifacts/datasets/spider/eval/registries/customers_campaigns_ecommerce.yaml": {
+      "sha256": "ababba2d5fa5f7cdd7993505b63092e86d39ede2e4a4404b51a5e30836c580cd",
+      "bytes": 3182
+    },
+    "code/artifacts/datasets/spider/eval/registries/customers_card_transactions.yaml": {
+      "sha256": "0f997ea2d5b07f77672e7ccb9e7f79bf2789a6b008ec2186f8dc8b1294ff534d",
+      "bytes": 1490
+    },
+    "code/artifacts/datasets/spider/eval/registries/debate.yaml": {
+      "sha256": "b681e47b0dc74e87e389850358e21892da1c04d8f82112b777fbab36a075b606",
+      "bytes": 1109
+    },
+    "code/artifacts/datasets/spider/eval/registries/decoration_competition.yaml": {
+      "sha256": "f59c5928cd7251f27bc530bd26d9250329edbf9442ed8d5f88515d731f57c25b",
+      "bytes": 944
+    },
+    "code/artifacts/datasets/spider/eval/registries/department_management.yaml": {
+      "sha256": "7a176cc2b2d2a04d22ea7a9f2cd32d955669f0b04312dcaa0546f95cb9f2f109",
+      "bytes": 963
+    },
+    "code/artifacts/datasets/spider/eval/registries/department_store.yaml": {
+      "sha256": "eb8b838a46b67b31a793de8b071fc4d2eca97da2f854413a79f6a19e2e72e55c",
+      "bytes": 5356
+    },
+    "code/artifacts/datasets/spider/eval/registries/device.yaml": {
+      "sha256": "7e4e9a8abdd1b4b0ad5a0ddcf00bccdca3a650c09d281a3633eeedc2a0551b93",
+      "bytes": 927
+    },
+    "code/artifacts/datasets/spider/eval/registries/document_management.yaml": {
+      "sha256": "8a1bd4fe6509ceac3ad1cc7698c4e649b7bd9b523b979a3220def1b4d08092a6",
+      "bytes": 3129
+    },
+    "code/artifacts/datasets/spider/eval/registries/dog_kennels.yaml": {
+      "sha256": "7f4bba55e4802433a996133482a57170589dbdf9c40670d8e04dc229b89f6583",
+      "bytes": 3043
+    },
+    "code/artifacts/datasets/spider/eval/registries/dorm_1.yaml": {
+      "sha256": "946e11952541f55a8fe61802fc32817939cfe04d7cbb173fbff66a912d47bea2",
+      "bytes": 1449
+    },
+    "code/artifacts/datasets/spider/eval/registries/driving_school.yaml": {
+      "sha256": "38b23d5106ee2449b5a0adb71b2e7f63dcffc9d00662ab9bc9fb795d9b15b8b5",
+      "bytes": 2760
+    },
+    "code/artifacts/datasets/spider/eval/registries/e_government.yaml": {
+      "sha256": "d78cd45c04394fc4f8b5c4c0711e677723a2e92850563d0c92d5fa77b9b257c9",
+      "bytes": 3960
+    },
+    "code/artifacts/datasets/spider/eval/registries/e_learning.yaml": {
+      "sha256": "0022f4ed3346517bd908792c2683c63145e8eb98415cf134f388d21448f99c8a",
+      "bytes": 2341
+    },
+    "code/artifacts/datasets/spider/eval/registries/election.yaml": {
+      "sha256": "49b2dfe7244fbf43d657064787e038a7756691024c1f6562e917d73b2adbb135",
+      "bytes": 1045
+    },
+    "code/artifacts/datasets/spider/eval/registries/election_representative.yaml": {
+      "sha256": "7c0b48cd4729f9b1321d6e11c8855ae2f32189a5d9394aefbce26ccf179f40a0",
+      "bytes": 682
+    },
+    "code/artifacts/datasets/spider/eval/registries/employee_hire_evaluation.yaml": {
+      "sha256": "5cb576e7eb155ab4deda7e6044a77676d44c6e676aac64eec5c16efb518f388d",
+      "bytes": 1273
+    },
+    "code/artifacts/datasets/spider/eval/registries/entertainment_awards.yaml": {
+      "sha256": "19b01c38bab09915e7c26e9f3e6a2806e94f19bfe86da6b1391b18af770f6fbb",
+      "bytes": 950
+    },
+    "code/artifacts/datasets/spider/eval/registries/entrepreneur.yaml": {
+      "sha256": "55d31533cde93749c6faa2701c648a70fc79b67164c881d56ed7012096d11ca5",
+      "bytes": 608
+    },
+    "code/artifacts/datasets/spider/eval/registries/epinions_1.yaml": {
+      "sha256": "b5d14d78ff668b16896f3157ca1e30d24dc523adb71605a2e15b7274cb35b101",
+      "bytes": 1219
+    },
+    "code/artifacts/datasets/spider/eval/registries/farm.yaml": {
+      "sha256": "d1cc79653ed90fa26b254f36c25eb010beef1ad1288ebaf8cc414de62d25576e",
+      "bytes": 1489
+    },
+    "code/artifacts/datasets/spider/eval/registries/film_rank.yaml": {
+      "sha256": "215f30a2021da5592a0b8847dd7f7e28a240723c47e260434d0ec3989db29d68",
+      "bytes": 955
+    },
+    "code/artifacts/datasets/spider/eval/registries/flight_1.yaml": {
+      "sha256": "ae2c66871bd4088dafd1ee7b5573610d17d37872d6fbc585abcd4bc4414eae52",
+      "bytes": 1150
+    },
+    "code/artifacts/datasets/spider/eval/registries/flight_2.yaml": {
+      "sha256": "6c4370ec106f50feb1091127de983b4b2f487c9b8070f53eee4051355cfd3345",
+      "bytes": 923
+    },
+    "code/artifacts/datasets/spider/eval/registries/flight_4.yaml": {
+      "sha256": "f9eb6cf563c96e6b7cde33797602a12dac4339d87fe97a723eb41ec1d0796305",
+      "bytes": 1174
+    },
+    "code/artifacts/datasets/spider/eval/registries/flight_company.yaml": {
+      "sha256": "4bfbf1b6e9e117dd75d6018dde5e63cbada407606286ce7bd356261830de2eb6",
+      "bytes": 1028
+    },
+    "code/artifacts/datasets/spider/eval/registries/formula_1.yaml": {
+      "sha256": "9e7bbae6240543e7fb50d72944409ad256139e403fffb614ee4804b6bb9be938",
+      "bytes": 6045
+    },
+    "code/artifacts/datasets/spider/eval/registries/game_1.yaml": {
+      "sha256": "b2abae95c0fa594d575a6283adc78d3b5d6cbfbe1342cf9130a18006d4315f73",
+      "bytes": 1229
+    },
+    "code/artifacts/datasets/spider/eval/registries/game_injury.yaml": {
+      "sha256": "0ef458abf2d64865b900242a3834af5c38704be8d9e013887bdd828312dff4ec",
+      "bytes": 1062
+    },
+    "code/artifacts/datasets/spider/eval/registries/gas_company.yaml": {
+      "sha256": "bcc611ddc9cfd739428ffddee3160ac52c3867bcc0bbb9677ab46fbe96d99f1c",
+      "bytes": 1135
+    },
+    "code/artifacts/datasets/spider/eval/registries/geo.yaml": {
+      "sha256": "637a59d61d18a7a56db822b07e3de584d73f3baa9aa35b10f4babb10061401b1",
+      "bytes": 2197
+    },
+    "code/artifacts/datasets/spider/eval/registries/gymnast.yaml": {
+      "sha256": "c542cac14fd9c51a6f216d05b81e3ee8b4e485ddaaa49670f050a5fa35447ee7",
+      "bytes": 674
+    },
+    "code/artifacts/datasets/spider/eval/registries/hospital_1.yaml": {
+      "sha256": "9dca5c8227711d0fd4edff1589d79eb584a9f7c168da2175491be6dac83b865d",
+      "bytes": 7232
+    },
+    "code/artifacts/datasets/spider/eval/registries/hr_1.yaml": {
+      "sha256": "d316ee8029ac24170c66a55d5e03bb1b853f22591b07aee64d06c0c73b951f0d",
+      "bytes": 2726
+    },
+    "code/artifacts/datasets/spider/eval/registries/icfp_1.yaml": {
+      "sha256": "941096b0958c0bca7fe528b14a0a465a233ad1756125e004bf90d4d8e69144e2",
+      "bytes": 1071
+    },
+    "code/artifacts/datasets/spider/eval/registries/imdb.yaml": {
+      "sha256": "b9736eb024cce5b1234fba570e67e65f7864d520a9fe1510285dcbe7826b6282",
+      "bytes": 4038
+    },
+    "code/artifacts/datasets/spider/eval/registries/inn_1.yaml": {
+      "sha256": "5ff8016518e2a34f1b3519d7bb2985de163f6c7d21a48792d71519e0aac27e33",
+      "bytes": 676
+    },
+    "code/artifacts/datasets/spider/eval/registries/insurance_and_eClaims.yaml": {
+      "sha256": "a306b44552ac48ab3ee6a71974e9545e3494d91648345bebf0428e9905802f5e",
+      "bytes": 2644
+    },
+    "code/artifacts/datasets/spider/eval/registries/insurance_fnol.yaml": {
+      "sha256": "2b0bf4f621c329c1ce336abd61dff28dd4260454c7ba29bc47bbd3adfabbbe8c",
+      "bytes": 2537
+    },
+    "code/artifacts/datasets/spider/eval/registries/insurance_policies.yaml": {
+      "sha256": "d2775608a856f7e8efd27ba1f3395699955fb2da478857ade53650c3cf66cbc8",
+      "bytes": 1945
+    },
+    "code/artifacts/datasets/spider/eval/registries/journal_committee.yaml": {
+      "sha256": "7777d404e8e739d735951c468cb059c13459ed74e2b5bb1d0c97755b354d57e2",
+      "bytes": 865
+    },
+    "code/artifacts/datasets/spider/eval/registries/loan_1.yaml": {
+      "sha256": "2391c16b9c17d2fd9d6101ab21644158c5b1580bbb48019e68cd785d114e7884",
+      "bytes": 1017
+    },
+    "code/artifacts/datasets/spider/eval/registries/local_govt_and_lot.yaml": {
+      "sha256": "f7af3724bef87666790b8ca66c93babd3cc30e0c4b437f2fd9220b7bd27b5e2d",
+      "bytes": 5336
+    },
+    "code/artifacts/datasets/spider/eval/registries/local_govt_in_alabama.yaml": {
+      "sha256": "dc7cc279b51c2436168faa051c362ad4ffd85110d3455939066f6918505cb288",
+      "bytes": 1225
+    },
+    "code/artifacts/datasets/spider/eval/registries/local_govt_mdm.yaml": {
+      "sha256": "17ee9b16ee336841fcb56f0fd6ff52f70f5f658fb2ffd10187e5150c7b5da66c",
+      "bytes": 2920
+    },
+    "code/artifacts/datasets/spider/eval/registries/machine_repair.yaml": {
+      "sha256": "c090e1176afa6438283b6f43f8d4e4f66f8da38b42763bcc7dca25eee12642ef",
+      "bytes": 1347
+    },
+    "code/artifacts/datasets/spider/eval/registries/manufactory_1.yaml": {
+      "sha256": "cfb7f51d9845c429aee5204d25669b9baf9881f42de16a29ff48dd7872fdc41c",
+      "bytes": 558
+    },
+    "code/artifacts/datasets/spider/eval/registries/manufacturer.yaml": {
+      "sha256": "f653570d3fb8a5cec9a6f7509c873eff24833cc7cd84e3d1a0728c36be2b5562",
+      "bytes": 1030
+    },
+    "code/artifacts/datasets/spider/eval/registries/match_season.yaml": {
+      "sha256": "52058c9a05d740231b2153f32057326360e4b22bf0395021e01adb4f55d18ce3",
+      "bytes": 1326
+    },
+    "code/artifacts/datasets/spider/eval/registries/medicine_enzyme_interaction.yaml": {
+      "sha256": "25212213d41de064dffbd0cb07f5983d4edb26ca6aa5b3c39879dbbb00cfc2d9",
+      "bytes": 919
+    },
+    "code/artifacts/datasets/spider/eval/registries/mountain_photos.yaml": {
+      "sha256": "83151f6e4903febc2fb32e53366fd2bb1adc2e43bed143714e62806d2c3a5367",
+      "bytes": 927
+    },
+    "code/artifacts/datasets/spider/eval/registries/movie_1.yaml": {
+      "sha256": "bfc255f23a9ce435332fc93e94f1253b5fe79a5d44d0aeebcf51ce2030ad43d7",
+      "bytes": 727
+    },
+    "code/artifacts/datasets/spider/eval/registries/museum_visit.yaml": {
+      "sha256": "c13dd7c432016da72d3d7bfe170f6b38a6ea7625f50061ebd0d23e305582604a",
+      "bytes": 883
+    },
+    "code/artifacts/datasets/spider/eval/registries/music_1.yaml": {
+      "sha256": "9db1222c77f2ede3909cffe85683e96a33dde4e916480c4b362b15c97dbe3d7e",
+      "bytes": 1663
+    },
+    "code/artifacts/datasets/spider/eval/registries/music_2.yaml": {
+      "sha256": "71e21c72f1175adccf1e56e386c10f449385de69464d4baf564e571d6d5caed9",
+      "bytes": 2181
+    },
+    "code/artifacts/datasets/spider/eval/registries/music_4.yaml": {
+      "sha256": "ee4f8a26df04e81a1c080466d2b9d864b8eddcc4e89ce333a101352fdba6b5c1",
+      "bytes": 1026
+    },
+    "code/artifacts/datasets/spider/eval/registries/musical.yaml": {
+      "sha256": "bdc80fead037c89fbb15522923e8fda3596d22d2248bf02bd3052ad1374c11bb",
+      "bytes": 631
+    },
+    "code/artifacts/datasets/spider/eval/registries/network_1.yaml": {
+      "sha256": "c14a8733c1a2a94b27075cd4a281537cb9441efb0c54ac1e37236bf71c165a0c",
+      "bytes": 1150
+    },
+    "code/artifacts/datasets/spider/eval/registries/network_2.yaml": {
+      "sha256": "f0af90d93e7d1c1ccaa5008040fbd33cbe71626be490820bc9b09cd02b3e66ee",
+      "bytes": 633
+    },
+    "code/artifacts/datasets/spider/eval/registries/news_report.yaml": {
+      "sha256": "f4d30d376251431fba7e2c61afbf1900f34761788239f7a35c27d69bf0e26092",
+      "bytes": 934
+    },
+    "code/artifacts/datasets/spider/eval/registries/orchestra.yaml": {
+      "sha256": "c05ba1f5a965e403fabd327e2c48bbbaf1869cc2255d06605467a8670d948e81",
+      "bytes": 1534
+    },
+    "code/artifacts/datasets/spider/eval/registries/party_host.yaml": {
+      "sha256": "ceda16942e7f50bc426c0b29da245921de023c5814d56871f6f2ff7a943b8c54",
+      "bytes": 919
+    },
+    "code/artifacts/datasets/spider/eval/registries/party_people.yaml": {
+      "sha256": "7e5efe4a59747c8d62351045e10fb152511f62ec78379eef8659c01d5e5858bb",
+      "bytes": 1541
+    },
+    "code/artifacts/datasets/spider/eval/registries/performance_attendance.yaml": {
+      "sha256": "bb2ee80e5e98fe3d49178c4690d214c424d341c091a5eda2d4481dec23c32712",
+      "bytes": 932
+    },
+    "code/artifacts/datasets/spider/eval/registries/perpetrator.yaml": {
+      "sha256": "bdec62b3c9db68c487d4f65a2fdcab617edda8b781e6790e9a7092f3615c2f9a",
+      "bytes": 650
+    },
+    "code/artifacts/datasets/spider/eval/registries/pets_1.yaml": {
+      "sha256": "b1f538bbf158eec5353afaeced927eda8045930560a486dc2c7592327cd625f3",
+      "bytes": 850
+    },
+    "code/artifacts/datasets/spider/eval/registries/phone_1.yaml": {
+      "sha256": "95e0406525422677df7375ce9c423968ad9c00845970cdcd4355ddc6a4b036bb",
+      "bytes": 1133
+    },
+    "code/artifacts/datasets/spider/eval/registries/phone_market.yaml": {
+      "sha256": "cf1cc388d0b054261524ae90271f12c9782e910d9572253c7d4e40efce2cffc7",
+      "bytes": 918
+    },
+    "code/artifacts/datasets/spider/eval/registries/pilot_record.yaml": {
+      "sha256": "a05b94b3b3cbc79a59d7388df4093909d5c4a28c0c8804b15495a206ed48e1cc",
+      "bytes": 1069
+    },
+    "code/artifacts/datasets/spider/eval/registries/poker_player.yaml": {
+      "sha256": "08a7bdf08f6646609c47e48a36264508d422ce8084726bc6c05e973c5f579b22",
+      "bytes": 642
+    },
+    "code/artifacts/datasets/spider/eval/registries/product_catalog.yaml": {
+      "sha256": "ea2e5731be2bfc5b8adf7bd85bd5559c6f075419c27bb91341aeec9d19808484",
+      "bytes": 2195
+    },
+    "code/artifacts/datasets/spider/eval/registries/products_for_hire.yaml": {
+      "sha256": "78ea25fb0d0a4fd6a590cfcd9b403ca39e73d7e00a378b8b82f92177b898e1a4",
+      "bytes": 3414
+    },
+    "code/artifacts/datasets/spider/eval/registries/products_gen_characteristics.yaml": {
+      "sha256": "622b31f5c71e54eb3ee37e725f8de30df3181c2aad802a191941aa828509f397",
+      "bytes": 2395
+    },
+    "code/artifacts/datasets/spider/eval/registries/program_share.yaml": {
+      "sha256": "78d7c3f3a7d8c65f9fbe1222756d5af3ba25f3615f5cfddadd60ccd04d7925b6",
+      "bytes": 1514
+    },
+    "code/artifacts/datasets/spider/eval/registries/protein_institute.yaml": {
+      "sha256": "981a0ae7b9764036f5858f5bc94d92fe8ee6ab9b136dda4d8e54d75b932ba989",
+      "bytes": 1266
+    },
+    "code/artifacts/datasets/spider/eval/registries/race_track.yaml": {
+      "sha256": "1567fb9a254a11317ea9bb032a0d73ec929fcf47889731e62497bfeb498720e0",
+      "bytes": 560
+    },
+    "code/artifacts/datasets/spider/eval/registries/railway.yaml": {
+      "sha256": "3f7cc0f4e26ef525743390795a31f243432a4b1527e235dd936e0413e873acc0",
+      "bytes": 1389
+    },
+    "code/artifacts/datasets/spider/eval/registries/real_estate_properties.yaml": {
+      "sha256": "0f6bc892584b37912faf50606ab4410d60a2e8bcc08b15a3ece2489df8aa6a49",
+      "bytes": 2382
+    },
+    "code/artifacts/datasets/spider/eval/registries/restaurant_1.yaml": {
+      "sha256": "1872829bf56ac8de0ed96a1cf4db37f39399d8233cb80fea50c6b154b114c07a",
+      "bytes": 1519
+    },
+    "code/artifacts/datasets/spider/eval/registries/restaurants.yaml": {
+      "sha256": "026b3d99a826e299a878f476d6dc11998e27ad61cfe498ef11f57502e9befd96",
+      "bytes": 832
+    },
+    "code/artifacts/datasets/spider/eval/registries/riding_club.yaml": {
+      "sha256": "75fc10a47d669cbad414ff2b1565f39929c6c9c10a14d07e794a549099d996b8",
+      "bytes": 1778
+    },
+    "code/artifacts/datasets/spider/eval/registries/roller_coaster.yaml": {
+      "sha256": "43599c1a1a1194a1cface6cb13effa35f4f4d85b5e0cadaff4f304e5f6488e9b",
+      "bytes": 685
+    },
+    "code/artifacts/datasets/spider/eval/registries/sakila_1.yaml": {
+      "sha256": "5434bac2e52757937a5c7295602e66fdd0f0cd5e77932a39a87f73ba86a4d6c2",
+      "bytes": 7091
+    },
+    "code/artifacts/datasets/spider/eval/registries/scholar.yaml": {
+      "sha256": "b06a69cb74b7c7099ddd1b39d2f0bfd5ac95b866cc718e27c45e4b7cecc8e8d9",
+      "bytes": 2626
+    },
+    "code/artifacts/datasets/spider/eval/registries/school_bus.yaml": {
+      "sha256": "52894dd047a3877847cac1738073ef0039e8265e6fbf9d4de62125e55f254f83",
+      "bytes": 917
+    },
+    "code/artifacts/datasets/spider/eval/registries/school_finance.yaml": {
+      "sha256": "7eb0d9cdaafd160cb81873e703796aabd71fbd43946c0aa2aafef72c1dcc7ba0",
+      "bytes": 1157
+    },
+    "code/artifacts/datasets/spider/eval/registries/school_player.yaml": {
+      "sha256": "d67b8f9f636e48e203b1eed8c51dc3d52447cabacb778c04bb1d4c521a4ebe3b",
+      "bytes": 1504
+    },
+    "code/artifacts/datasets/spider/eval/registries/scientist_1.yaml": {
+      "sha256": "d70ff4fdcdca04a9ee00fb6175f9cc50d88e12a212d611c60aaa2de2d91e2d2f",
+      "bytes": 758
+    },
+    "code/artifacts/datasets/spider/eval/registries/ship_1.yaml": {
+      "sha256": "1738f9d0f14f2dcd7d86a2edf55ab138de6dcd234f8c3ef22b26c908ba9d9bfe",
+      "bytes": 587
+    },
+    "code/artifacts/datasets/spider/eval/registries/ship_mission.yaml": {
+      "sha256": "a0d07646319b3a3f7b44b2be443c4d70d0327c400472e1ef54f87e41b86ad07e",
+      "bytes": 610
+    },
+    "code/artifacts/datasets/spider/eval/registries/shop_membership.yaml": {
+      "sha256": "c3e23a1748b147e1013e11f7059bf1a8ee014867513cf4a9f7771ca19935b4a8",
+      "bytes": 1464
+    },
+    "code/artifacts/datasets/spider/eval/registries/singer.yaml": {
+      "sha256": "790fc37da418775d7cf9c58327c4a02d7fae30da19d7487b7732bf134f6e5801",
+      "bytes": 600
+    },
+    "code/artifacts/datasets/spider/eval/registries/small_bank_1.yaml": {
+      "sha256": "ca7db1fb042532b60bd9c53e92246cb4b6592d9432afcbffe08017de1df13ab4",
+      "bytes": 669
+    },
+    "code/artifacts/datasets/spider/eval/registries/soccer_1.yaml": {
+      "sha256": "42e558b96522ca23157b90d7d186b9bca706615f0ab6110b4f42a6bd916fffce",
+      "bytes": 3962
+    },
+    "code/artifacts/datasets/spider/eval/registries/soccer_2.yaml": {
+      "sha256": "d02e2e3a0e4c96b1ea9632c92eb948939c45b726a153916abc3543bd95fa4b3f",
+      "bytes": 767
+    },
+    "code/artifacts/datasets/spider/eval/registries/solvency_ii.yaml": {
+      "sha256": "0782f38a14b7f5ec5e6214eff32966913a7b5c5bce956b535319d15d779ff47f",
+      "bytes": 3619
+    },
+    "code/artifacts/datasets/spider/eval/registries/sports_competition.yaml": {
+      "sha256": "d55a9bec5b834d3c91bfa945ac18c35d2d0d0d16e616123fd3492fd41da4dba7",
+      "bytes": 1944
+    },
+    "code/artifacts/datasets/spider/eval/registries/station_weather.yaml": {
+      "sha256": "0b7b3dd015e55f6f986f47e2c8f10a38913a192237f17aebb4410c7f694c3746",
+      "bytes": 1335
+    },
+    "code/artifacts/datasets/spider/eval/registries/store_1.yaml": {
+      "sha256": "7a85f33a43c0f8f2f85f60005bdec0f642f01c56c6b8de347acad5694180e095",
+      "bytes": 4275
+    },
+    "code/artifacts/datasets/spider/eval/registries/store_product.yaml": {
+      "sha256": "f14d4a160952418ff7af64dacc26c965f432dec5921206b0ecbeda0b02f8245c",
+      "bytes": 1530
+    },
+    "code/artifacts/datasets/spider/eval/registries/storm_record.yaml": {
+      "sha256": "687b05bb9bc6816f5655cfa3bbc3e330ff0b6ed3852a1454bc52f0dda884105d",
+      "bytes": 923
+    },
+    "code/artifacts/datasets/spider/eval/registries/student_1.yaml": {
+      "sha256": "3d1ce0d03597aa2f2978e82642fee47c36222d49cfda2dadd176ae1c1fb76e62",
+      "bytes": 354
+    },
+    "code/artifacts/datasets/spider/eval/registries/student_assessment.yaml": {
+      "sha256": "ff1e6c77fa024a2413b8a7fdf873d61c7718271345510640a615b02dd4546ca9",
+      "bytes": 3464
+    },
+    "code/artifacts/datasets/spider/eval/registries/student_transcripts_tracking.yaml": {
+      "sha256": "bfd1e68fb78167a15a06f53add05f3a666ea122410795e41302fa50df2c9966e",
+      "bytes": 4704
+    },
+    "code/artifacts/datasets/spider/eval/registries/swimming.yaml": {
+      "sha256": "dfa6520910aa4803bc6c4986ce28fc3f6117cca3668090c441109e401e963cae",
+      "bytes": 1363
+    },
+    "code/artifacts/datasets/spider/eval/registries/theme_gallery.yaml": {
+      "sha256": "2b11941e67786419aa948043de0073ec61e0e148e9ac0c85fa7b6acb02b2744e",
+      "bytes": 982
+    },
+    "code/artifacts/datasets/spider/eval/registries/tracking_grants_for_research.yaml": {
+      "sha256": "417c37c308710ec974c7b6372fa175ec8dcc803e1b33420c7b00bb2c58e7a09d",
+      "bytes": 4443
+    },
+    "code/artifacts/datasets/spider/eval/registries/tracking_orders.yaml": {
+      "sha256": "98031c548aa0bbca3439a974719d48baf2fded4f9d1ed3d2452b4bb614d9cf49",
+      "bytes": 2634
+    },
+    "code/artifacts/datasets/spider/eval/registries/tracking_share_transactions.yaml": {
+      "sha256": "485476a4700849d09b08241ed7be83b9930e84689babd8cf56a98f8475e4d89a",
+      "bytes": 2599
+    },
+    "code/artifacts/datasets/spider/eval/registries/tracking_software_problems.yaml": {
+      "sha256": "194d5910d6abf299e4d4709652e48755257bed1c8d92b0eb4576bf7d9cf24bcd",
+      "bytes": 2771
+    },
+    "code/artifacts/datasets/spider/eval/registries/train_station.yaml": {
+      "sha256": "cb89c7719c6677407dded4395e8a41e1c3fa0fa562604cd4694caf352d36e104",
+      "bytes": 989
+    },
+    "code/artifacts/datasets/spider/eval/registries/tvshow.yaml": {
+      "sha256": "15e6d6c4594a2317f023e8663dab591174ccd44557ad2cc5e1498ed8af547b93",
+      "bytes": 1197
+    },
+    "code/artifacts/datasets/spider/eval/registries/twitter_1.yaml": {
+      "sha256": "a9631c11e7dc2af836412e4b44de1665a92dd1a27f7a76026faa5b695ad2026d",
+      "bytes": 968
+    },
+    "code/artifacts/datasets/spider/eval/registries/university_basketball.yaml": {
+      "sha256": "7c1350995db3a7137cdde609a1d4e8074af6bd7ad1655e0b8fef7124989dbc80",
+      "bytes": 850
+    },
+    "code/artifacts/datasets/spider/eval/registries/voter_1.yaml": {
+      "sha256": "2d3220dca3eb2a4705b652b76a0f05be81165baf87d1a6664aafd0af4228e9ff",
+      "bytes": 866
+    },
+    "code/artifacts/datasets/spider/eval/registries/voter_2.yaml": {
+      "sha256": "c5c1e4084863eae478ca6afc0a28dece2510083a7a4fb17a29bd2f277cb8b65f",
+      "bytes": 1754
+    },
+    "code/artifacts/datasets/spider/eval/registries/wedding.yaml": {
+      "sha256": "c2adf1a9b55267546893ef67422225ce9c6e7302cb4ff968b0d3c3473c1d9eb8",
+      "bytes": 1082
+    },
+    "code/artifacts/datasets/spider/eval/registries/wine_1.yaml": {
+      "sha256": "98b812ec3778fefdfbb981bfc73f09fa6ee4745074538177b96424d6ade52042",
+      "bytes": 1000
+    },
+    "code/artifacts/datasets/spider/eval/registries/workshop_paper.yaml": {
+      "sha256": "7a37f3c4d9aa9777350cb1482507c7c4c1eb2b68dd928e719d36443fb152b223",
+      "bytes": 901
+    },
+    "code/artifacts/datasets/spider/eval/registries/world_1.yaml": {
+      "sha256": "335dd6afff1411aee629f8b111dbce6280b4e1dee5d46946ffca17f59e5a6758",
+      "bytes": 1283
+    },
+    "code/artifacts/datasets/spider/eval/registries/wrestler.yaml": {
+      "sha256": "07e1b4e5c82c84b097e5d07c35f917395af3d1924d0bce5e6f55e8cc67e66f6e",
+      "bytes": 646
+    },
+    "code/artifacts/datasets/spider/eval/registries/wta_1.yaml": {
+      "sha256": "86884fbf9ac6ec2c7527bd5ea2c367ec24f4c8e9ada5dcd9798cd07eef5c3f69",
+      "bytes": 1796
+    },
+    "code/artifacts/datasets/spider/eval/registries/yelp.yaml": {
+      "sha256": "6f1b6148be5417a987a109f409583cb0f9857354c4ac6ff17817ef477d8d86cf",
+      "bytes": 2374
+    },
+    "code/artifacts/datasets/spider/eval/spider_eval_set.jsonl": {
+      "sha256": "cebbe47e423d6fe8c8247862fbb7acebfb58ca7b6615eb308a0e92fcdf23c5ee",
+      "bytes": 773354
+    },
+    "code/grain_test_sql/__init__.py": {
+      "sha256": "e447fc091a6d1eb3c9d3b1b629fd1243451b3286d864f677f8dd9bb1966b869b",
+      "bytes": 225
+    },
+    "code/grain_test_sql/auto_repair.py": {
+      "sha256": "e12bce0f9bf7f10a4a56a84417af6ef6eac60e8d4503fdcabb2da7361968c344",
+      "bytes": 18897
+    },
+    "code/grain_test_sql/bird_utils.py": {
+      "sha256": "67dcbdabeea3ea335e162fe242be53f5b6dcd41bfea68671f6c3059894bd1edd",
+      "bytes": 19198
+    },
+    "code/grain_test_sql/candidate_builder.py": {
+      "sha256": "b6d7fc56d84930b5cfce974be4d5217a605a73dd40351650f22edf382d0e15f2",
+      "bytes": 3075
+    },
+    "code/grain_test_sql/contract.py": {
+      "sha256": "8d5dceb41cf8acd0daa873cf3eadf8abd34a4d9834e2f2a6d4ee90065b51fcaa",
+      "bytes": 4334
+    },
+    "code/grain_test_sql/contract_checker.py": {
+      "sha256": "c6d25792cec582aed7290deeb261b572f736c56a7e8177acbe840ac284c34f4b",
+      "bytes": 4138
+    },
+    "code/grain_test_sql/contract_gate.py": {
+      "sha256": "ef38cc4d69e5d6de10655946b994ff170fa9ec8030524df4edf8b749909cdf90",
+      "bytes": 12063
+    },
+    "code/grain_test_sql/evidence_scope.py": {
+      "sha256": "f6182b5f931a35a07bcc445edc3281071cf54d98b16d7b3ae4b208dc73b5c92d",
+      "bytes": 5726
+    },
+    "code/grain_test_sql/executor.py": {
+      "sha256": "0d26baf9ddef84d314e35203af0d9700a8b6636a015eb1d97a1428a4138a1bd4",
+      "bytes": 1705
+    },
+    "code/grain_test_sql/gold_semantic_audit.py": {
+      "sha256": "1252ff787a15a0e8edb37745c58df4fb9ad399484c3beefa2391bba2ad485ee4",
+      "bytes": 9405
+    },
+    "code/grain_test_sql/pair_builder.py": {
+      "sha256": "d419c28c7ff70c47c715b9fadd145206a40a8b40561a1f1731252038a0ca7ae8",
+      "bytes": 107141
+    },
+    "code/grain_test_sql/pipeline.py": {
+      "sha256": "41db89a5e9a7bbfcf476b4d8c1a5bc60854c8b2e19174d256c7963fb339eb8fb",
+      "bytes": 8625
+    },
+    "code/grain_test_sql/prompts.py": {
+      "sha256": "321ca0015dae5960b8c7e4d9c06a1cf2e735d6ab2518009057ad066f2e4221c0",
+      "bytes": 23525
+    },
+    "code/grain_test_sql/repair.py": {
+      "sha256": "f3f20720d64b11f1bca59d7c92adc0f428badecd8833bf69a31bf581b65b2016",
+      "bytes": 3643
+    },
+    "code/grain_test_sql/schema_registry.py": {
+      "sha256": "201209a9c2b879074c6c90cafb0e3bb6663db545b7e7a48ab6133c18338b2145",
+      "bytes": 18195
+    },
+    "code/grain_test_sql/signature_extractor.py": {
+      "sha256": "b6828d70e745949f91293857f68efafda08518c373c2e5408c2d39efc48c60c1",
+      "bytes": 22302
+    },
+    "code/grain_test_sql/static_rules.py": {
+      "sha256": "bfc98aa708128e9ccb0dc91a56de9d44b52d5b906e17bcfa4ca211df17829321",
+      "bytes": 21723
+    },
+    "code/grain_test_sql/template_matcher.py": {
+      "sha256": "a6d97f476e9a00fbf78110badac800c3f67d72903bca3a3df19956f7b84fc201",
+      "bytes": 30931
+    },
+    "code/grain_test_sql/validator.py": {
+      "sha256": "65cef6299f520d2b2b7664fb9380c15fb3ea2336126a5ed959a0783e62bcd5ce",
+      "bytes": 7829
+    },
+    "code/workflows/02_validation/generate_bird_false_candidates.py": {
+      "sha256": "a9e9d410cce9cbc03f16f2b4f8ed62955b3e9a0e79a6cc1a19e66935a857e432",
+      "bytes": 43920
+    },
+    "code/workflows/02_validation/run_bird_grain_repair.py": {
+      "sha256": "08446a3eb7f16a066dbcfa495a8ac2ac9117f707299301315c59f5623fe56c7b",
+      "bytes": 33273
+    },
+    "code/workflows/05_reporting/run_budget_sensitivity.py": {
+      "sha256": "c367ecf3354796ed7cacf7f10447262c939035686cbae122b440829c27f29f93",
+      "bytes": 21334
+    },
+    "code/workflows/05_reporting/run_natural_budget_sensitivity.py": {
+      "sha256": "492caaa8ce938810388ea8be59bcd3d0453e4899d1d2fc8770bb0870d36d0d78",
+      "bytes": 20577
+    },
+    "code/workflows/07_controlled_validity/build_controlled_validity_audit.py": {
+      "sha256": "b9a686bcdb5b0707931cb6585e2ade7f71eb27357d137475a26f0c47ca2914d1",
+      "bytes": 28183
+    },
+    "code/workflows/09_executor_validation_v22/build_certified_control_pool_v22.py": {
+      "sha256": "0d92b657ccf62255ca5f56fe9e50372369b7c1255427f8db3670575ac1d56ff3",
+      "bytes": 6741
+    },
+    "code/workflows/09_executor_validation_v22/build_unfiltered_control_audit.py": {
+      "sha256": "7472835357ee0e5c9dc8abd37ae9c3170a98b7b42bbb25d97513418294f4b1e7",
+      "bytes": 8037
+    },
+    "code/workflows/09_executor_validation_v22/certify_controls_v22.py": {
+      "sha256": "db890bf4aa3c2dc87e649adf6f65e3fb7fe48c3990e8a5f3f18a0d0c2f0d48a6",
+      "bytes": 3671
+    },
+    "code/workflows/09_executor_validation_v22/complete_multihop_tst_faults.py": {
+      "sha256": "7e1fbbf621e5caa9375f0cdd339344c3188cb84d9e589894fc2937707e2c5a39",
+      "bytes": 6491
+    },
+    "code/workflows/09_executor_validation_v22/freeze_unfiltered_fault_pool.py": {
+      "sha256": "fc35a2fd3cabe9cf1447f70769dc77bc2dfbbe05fb03b18582d6583f5560086a",
+      "bytes": 4569
+    },
+    "code/workflows/09_executor_validation_v22/run_executor_validation_v22.sh": {
+      "sha256": "3dd2e4c17f12e1630f496df822b03eba60af7d83111ddb624fbdbef721c790ce",
+      "bytes": 5187
+    },
+    "code/workflows/09_executor_validation_v22/snapshot_v21_contracts.py": {
+      "sha256": "8079ec94bccfde2c3d2ef26c9a803772a38a417fece81c9c57929e786f555e1a",
+      "bytes": 4949
+    },
+    "code/workflows/09_executor_validation_v22/summarize_executor_validation_v22.py": {
+      "sha256": "732c34a029cef3ab81ec8ddb34fe650df4c9e33fe6e2736c3744e5c072b1fb01",
+      "bytes": 11904
+    },
+    "code/workflows/09_executor_validation_v22/triage_invalid_witnesses_v22.py": {
+      "sha256": "d51a8334d1df36f3cdfc9e11fe0b532a3295e00e462955589c64c913e86940dd",
+      "bytes": 3656
+    },
+    "code/workflows/10_natural_candidate_v23/audit_abc_decisions_v23.py": {
+      "sha256": "c374cabbd5a344c7b0869e74f982453b1c641d494c79d73af241e5d1cc371e47",
+      "bytes": 17440
+    },
+    "code/workflows/10_natural_candidate_v23/audit_baseline_coverage_v23.py": {
+      "sha256": "06ce3182a9bf821c955a06e8b37638b9adac889293524bc8af103964f7c48444",
+      "bytes": 5296
+    },
+    "code/workflows/10_natural_candidate_v23/contract_review_exports.py": {
+      "sha256": "79b9245ff5dcd2b17e5439137b776c22194e62084a6a925d76ee3e866fc3df05",
+      "bytes": 692
+    },
+    "code/workflows/10_natural_candidate_v23/run_natural_candidate_replay_v23.py": {
+      "sha256": "d6e986eaf437a4d1078801f3527c879ee2005942980d8d6b20d40118e1e17ef4",
+      "bytes": 11870
+    },
+    "code/workflows/10_natural_candidate_v23/summarize_effectiveness_v23.py": {
+      "sha256": "58accc5b0f53000ef77bea11d1602c3696b6c60ae1384bae8806450711f794cd",
+      "bytes": 23000
+    },
+    "code/workflows/10_natural_candidate_v23/summarize_risk_tiers_v23.py": {
+      "sha256": "a6a3dc080604ade150670c5625664d5f2f2dcd52c17aa9b91de532d2f45a0f86",
+      "bytes": 6709
+    },
+    "code/workflows/10_natural_candidate_v23/summarize_shared_intersection_baselines_v23.py": {
+      "sha256": "d12f1cac08ec0675a9be1bf0df75571cec7b23c3f4ecb969b7d6905ee69df3ea",
+      "bytes": 18770
+    },
     "data/annotator_a_labels.jsonl": {
       "sha256": "0d9ee9f9f0c553605a99d5cad46580d515d8195e9ade5701c2d1efa4a9b65987",
       "bytes": 1244224
@@ -41,6 +945,10 @@
     "data/annotator_c_labels.jsonl": {
       "sha256": "54721238876f723cb7d191acad5f3559251e7ad680cec2aabfd7d9e0596d09bd",
       "bytes": 67227
+    },
+    "data/candidates.jsonl": {
+      "sha256": "bada033e7c8df2e49f6f658b15486fa47c682b4e823b34f089ed371f6544a53e",
+      "bytes": 2565629
     },
     "data/contract_annotator_a_labels.jsonl": {
       "sha256": "7a681241b1c5ec9b477001e178528b57549ac1d2e668380f8e8e3f3ca379df31",
@@ -54,9 +962,21 @@
       "sha256": "ecbead82314b23904aa404e9b1508eea34fed94bd32d4d167fd4a3db135f2cd7",
       "bytes": 957
     },
-    "data/candidates.jsonl": {
-      "sha256": "bada033e7c8df2e49f6f658b15486fa47c682b4e823b34f089ed371f6544a53e",
-      "bytes": 2565629
+    "data/contract_review/bird/manifest.json": {
+      "sha256": "ffc28608c678c9521af068d812843a05bbdc546c1318579376067496c4fd989a",
+      "bytes": 352
+    },
+    "data/contract_review/bird/reviewer_a.packet.jsonl": {
+      "sha256": "7d3758ba89b062d469232413ae52c04c62cb7c53adcda4914910b0bb97875f1a",
+      "bytes": 684132
+    },
+    "data/contract_review/spider/manifest.json": {
+      "sha256": "2d3a887e2b5a456a932dd0eacb28bb5d4f652f4111f5491d958d77fc7e9885ee",
+      "bytes": 354
+    },
+    "data/contract_review/spider/reviewer_a.packet.jsonl": {
+      "sha256": "4d1de9fb58ab02551256da05f727139d84e8cdc057d3ee79d9111427ea22043a",
+      "bytes": 378942
     },
     "data/contracts.jsonl": {
       "sha256": "e1240a45998a5666f610cc0e2b88ec1b6a15b405c1dd24d2c5f1aa39b9eae09d",
@@ -74,49 +994,49 @@
       "sha256": "89a4ff0f2cc44798fc06235dd2833b966aeab872fd6154cb8b6a45dca3af17bc",
       "bytes": 687734
     },
-    "results/canonical_source_manifest.json": {
-      "sha256": "6fc6fd3213d08073316b32034f31900ccc6f272dc6965614ada71037002aea07",
-      "bytes": 3770
+    "inputs/controlled/bird.auto_contracts.v21.jsonl": {
+      "sha256": "ed45892803764a9834219d02c255997c3bb4ced1e841ebb6c332076cb1480be0",
+      "bytes": 1170601
     },
-    "results/controlled_validation.json": {
-      "sha256": "da72b73ee0a7bca23bc6a19f57af7dc0da49c8947c14d6dae1bf91b9566e5940",
-      "bytes": 190258
+    "inputs/controlled/spider.auto_contracts.v21.jsonl": {
+      "sha256": "ad52f534ee64c5bbbb6f405bef62e98a89c6ec8d186ad0eed3118f0cb4357893",
+      "bytes": 739216
     },
-    "results/controlled_validation.tsv": {
-      "sha256": "0d0caa24041d5549104747f57278bc15955b4b82516ddb8774458c326134512b",
-      "bytes": 3382
+    "inputs/natural/bird_glm_candidate.v23.jsonl": {
+      "sha256": "c946f717e92066d9c83d4a86f560b2eab4b0628d5a82b6e957811195693a84df",
+      "bytes": 782843
     },
-    "results/evidence_scope.tsv": {
-      "sha256": "e10913dd45899e9daf669fd26dd81820df00b12dc9e6a480fd0b4c84a139728b",
-      "bytes": 1156
+    "inputs/natural/bird_qwen_candidate.v23.jsonl": {
+      "sha256": "a0b069caa5658196e2fe16b894694175b2e1bc21d3f3d1e23217bd4bf2bd5b65",
+      "bytes": 780886
     },
-    "results/natural_effectiveness.json": {
-      "sha256": "ab636052834e704c9da2a96055eeb37913639a0a176a1aacd780f6fdf1f72f1d",
-      "bytes": 153970
+    "inputs/natural/spider_glm_candidate.v23.jsonl": {
+      "sha256": "37a54cde51387f2759248e1bf2f2877b75e726a4699dcb8ee05035084f58ee6a",
+      "bytes": 474507
     },
-    "results/natural_effectiveness.tsv": {
-      "sha256": "c8cb2d2cbdffe09fd84c2d1ec3683e7f66862dc68b2387da5ceccfb563b99e36",
-      "bytes": 1235
+    "inputs/natural/spider_qwen_candidate.v23.jsonl": {
+      "sha256": "3c292fcdf610658e7374429ed74a10c5edda3331cfcb91152c4fbae64d2bca59",
+      "bytes": 474161
     },
-    "results/natural_replay.json": {
-      "sha256": "97f1511df18928fd25b8ca33210d87d44dbe03016e1ba043187506a0b6ed0e53",
-      "bytes": 33869
+    "inputs/natural/v23_candidate_inputs.manifest.json": {
+      "sha256": "937662590905899cc5e6b6d4a9415a248f1c685a6f72f8e399bb60feb66b6cdf",
+      "bytes": 2522
     },
-    "results/natural_replay.tsv": {
-      "sha256": "7535a8d5eaee6d0f65a7c803a3eca6615140c31a42f2dfcc2717211efefdf250",
-      "bytes": 3242
+    "reproduce.sh": {
+      "sha256": "e74ea531d9b88610494de70ec8e6878d0f412f1e5157a4a4cb4d8ef3985ea7eb",
+      "bytes": 2665
     },
-    "results/evidence_scope.json": {
-      "sha256": "e6890477e9ce8a019a9806fdf3fa3f2460d0cd69139fd5852e60c878edd754e2",
-      "bytes": 7777
+    "requirements.txt": {
+      "sha256": "5bea4baaefa050bf205aefdcaedc8fa57b066966bfdd5b1f198e83eee4f1e3b9",
+      "bytes": 26
     },
-    "results/evidence_scope.jsonl": {
-      "sha256": "4dff16146204ea138717ff358b3935394073861c0642f3b845f816db66d1cc60",
-      "bytes": 208093
+    "results/ablations.json": {
+      "sha256": "b682fbc0de8e3040510bf624a81c0d9c9bae9717d5cc3c45bd3cdca02d71d391",
+      "bytes": 1747
     },
-    "results/human_label_audit.json": {
-      "sha256": "bf773fdcd3f63fc2ed55934d0acaeeb828dee6808f534ebbdaf3c37ced238d9f",
-      "bytes": 4154
+    "results/ablations.tsv": {
+      "sha256": "79b3f0ab9f2e7af6c5a94f5fb9ed9906a246559edf56b1e6c3944f7a1e6286b0",
+      "bytes": 440
     },
     "results/baseline_comparison.json": {
       "sha256": "ea12009583ce27ebcc4e36ada75a3626f3f53ebf88adbdaef975e692d5dcdefb",
@@ -130,41 +1050,33 @@
       "sha256": "a43166af4cb23deb3540be00a1d8348068d67b0fae5786b120703a902d59330e",
       "bytes": 10949
     },
-    "results/ablations.json": {
-      "sha256": "b682fbc0de8e3040510bf624a81c0d9c9bae9717d5cc3c45bd3cdca02d71d391",
-      "bytes": 1747
+    "results/canonical_source_manifest.json": {
+      "sha256": "6fc6fd3213d08073316b32034f31900ccc6f272dc6965614ada71037002aea07",
+      "bytes": 3770
     },
-    "results/ablations.tsv": {
-      "sha256": "79b3f0ab9f2e7af6c5a94f5fb9ed9906a246559edf56b1e6c3944f7a1e6286b0",
-      "bytes": 440
+    "results/controlled_validation.json": {
+      "sha256": "da72b73ee0a7bca23bc6a19f57af7dc0da49c8947c14d6dae1bf91b9566e5940",
+      "bytes": 190258
     },
-    "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.manifest.json": {
-      "sha256": "52c8d6625f8efa97858d69652896b43dfd6890156b24a023cc9a807c314e376c",
-      "bytes": 1843
+    "results/controlled_validation.tsv": {
+      "sha256": "0d0caa24041d5549104747f57278bc15955b4b82516ddb8774458c326134512b",
+      "bytes": 3382
     },
-    "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.jsonl": {
-      "sha256": "11849aca6e20aa8206e3aa5ae3f46cab87b570c38db6c781bf35e4d6e9aa6049",
-      "bytes": 1943854
+    "results/evidence_scope.json": {
+      "sha256": "e6890477e9ce8a019a9806fdf3fa3f2460d0cd69139fd5852e60c878edd754e2",
+      "bytes": 7777
     },
-    "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.manifest.json": {
-      "sha256": "a3cd594647e9a4bc2c55b93dd9d337b52bb268b9c99117a56e538ca542c4600c",
-      "bytes": 718
+    "results/evidence_scope.jsonl": {
+      "sha256": "4dff16146204ea138717ff358b3935394073861c0642f3b845f816db66d1cc60",
+      "bytes": 208093
     },
-    "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.jsonl": {
-      "sha256": "fec47039ce797c9ef06534c26b763817be07ff133a61f144f03ae87fc606e69a",
-      "bytes": 210675
+    "results/evidence_scope.tsv": {
+      "sha256": "e10913dd45899e9daf669fd26dd81820df00b12dc9e6a480fd0b4c84a139728b",
+      "bytes": 1156
     },
-    "README.md": {
-      "sha256": "8f55b8cb988dd439f0238c6f3680794e292a51abd65fca5a6880a44e6a848cb2",
-      "bytes": 9397
-    },
-    "scripts/verify_artifact.py": {
-      "sha256": "e90e32ca54ccfb8dbb0ac46c97e73e5afabc7b0e30cf3169d91d2e2d3e61ff7e",
-      "bytes": 5362
-    },
-    "scripts/verify_llm_judges.py": {
-      "sha256": "c3472800c5091df2db3c4bc64960ccb8e8a2fc2f6fa403ce520dd71e104a7b1e",
-      "bytes": 5118
+    "results/human_label_audit.json": {
+      "sha256": "bf773fdcd3f63fc2ed55934d0acaeeb828dee6808f534ebbdaf3c37ced238d9f",
+      "bytes": 4154
     },
     "results/llm_judge_predictions/contract_aware_llm_judge.bird_glm.qwen.v23.jsonl": {
       "sha256": "5beed8c940615deabc75729bb84ae1f34206aaf4cc7ed85ad3a8b252f578d5e0",
@@ -198,45 +1110,29 @@
       "sha256": "7efe065c81fecb0992aae6e242f5d27ccc0faddf213406cb42b810be53759882",
       "bytes": 546269
     },
-    "data/contract_review/bird/reviewer_a.packet.jsonl": {
-      "sha256": "7d3758ba89b062d469232413ae52c04c62cb7c53adcda4914910b0bb97875f1a",
-      "bytes": 684132
+    "results/natural_effectiveness.json": {
+      "sha256": "ab636052834e704c9da2a96055eeb37913639a0a176a1aacd780f6fdf1f72f1d",
+      "bytes": 153970
     },
-    "data/contract_review/bird/manifest.json": {
-      "sha256": "ffc28608c678c9521af068d812843a05bbdc546c1318579376067496c4fd989a",
-      "bytes": 352
+    "results/natural_effectiveness.tsv": {
+      "sha256": "c8cb2d2cbdffe09fd84c2d1ec3683e7f66862dc68b2387da5ceccfb563b99e36",
+      "bytes": 1235
     },
-    "data/contract_review/spider/reviewer_a.packet.jsonl": {
-      "sha256": "4d1de9fb58ab02551256da05f727139d84e8cdc057d3ee79d9111427ea22043a",
-      "bytes": 378942
+    "results/natural_replay.json": {
+      "sha256": "97f1511df18928fd25b8ca33210d87d44dbe03016e1ba043187506a0b6ed0e53",
+      "bytes": 33869
     },
-    "data/contract_review/spider/manifest.json": {
-      "sha256": "2d3a887e2b5a456a932dd0eacb28bb5d4f652f4111f5491d958d77fc7e9885ee",
-      "bytes": 354
+    "results/natural_replay.tsv": {
+      "sha256": "7535a8d5eaee6d0f65a7c803a3eca6615140c31a42f2dfcc2717211efefdf250",
+      "bytes": 3242
     },
-    "code/workflows/10_natural_candidate_v23/audit_abc_decisions_v23.py": {
-      "sha256": "c374cabbd5a344c7b0869e74f982453b1c641d494c79d73af241e5d1cc371e47",
-      "bytes": 17440
+    "scripts/verify_artifact.py": {
+      "sha256": "e90e32ca54ccfb8dbb0ac46c97e73e5afabc7b0e30cf3169d91d2e2d3e61ff7e",
+      "bytes": 5362
     },
-    "code/workflows/10_natural_candidate_v23/summarize_effectiveness_v23.py": {
-      "sha256": "58accc5b0f53000ef77bea11d1602c3696b6c60ae1384bae8806450711f794cd",
-      "bytes": 23000
-    },
-    "code/workflows/10_natural_candidate_v23/contract_review_exports.py": {
-      "sha256": "79b9245ff5dcd2b17e5439137b776c22194e62084a6a925d76ee3e866fc3df05",
-      "bytes": 692
-    },
-    "inputs/natural/v23_candidate_inputs.manifest.json": {
-      "sha256": "937662590905899cc5e6b6d4a9415a248f1c685a6f72f8e399bb60feb66b6cdf",
-      "bytes": 2522
-    },
-    "LICENSE": {
-      "sha256": "afaf7c256718792c6dcbcacc3a3b3c75801c2fa6865319a25e1c91366ab5ad76",
-      "bytes": 4324
-    },
-    "THIRD_PARTY_NOTICES.md": {
-      "sha256": "89e60427ab2bfbec50448be12bed8a75ec2622f7b1d9738d20b1ef41946083c4",
-      "bytes": 3794
+    "scripts/verify_llm_judges.py": {
+      "sha256": "c3472800c5091df2db3c4bc64960ccb8e8a2fc2f6fa403ce520dd71e104a7b1e",
+      "bytes": 5118
     }
   }
 }

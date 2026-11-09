@@ -133,6 +133,7 @@ def main() -> None:
                     "dataset": dataset,
                     "contract_type": row["contract_type"],
                     "fault_status": str((row.get("grain_result") or {}).get("status") or "ERROR"),
+                    "evidence_scope_policy": row.get("evidence_scope_policy", "unspecified"),
                 }
             )
     controls = {replay_key(row): row for row in read_jsonl(ROOT / args.controls)}
@@ -188,6 +189,7 @@ def main() -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     summary = {
         "protocol": "executor_validation_v2.2_unfiltered_controlled_fault_control_replay",
+        "evidence_scope_policies": sorted({row["evidence_scope_policy"] for row in fault_rows}),
         "contract_freeze": manifest,
         "fault_pool_freeze": fault_pool_manifest,
         "selection_rule": {

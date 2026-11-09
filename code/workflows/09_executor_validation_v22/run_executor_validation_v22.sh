@@ -41,6 +41,7 @@ validate_dataset() {
     --eval-set "$eval_set" --auto-contracts "$contracts" --auto-contract-row-set \
     --contract-source auto --only-with-contract --only-predicted-contracts \
     --predictions "$data_dir/faults.unfiltered.jsonl" --skip-real-result-compare \
+    --evidence-scope-policy unrestricted \
     --out "$data_dir/fault_validation.unfiltered.jsonl"
 }
 

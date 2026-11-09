@@ -22,6 +22,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from grain_test_sql.contract import MetricContract
+from grain_test_sql.evidence_scope import UNRESTRICTED_POLICY
 from grain_test_sql.pipeline import run_pipeline
 from grain_test_sql.schema_registry import SchemaRegistry
 
@@ -116,7 +117,10 @@ def main() -> None:
                         )
                     if not control_sql or not strategy:
                         raise ValueError("matched neutralization did not return a control")
-                    result = run_pipeline(control_sql, registry, contract).to_dict()
+                    result = run_pipeline(
+                        control_sql, registry, contract,
+                        evidence_scope_policy=UNRESTRICTED_POLICY,
+                    ).to_dict()
                     record.update(
                         {
                             "control_strategy": strategy,

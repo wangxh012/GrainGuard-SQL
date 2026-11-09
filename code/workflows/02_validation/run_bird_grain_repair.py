@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from grain_test_sql.contract import MetricContract
+from grain_test_sql.evidence_scope import EVIDENCE_SCOPE_POLICIES, SUPPORTED_POLICY
 from grain_test_sql.gold_semantic_audit import (
     apply_gold_semantic_audit,
     audit_gold_sql_semantics,
@@ -81,6 +82,12 @@ def main() -> None:
         help="Per-query timeout for real SQLite result comparison",
     )
     parser.add_argument("--generate-repairs", action="store_true", help="Call the configured LLM to repair VIOLATION rows")
+    parser.add_argument(
+        "--evidence-scope-policy",
+        choices=EVIDENCE_SCOPE_POLICIES,
+        default=SUPPORTED_POLICY,
+        help="Evidence admission policy; controlled executor replay explicitly uses unrestricted.",
+    )
     parser.add_argument(
         "--guard-static-pass-violations",
         action="store_true",
@@ -324,6 +331,7 @@ def main() -> None:
                     contract,
                     guard_static_pass_violations=args.guard_static_pass_violations,
                     enable_static_alerts=args.enable_static_grain_alerts,
+                    evidence_scope_policy=args.evidence_scope_policy,
                 ).to_dict()
             except Exception as exc:
                 pipeline_error = exc
@@ -385,6 +393,7 @@ def main() -> None:
                     contract,
                     guard_static_pass_violations=args.guard_static_pass_violations,
                     enable_static_alerts=args.enable_static_grain_alerts,
+                    evidence_scope_policy=args.evidence_scope_policy,
                 ).to_dict()
                 if not args.skip_real_result_compare:
                     repaired_real_result_comparison = compare_real_results(
@@ -467,6 +476,7 @@ def main() -> None:
                     "gold_sql": row["gold_sql"],
                     "real_result_comparison": real_result_comparison,
                     "grain_result": result,
+                    "evidence_scope_policy": args.evidence_scope_policy,
                     "repair_prompt": repair_prompt,
                     "repaired_sql": repaired_sql,
                     "repaired_grain_result": repaired_grain_result,
