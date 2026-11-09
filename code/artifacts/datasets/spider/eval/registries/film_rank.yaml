@@ -1,0 +1,49 @@
+tables:
+  film:
+    columns:
+      Film_ID: number
+      Title: text
+      Studio: text
+      Director: text
+      Gross_in_dollar: number
+    primary_key: &id001
+    - Film_ID
+    grain: *id001
+  market:
+    columns:
+      Market_ID: number
+      Country: text
+      Number_cities: number
+    primary_key: &id002
+    - Market_ID
+    grain: *id002
+  film_market_estimation:
+    columns:
+      Estimation_ID: number
+      Low_Estimate: number
+      High_Estimate: number
+      Film_ID: number
+      Type: text
+      Market_ID: number
+      Year: number
+    primary_key: &id003
+    - Estimation_ID
+    grain: *id003
+    observed_non_unique:
+    - - Market_ID
+    - - Film_ID
+    foreign_keys:
+    - columns:
+      - Market_ID
+      references:
+        table: market
+        columns:
+        - Market_ID
+      many_allowed: true
+    - columns:
+      - Film_ID
+      references:
+        table: film
+        columns:
+        - Film_ID
+      many_allowed: true

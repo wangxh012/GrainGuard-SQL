@@ -1,0 +1,43 @@
+tables:
+  AREA_CODE_STATE:
+    columns:
+      area_code: number
+      state: text
+    primary_key: &id001
+    - area_code
+    grain: *id001
+  CONTESTANTS:
+    columns:
+      contestant_number: number
+      contestant_name: text
+    primary_key: &id002
+    - contestant_number
+    grain: *id002
+  VOTES:
+    columns:
+      vote_id: number
+      phone_number: number
+      state: text
+      contestant_number: number
+      created: time
+    primary_key: &id003
+    - vote_id
+    grain: *id003
+    observed_non_unique:
+    - - contestant_number
+    - - state
+    foreign_keys:
+    - columns:
+      - contestant_number
+      references:
+        table: CONTESTANTS
+        columns:
+        - contestant_number
+      many_allowed: true
+    - columns:
+      - state
+      references:
+        table: AREA_CODE_STATE
+        columns:
+        - state
+      many_allowed: true

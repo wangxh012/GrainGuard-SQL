@@ -1,0 +1,54 @@
+tables:
+  airport:
+    columns:
+      id: number
+      City: text
+      Country: text
+      IATA: text
+      ICAO: text
+      name: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  operate_company:
+    columns:
+      id: number
+      name: text
+      Type: text
+      Principal_activities: text
+      Incorporated_in: text
+      Group_Equity_Shareholding: number
+    primary_key: &id002
+    - id
+    grain: *id002
+  flight:
+    columns:
+      id: number
+      Vehicle_Flight_number: text
+      Date: text
+      Pilot: text
+      Velocity: number
+      Altitude: number
+      airport_id: number
+      company_id: number
+    primary_key: &id003
+    - id
+    grain: *id003
+    observed_non_unique:
+    - - company_id
+    - - airport_id
+    foreign_keys:
+    - columns:
+      - company_id
+      references:
+        table: operate_company
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - airport_id
+      references:
+        table: airport
+        columns:
+        - id
+      many_allowed: true

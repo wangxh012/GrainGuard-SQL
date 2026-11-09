@@ -1,0 +1,176 @@
+tables:
+  Player_Attributes:
+    columns:
+      id: number
+      player_fifa_api_id: number
+      player_api_id: number
+      date: text
+      overall_rating: number
+      potential: number
+      preferred_foot: text
+      attacking_work_rate: text
+      defensive_work_rate: text
+      crossing: number
+      finishing: number
+      heading_accuracy: number
+      short_passing: number
+      volleys: number
+      dribbling: number
+      curve: number
+      free_kick_accuracy: number
+      long_passing: number
+      ball_control: number
+      acceleration: number
+      sprint_speed: number
+      agility: number
+      reactions: number
+      balance: number
+      shot_power: number
+      jumping: number
+      stamina: number
+      strength: number
+      long_shots: number
+      aggression: number
+      interceptions: number
+      positioning: number
+      vision: number
+      penalties: number
+      marking: number
+      standing_tackle: number
+      sliding_tackle: number
+      gk_diving: number
+      gk_handling: number
+      gk_kicking: number
+      gk_positioning: number
+      gk_reflexes: number
+    primary_key: &id001
+    - id
+    grain: *id001
+    observed_non_unique:
+    - - player_api_id
+    - - player_fifa_api_id
+    foreign_keys:
+    - columns:
+      - player_api_id
+      references:
+        table: Player
+        columns:
+        - player_api_id
+      many_allowed: true
+    - columns:
+      - player_fifa_api_id
+      references:
+        table: Player
+        columns:
+        - player_fifa_api_id
+      many_allowed: true
+  sqlite_sequence:
+    columns:
+      name: text
+      seq: text
+    primary_key: []
+    grain: []
+  Player:
+    columns:
+      id: number
+      player_api_id: number
+      player_name: text
+      player_fifa_api_id: number
+      birthday: text
+      height: number
+      weight: number
+    primary_key: &id002
+    - id
+    grain: *id002
+    unique:
+    - - player_fifa_api_id
+    - - player_api_id
+  League:
+    columns:
+      id: number
+      country_id: number
+      name: text
+    primary_key: &id003
+    - id
+    grain: *id003
+    unique:
+    - - name
+    observed_unique:
+    - - country_id
+    foreign_keys:
+    - columns:
+      - country_id
+      references:
+        table: Country
+        columns:
+        - id
+      many_allowed: true
+  Country:
+    columns:
+      id: number
+      name: text
+    primary_key: &id004
+    - id
+    grain: *id004
+    unique:
+    - - name
+  Team:
+    columns:
+      id: number
+      team_api_id: number
+      team_fifa_api_id: number
+      team_long_name: text
+      team_short_name: text
+    primary_key: &id005
+    - id
+    grain: *id005
+    unique:
+    - - team_api_id
+  Team_Attributes:
+    columns:
+      id: number
+      team_fifa_api_id: number
+      team_api_id: number
+      date: text
+      buildUpPlaySpeed: number
+      buildUpPlaySpeedClass: text
+      buildUpPlayDribbling: number
+      buildUpPlayDribblingClass: text
+      buildUpPlayPassing: number
+      buildUpPlayPassingClass: text
+      buildUpPlayPositioningClass: text
+      chanceCreationPassing: number
+      chanceCreationPassingClass: text
+      chanceCreationCrossing: number
+      chanceCreationCrossingClass: text
+      chanceCreationShooting: number
+      chanceCreationShootingClass: text
+      chanceCreationPositioningClass: text
+      defencePressure: number
+      defencePressureClass: text
+      defenceAggression: number
+      defenceAggressionClass: text
+      defenceTeamWidth: number
+      defenceTeamWidthClass: text
+      defenceDefenderLineClass: text
+    primary_key: &id006
+    - id
+    grain: *id006
+    observed_non_unique:
+    - - team_api_id
+    - - team_fifa_api_id
+    foreign_keys:
+    - columns:
+      - team_api_id
+      references:
+        table: Team
+        columns:
+        - team_api_id
+      many_allowed: true
+    - columns:
+      - team_fifa_api_id
+      references:
+        table: Team
+        columns:
+        - team_fifa_api_id
+      many_allowed: true

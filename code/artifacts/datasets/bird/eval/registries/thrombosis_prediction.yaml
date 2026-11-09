@@ -1,0 +1,101 @@
+tables:
+  Examination:
+    columns:
+      ID: integer
+      Examination Date: date
+      aCL IgG: real
+      aCL IgM: real
+      ANA: integer
+      ANA Pattern: text
+      aCL IgA: integer
+      Diagnosis: text
+      KCT: text
+      RVVT: text
+      LAC: text
+      Symptoms: text
+      Thrombosis: integer
+    primary_key: []
+    grain:
+    - ID
+    observed_non_unique:
+    - - ID
+    foreign_keys:
+    - columns:
+      - ID
+      references:
+        table: Patient
+        columns:
+        - ID
+      many_allowed: true
+  Patient:
+    columns:
+      ID: integer
+      SEX: text
+      Birthday: date
+      Description: date
+      First Date: date
+      Admission: text
+      Diagnosis: text
+    primary_key: &id001
+    - ID
+    grain: *id001
+  Laboratory:
+    columns:
+      ID: integer
+      Date: date
+      GOT: integer
+      GPT: integer
+      LDH: integer
+      ALP: integer
+      TP: real
+      ALB: real
+      UA: real
+      UN: integer
+      CRE: real
+      T-BIL: real
+      T-CHO: integer
+      TG: integer
+      CPK: integer
+      GLU: integer
+      WBC: real
+      RBC: real
+      HGB: real
+      HCT: real
+      PLT: integer
+      PT: real
+      APTT: integer
+      FG: real
+      PIC: integer
+      TAT: integer
+      TAT2: integer
+      U-PRO: text
+      IGG: integer
+      IGA: integer
+      IGM: integer
+      CRP: text
+      RA: text
+      RF: text
+      C3: integer
+      C4: integer
+      RNP: text
+      SM: text
+      SC170: text
+      SSA: text
+      SSB: text
+      CENTROMEA: text
+      DNA: text
+      DNA-II: integer
+    primary_key: &id002
+    - ID
+    - Date
+    grain: *id002
+    observed_non_unique:
+    - - ID
+    foreign_keys:
+    - columns:
+      - ID
+      references:
+        table: Patient
+        columns:
+        - ID
+      many_allowed: true

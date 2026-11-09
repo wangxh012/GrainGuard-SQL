@@ -1,0 +1,53 @@
+tables:
+  artist:
+    columns:
+      Artist_ID: number
+      Artist: text
+      Age: number
+      Famous_Title: text
+      Famous_Release_date: text
+    primary_key: &id001
+    - Artist_ID
+    grain: *id001
+  volume:
+    columns:
+      Volume_ID: number
+      Volume_Issue: text
+      Issue_Date: text
+      Weeks_on_Top: number
+      Song: text
+      Artist_ID: number
+    primary_key: &id002
+    - Volume_ID
+    grain: *id002
+    observed_non_unique:
+    - - Artist_ID
+    foreign_keys:
+    - columns:
+      - Artist_ID
+      references:
+        table: artist
+        columns:
+        - Artist_ID
+      many_allowed: true
+  music_festival:
+    columns:
+      ID: number
+      Music_Festival: text
+      Date_of_ceremony: text
+      Category: text
+      Volume: number
+      Result: text
+    primary_key: &id003
+    - ID
+    grain: *id003
+    observed_unique:
+    - - Volume
+    foreign_keys:
+    - columns:
+      - Volume
+      references:
+        table: volume
+        columns:
+        - Volume_ID
+      many_allowed: true

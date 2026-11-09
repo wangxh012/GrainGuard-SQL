@@ -1,0 +1,58 @@
+tables:
+  customers:
+    columns:
+      CustomerID: integer
+      Segment: text
+      Currency: text
+    primary_key: &id001
+    - CustomerID
+    grain: *id001
+  gasstations:
+    columns:
+      GasStationID: integer
+      ChainID: integer
+      Country: text
+      Segment: text
+    primary_key: &id002
+    - GasStationID
+    grain: *id002
+  products:
+    columns:
+      ProductID: integer
+      Description: text
+    primary_key: &id003
+    - ProductID
+    grain: *id003
+  transactions_1k:
+    columns:
+      TransactionID: integer
+      Date: date
+      Time: text
+      CustomerID: integer
+      CardID: integer
+      GasStationID: integer
+      ProductID: integer
+      Amount: integer
+      Price: real
+    primary_key: &id004
+    - TransactionID
+    grain: *id004
+  yearmonth:
+    columns:
+      CustomerID: integer
+      Date: text
+      Consumption: real
+    primary_key: &id005
+    - Date
+    - CustomerID
+    grain: *id005
+    observed_non_unique:
+    - - CustomerID
+    foreign_keys:
+    - columns:
+      - CustomerID
+      references:
+        table: customers
+        columns:
+        - CustomerID
+      many_allowed: true

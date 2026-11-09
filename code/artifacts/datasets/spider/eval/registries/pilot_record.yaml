@@ -1,0 +1,55 @@
+tables:
+  aircraft:
+    columns:
+      Aircraft_ID: number
+      Order_Year: number
+      Manufacturer: text
+      Model: text
+      Fleet_Series: text
+      Powertrain: text
+      Fuel_Propulsion: text
+    primary_key: &id001
+    - Aircraft_ID
+    grain: *id001
+  pilot:
+    columns:
+      Pilot_ID: number
+      Pilot_name: text
+      Rank: number
+      Age: number
+      Nationality: text
+      Position: text
+      Join_Year: number
+      Team: text
+    primary_key: &id002
+    - Pilot_ID
+    grain: *id002
+  pilot_record:
+    columns:
+      Record_ID: number
+      Pilot_ID: number
+      Aircraft_ID: number
+      Date: text
+    primary_key: &id003
+    - Pilot_ID
+    - Aircraft_ID
+    - Date
+    grain: *id003
+    observed_non_unique:
+    - - Aircraft_ID
+    - - Pilot_ID
+    foreign_keys:
+    - columns:
+      - Aircraft_ID
+      references:
+        table: aircraft
+        columns:
+        - Aircraft_ID
+      many_allowed: true
+    - columns:
+      - Pilot_ID
+      references:
+        table: pilot
+        columns:
+        - Pilot_ID
+      many_allowed: true

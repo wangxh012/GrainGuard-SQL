@@ -1,0 +1,30 @@
+tables:
+  publication:
+    columns:
+      Publication_ID: number
+      Book_ID: number
+      Publisher: text
+      Publication_Date: text
+      Price: number
+    primary_key: &id001
+    - Publication_ID
+    grain: *id001
+    observed_unique:
+    - - Book_ID
+    foreign_keys:
+    - columns:
+      - Book_ID
+      references:
+        table: book
+        columns:
+        - Book_ID
+      many_allowed: true
+  book:
+    columns:
+      Book_ID: number
+      Title: text
+      Issues: number
+      Writer: text
+    primary_key: &id002
+    - Book_ID
+    grain: *id002

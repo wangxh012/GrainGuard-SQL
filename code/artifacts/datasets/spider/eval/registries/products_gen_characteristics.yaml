@@ -1,0 +1,100 @@
+tables:
+  Ref_Characteristic_Types:
+    columns:
+      characteristic_type_code: text
+      characteristic_type_description: text
+    primary_key: &id001
+    - characteristic_type_code
+    grain: *id001
+  Ref_Colors:
+    columns:
+      color_code: text
+      color_description: text
+    primary_key: &id002
+    - color_code
+    grain: *id002
+  Ref_Product_Categories:
+    columns:
+      product_category_code: text
+      product_category_description: text
+      unit_of_measure: text
+    primary_key: &id003
+    - product_category_code
+    grain: *id003
+  Characteristics:
+    columns:
+      characteristic_id: number
+      characteristic_type_code: text
+      characteristic_data_type: text
+      characteristic_name: text
+      other_characteristic_details: text
+    primary_key: &id004
+    - characteristic_id
+    grain: *id004
+    observed_non_unique:
+    - - characteristic_type_code
+    foreign_keys:
+    - columns:
+      - characteristic_type_code
+      references:
+        table: Ref_Characteristic_Types
+        columns:
+        - characteristic_type_code
+      many_allowed: true
+  Products:
+    columns:
+      product_id: number
+      color_code: text
+      product_category_code: text
+      product_name: text
+      typical_buying_price: text
+      typical_selling_price: text
+      product_description: text
+      other_product_details: text
+    primary_key: &id005
+    - product_id
+    grain: *id005
+    observed_non_unique:
+    - - color_code
+    - - product_category_code
+    foreign_keys:
+    - columns:
+      - color_code
+      references:
+        table: Ref_Colors
+        columns:
+        - color_code
+      many_allowed: true
+    - columns:
+      - product_category_code
+      references:
+        table: Ref_Product_Categories
+        columns:
+        - product_category_code
+      many_allowed: true
+  Product_Characteristics:
+    columns:
+      product_id: number
+      characteristic_id: number
+      product_characteristic_value: text
+    primary_key: []
+    grain:
+    - product_id
+    observed_non_unique:
+    - - product_id
+    - - characteristic_id
+    foreign_keys:
+    - columns:
+      - product_id
+      references:
+        table: Products
+        columns:
+        - product_id
+      many_allowed: true
+    - columns:
+      - characteristic_id
+      references:
+        table: Characteristics
+        columns:
+        - characteristic_id
+      many_allowed: true

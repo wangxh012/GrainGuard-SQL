@@ -1,0 +1,91 @@
+tables:
+  Customers:
+    columns:
+      Customer_ID: number
+      Customer_Details: text
+    primary_key: &id001
+    - Customer_ID
+    grain: *id001
+  Customer_Policies:
+    columns:
+      Policy_ID: number
+      Customer_ID: number
+      Policy_Type_Code: text
+      Start_Date: time
+      End_Date: time
+    primary_key: &id002
+    - Policy_ID
+    grain: *id002
+    observed_non_unique:
+    - - Customer_ID
+    foreign_keys:
+    - columns:
+      - Customer_ID
+      references:
+        table: Customers
+        columns:
+        - Customer_ID
+      many_allowed: true
+  Claims:
+    columns:
+      Claim_ID: number
+      Policy_ID: number
+      Date_Claim_Made: time
+      Date_Claim_Settled: time
+      Amount_Claimed: number
+      Amount_Settled: number
+    primary_key: &id003
+    - Claim_ID
+    grain: *id003
+    observed_non_unique:
+    - - Policy_ID
+    foreign_keys:
+    - columns:
+      - Policy_ID
+      references:
+        table: Customer_Policies
+        columns:
+        - Policy_ID
+      many_allowed: true
+  Settlements:
+    columns:
+      Settlement_ID: number
+      Claim_ID: number
+      Date_Claim_Made: time
+      Date_Claim_Settled: time
+      Amount_Claimed: number
+      Amount_Settled: number
+      Customer_Policy_ID: number
+    primary_key: &id004
+    - Settlement_ID
+    grain: *id004
+    observed_non_unique:
+    - - Claim_ID
+    foreign_keys:
+    - columns:
+      - Claim_ID
+      references:
+        table: Claims
+        columns:
+        - Claim_ID
+      many_allowed: true
+  Payments:
+    columns:
+      Payment_ID: number
+      Settlement_ID: number
+      Payment_Method_Code: text
+      Date_Payment_Made: time
+      Amount_Payment: number
+    primary_key: &id005
+    - Payment_ID
+    grain: *id005
+    observed_non_unique:
+    - - Settlement_ID
+    foreign_keys:
+    - columns:
+      - Settlement_ID
+      references:
+        table: Settlements
+        columns:
+        - Settlement_ID
+      many_allowed: true

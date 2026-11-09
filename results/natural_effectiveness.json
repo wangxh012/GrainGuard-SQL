@@ -1,0 +1,5752 @@
+{
+  "experiment": "natural_candidate_effectiveness_v2.3_contract_v2.1",
+  "reference_estimand": "End-to-end detection of any frozen SQL-level metric-grain defect. A false negative can therefore arise from contract target selection, executor coverage, or witness search; it is not an executor-only miss.",
+  "target_relative_estimand_status": "Not estimated until the outcome-blinded Contract V2.1 target-alignment audit is completed.",
+  "primary_estimand": "Full 1,634-candidate pool; Contract V2.1 construction failures and post-contract unsupported outcomes are retained as abstentions.",
+  "conditional_estimand": "The 1,160 candidates attached to 580 gate-valid Contract V2.1 questions.",
+  "inputs": {
+    "trace": {
+      "path": "code/artifacts/reproduced/natural_v23/replay/natural_candidate_v23.traces.jsonl",
+      "sha256": "bf44385300f6f4b474973333950293d95d169ff5bcd3976b007359e912567fee"
+    },
+    "candidate_manifest": {
+      "path": "inputs/natural/v23_candidate_inputs.manifest.json",
+      "sha256": "937662590905899cc5e6b6d4a9415a248f1c685a6f72f8e399bb60feb66b6cdf"
+    },
+    "labels": [
+      {
+        "path": "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.jsonl",
+        "sha256": "11849aca6e20aa8206e3aa5ae3f46cab87b570c38db6c781bf35e4d6e9aa6049"
+      },
+      {
+        "path": "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.jsonl",
+        "sha256": "fec47039ce797c9ef06534c26b763817be07ff133a61f144f03ae87fc606e69a"
+      }
+    ],
+    "contract_reviews": [
+      {
+        "dataset": "bird",
+        "directory": "data/contract_review/bird",
+        "reviewer_a_sha256": "7a681241b1c5ec9b477001e178528b57549ac1d2e668380f8e8e3f3ca379df31",
+        "reviewer_b_sha256": "7d46f18b3e216b6e23e3a1c3c124cacac88b7705cdd0154607f2e8c281b5fb60",
+        "reviewer_c_sha256": "ecbead82314b23904aa404e9b1508eea34fed94bd32d4d167fd4a3db135f2cd7"
+      },
+      {
+        "dataset": "spider",
+        "directory": "data/contract_review/spider",
+        "reviewer_a_sha256": "7a681241b1c5ec9b477001e178528b57549ac1d2e668380f8e8e3f3ca379df31",
+        "reviewer_b_sha256": "7d46f18b3e216b6e23e3a1c3c124cacac88b7705cdd0154607f2e8c281b5fb60",
+        "reviewer_c_sha256": "ecbead82314b23904aa404e9b1508eea34fed94bd32d4d167fd4a3db135f2cd7"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "scope": "full_pool",
+      "dataset": "bird",
+      "model": "glm-5.1",
+      "n": 479,
+      "positive": 34,
+      "negative": 445,
+      "tp": 12,
+      "fp": 5,
+      "fn": 22,
+      "tn": 440,
+      "precision": 0.7058823529411765,
+      "recall": 0.35294117647058826,
+      "f1": 0.47058823529411764,
+      "decided": 293,
+      "decision_coverage": 0.6116910229645094,
+      "status_counts": {
+        "ABSTAIN": 22,
+        "INVALID_WITNESS": 3,
+        "PASS": 276,
+        "SPECIFICATION_ABSTENTION": 157,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 17
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.7058823529411765,
+          "ci_95": [
+            0.3,
+            0.96875
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.35294117647058826,
+          "ci_95": [
+            0.125,
+            0.5882352941176471
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.47058823529411764,
+          "ci_95": [
+            0.17777777777777778,
+            0.6984126984126984
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 11,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "f1": 0.8,
+            "tp": 4.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "bird:codebase_community": {
+            "precision": 1.0,
+            "recall": 0.6,
+            "f1": 0.75,
+            "tp": 3.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "bird:financial": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:formula_1": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:student_club": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.6666666666666666,
+            "recall": 0.25,
+            "f1": 0.36363636363636365,
+            "tp": 2.0,
+            "fp": 1.0,
+            "fn": 6.0
+          },
+          "bird:toxicology": {
+            "precision": 1.0,
+            "recall": 0.16666666666666666,
+            "f1": 0.2857142857142857,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 5.0
+          }
+        },
+        "precision": 0.5740740740740741,
+        "precision_eligible_databases": 9,
+        "recall": 0.2796296296296296,
+        "recall_eligible_databases": 9,
+        "f1": 0.3628908128908129,
+        "f1_eligible_databases": 9
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.7058823529411765,
+            "recall": 0.35294117647058826,
+            "f1": 0.47058823529411764,
+            "tp": 12.0,
+            "fp": 5.0,
+            "fn": 22.0
+          },
+          "bird:card_games": {
+            "precision": 0.6153846153846154,
+            "recall": 0.2857142857142857,
+            "f1": 0.3902439024390244,
+            "tp": 8.0,
+            "fp": 5.0,
+            "fn": 20.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.6428571428571429,
+            "recall": 0.3103448275862069,
+            "f1": 0.4186046511627907,
+            "tp": 9.0,
+            "fp": 5.0,
+            "fn": 20.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.75,
+            "recall": 0.36363636363636365,
+            "f1": 0.4897959183673469,
+            "tp": 12.0,
+            "fp": 4.0,
+            "fn": 21.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.6875,
+            "recall": 0.34375,
+            "f1": 0.4583333333333333,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 21.0
+          },
+          "bird:financial": {
+            "precision": 0.75,
+            "recall": 0.375,
+            "f1": 0.5,
+            "tp": 12.0,
+            "fp": 4.0,
+            "fn": 20.0
+          },
+          "bird:formula_1": {
+            "precision": 0.75,
+            "recall": 0.36363636363636365,
+            "f1": 0.4897959183673469,
+            "tp": 12.0,
+            "fp": 4.0,
+            "fn": 21.0
+          },
+          "bird:student_club": {
+            "precision": 0.7333333333333333,
+            "recall": 0.3548387096774194,
+            "f1": 0.4782608695652174,
+            "tp": 11.0,
+            "fp": 4.0,
+            "fn": 20.0
+          },
+          "bird:superhero": {
+            "precision": 0.7058823529411765,
+            "recall": 0.35294117647058826,
+            "f1": 0.47058823529411764,
+            "tp": 12.0,
+            "fp": 5.0,
+            "fn": 22.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.7142857142857143,
+            "recall": 0.38461538461538464,
+            "f1": 0.5,
+            "tp": 10.0,
+            "fp": 4.0,
+            "fn": 16.0
+          },
+          "bird:toxicology": {
+            "precision": 0.6875,
+            "recall": 0.39285714285714285,
+            "f1": 0.5,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 17.0
+          }
+        },
+        "precision": {
+          "min": 0.6153846153846154,
+          "max": 0.75,
+          "max_absolute_change": 0.0904977375565611
+        },
+        "recall": {
+          "min": 0.2857142857142857,
+          "max": 0.39285714285714285,
+          "max_absolute_change": 0.06722689075630256
+        },
+        "f1": {
+          "min": 0.3902439024390244,
+          "max": 0.5,
+          "max_absolute_change": 0.08034433285509324
+        }
+      }
+    },
+    {
+      "scope": "full_pool",
+      "dataset": "bird",
+      "model": "qwen3.6-27b",
+      "n": 479,
+      "positive": 128,
+      "negative": 351,
+      "tp": 71,
+      "fp": 9,
+      "fn": 57,
+      "tn": 342,
+      "precision": 0.8875,
+      "recall": 0.5546875,
+      "f1": 0.6826923076923077,
+      "decided": 295,
+      "decision_coverage": 0.615866388308977,
+      "status_counts": {
+        "ABSTAIN": 24,
+        "INVALID_WITNESS": 3,
+        "PASS": 215,
+        "SPECIFICATION_ABSTENTION": 157,
+        "VIOLATION": 80
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.8875,
+          "ci_95": [
+            0.7291666666666666,
+            0.9661016949152542
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.5546875,
+          "ci_95": [
+            0.39805577570834155,
+            0.6596644155044216
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.6826923076923077,
+          "ci_95": [
+            0.5254237288135594,
+            0.7714312466559655
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 11,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 0.875,
+            "recall": 0.6363636363636364,
+            "f1": 0.7368421052631579,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 4.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5555555555555556,
+            "f1": 0.6896551724137931,
+            "tp": 10.0,
+            "fp": 1.0,
+            "fn": 8.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.6666666666666666,
+            "recall": 0.2857142857142857,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 1.0,
+            "fn": 5.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 0.42857142857142855,
+            "f1": 0.6,
+            "tp": 3.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "bird:financial": {
+            "precision": 1.0,
+            "recall": 0.7,
+            "f1": 0.8235294117647058,
+            "tp": 7.0,
+            "fp": 0.0,
+            "fn": 3.0
+          },
+          "bird:formula_1": {
+            "precision": 0.7142857142857143,
+            "recall": 0.5555555555555556,
+            "f1": 0.625,
+            "tp": 5.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "bird:student_club": {
+            "precision": 0.3333333333333333,
+            "recall": 0.2,
+            "f1": 0.25,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.9655172413793104,
+            "recall": 0.6511627906976745,
+            "f1": 0.7777777777777778,
+            "tp": 28.0,
+            "fp": 1.0,
+            "fn": 15.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8888888888888888,
+            "recall": 0.4444444444444444,
+            "f1": 0.5925925925925926,
+            "tp": 8.0,
+            "fp": 1.0,
+            "fn": 10.0
+          }
+        },
+        "precision": 0.8169758615160914,
+        "precision_eligible_databases": 9,
+        "recall": 0.4952630774336202,
+        "recall_eligible_databases": 9,
+        "f1": 0.6105996733124475,
+        "f1_eligible_databases": 9
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.8875,
+            "recall": 0.5546875,
+            "f1": 0.6826923076923077,
+            "tp": 71.0,
+            "fp": 9.0,
+            "fn": 57.0
+          },
+          "bird:card_games": {
+            "precision": 0.8888888888888888,
+            "recall": 0.5470085470085471,
+            "f1": 0.6772486772486772,
+            "tp": 64.0,
+            "fp": 8.0,
+            "fn": 53.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.8840579710144928,
+            "recall": 0.5545454545454546,
+            "f1": 0.6815642458100558,
+            "tp": 61.0,
+            "fp": 8.0,
+            "fn": 49.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.8961038961038961,
+            "recall": 0.5702479338842975,
+            "f1": 0.696969696969697,
+            "tp": 69.0,
+            "fp": 8.0,
+            "fn": 52.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.8831168831168831,
+            "recall": 0.5619834710743802,
+            "f1": 0.6868686868686869,
+            "tp": 68.0,
+            "fp": 9.0,
+            "fn": 53.0
+          },
+          "bird:financial": {
+            "precision": 0.8767123287671232,
+            "recall": 0.5423728813559322,
+            "f1": 0.6701570680628273,
+            "tp": 64.0,
+            "fp": 9.0,
+            "fn": 54.0
+          },
+          "bird:formula_1": {
+            "precision": 0.9041095890410958,
+            "recall": 0.5546218487394958,
+            "f1": 0.6875,
+            "tp": 66.0,
+            "fp": 7.0,
+            "fn": 53.0
+          },
+          "bird:student_club": {
+            "precision": 0.9090909090909091,
+            "recall": 0.5691056910569106,
+            "f1": 0.7,
+            "tp": 70.0,
+            "fp": 7.0,
+            "fn": 53.0
+          },
+          "bird:superhero": {
+            "precision": 0.8875,
+            "recall": 0.5546875,
+            "f1": 0.6826923076923077,
+            "tp": 71.0,
+            "fp": 9.0,
+            "fn": 57.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.8431372549019608,
+            "recall": 0.5058823529411764,
+            "f1": 0.6323529411764706,
+            "tp": 43.0,
+            "fp": 8.0,
+            "fn": 42.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8873239436619719,
+            "recall": 0.5727272727272728,
+            "f1": 0.6961325966850829,
+            "tp": 63.0,
+            "fp": 8.0,
+            "fn": 47.0
+          }
+        },
+        "precision": {
+          "min": 0.8431372549019608,
+          "max": 0.9090909090909091,
+          "max_absolute_change": 0.04436274509803917
+        },
+        "recall": {
+          "min": 0.5058823529411764,
+          "max": 0.5727272727272728,
+          "max_absolute_change": 0.04880514705882355
+        },
+        "f1": {
+          "min": 0.6323529411764706,
+          "max": 0.7,
+          "max_absolute_change": 0.05033936651583715
+        }
+      }
+    },
+    {
+      "scope": "full_pool",
+      "dataset": "spider",
+      "model": "glm-5.1",
+      "n": 338,
+      "positive": 8,
+      "negative": 330,
+      "tp": 1,
+      "fp": 1,
+      "fn": 7,
+      "tn": 329,
+      "precision": 0.5,
+      "recall": 0.125,
+      "f1": 0.2,
+      "decided": 256,
+      "decision_coverage": 0.757396449704142,
+      "status_counts": {
+        "ABSTAIN": 2,
+        "PASS": 254,
+        "SPECIFICATION_ABSTENTION": 80,
+        "VIOLATION": 2
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.5,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 14792,
+          "undefined_bootstrap_replicates": 5208
+        },
+        "recall": {
+          "estimate": 0.125,
+          "ci_95": [
+            0.0,
+            0.5555555555555556
+          ],
+          "defined_bootstrap_replicates": 19732,
+          "undefined_bootstrap_replicates": 268
+        },
+        "f1": {
+          "estimate": 0.2,
+          "ci_95": [
+            0.0,
+            0.6666666666666666
+          ],
+          "defined_bootstrap_replicates": 19879,
+          "undefined_bootstrap_replicates": 121
+        }
+      },
+      "database_macro": {
+        "database_count": 19,
+        "per_database": {
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1": 0.6666666666666666,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 3.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.5,
+        "precision_eligible_databases": 2,
+        "recall": 0.1,
+        "recall_eligible_databases": 5,
+        "f1": 0.1111111111111111,
+        "f1_eligible_databases": 6
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "spider:battle_death": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:car_1": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:course_teach": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 6.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:flight_2": {
+            "precision": 0.5,
+            "recall": 0.2,
+            "f1": 0.2857142857142857,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 4.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:network_1": {
+            "precision": 0.5,
+            "recall": 0.14285714285714285,
+            "f1": 0.2222222222222222,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 6.0
+          },
+          "spider:orchestra": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:pets_1": {
+            "precision": 1.0,
+            "recall": 0.125,
+            "f1": 0.2222222222222222,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 7.0
+          },
+          "spider:poker_player": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:singer": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.5,
+            "recall": 0.14285714285714285,
+            "f1": 0.2222222222222222,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 6.0
+          },
+          "spider:tvshow": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:voter_1": {
+            "precision": 0.5,
+            "recall": 0.14285714285714285,
+            "f1": 0.2222222222222222,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 6.0
+          },
+          "spider:world_1": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "spider:wta_1": {
+            "precision": 0.5,
+            "recall": 0.125,
+            "f1": 0.2,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 7.0
+          }
+        },
+        "precision": {
+          "min": 0.0,
+          "max": 1.0,
+          "max_absolute_change": 0.5
+        },
+        "recall": {
+          "min": 0.0,
+          "max": 0.2,
+          "max_absolute_change": 0.125
+        },
+        "f1": {
+          "min": 0.0,
+          "max": 0.2857142857142857,
+          "max_absolute_change": 0.2
+        }
+      }
+    },
+    {
+      "scope": "full_pool",
+      "dataset": "spider",
+      "model": "qwen3.6-27b",
+      "n": 338,
+      "positive": 22,
+      "negative": 316,
+      "tp": 2,
+      "fp": 2,
+      "fn": 20,
+      "tn": 314,
+      "precision": 0.5,
+      "recall": 0.09090909090909091,
+      "f1": 0.15384615384615385,
+      "decided": 256,
+      "decision_coverage": 0.757396449704142,
+      "status_counts": {
+        "INVALID_WITNESS": 2,
+        "PASS": 252,
+        "SPECIFICATION_ABSTENTION": 80,
+        "VIOLATION": 4
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.5,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 18015,
+          "undefined_bootstrap_replicates": 1985
+        },
+        "recall": {
+          "estimate": 0.09090909090909091,
+          "ci_95": [
+            0.0,
+            0.3333333333333333
+          ],
+          "defined_bootstrap_replicates": 19998,
+          "undefined_bootstrap_replicates": 2
+        },
+        "f1": {
+          "estimate": 0.15384615384615385,
+          "ci_95": [
+            0.0,
+            0.4444444444444444
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 19,
+        "per_database": {
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 0.2,
+            "f1": 0.3333333333333333,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 3.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 3.0
+          }
+        },
+        "precision": 0.6666666666666666,
+        "precision_eligible_databases": 3,
+        "recall": 0.15,
+        "recall_eligible_databases": 8,
+        "f1": 0.14814814814814814,
+        "f1_eligible_databases": 9
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "spider:battle_death": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:car_1": {
+            "precision": 0.3333333333333333,
+            "recall": 0.047619047619047616,
+            "f1": 0.08333333333333333,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:course_teach": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.3333333333333333,
+            "recall": 0.058823529411764705,
+            "f1": 0.1,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 16.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:flight_2": {
+            "precision": 0.5,
+            "recall": 0.10526315789473684,
+            "f1": 0.17391304347826086,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 17.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:network_1": {
+            "precision": 0.5,
+            "recall": 0.1111111111111111,
+            "f1": 0.18181818181818182,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 16.0
+          },
+          "spider:orchestra": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:pets_1": {
+            "precision": 1.0,
+            "recall": 0.09090909090909091,
+            "f1": 0.16666666666666666,
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 20.0
+          },
+          "spider:poker_player": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:singer": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.5,
+            "recall": 0.09523809523809523,
+            "f1": 0.16,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 19.0
+          },
+          "spider:tvshow": {
+            "precision": 0.5,
+            "recall": 0.09090909090909091,
+            "f1": 0.15384615384615385,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 20.0
+          },
+          "spider:voter_1": {
+            "precision": 0.5,
+            "recall": 0.09523809523809523,
+            "f1": 0.16,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 19.0
+          },
+          "spider:world_1": {
+            "precision": 0.5,
+            "recall": 0.1111111111111111,
+            "f1": 0.18181818181818182,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 16.0
+          },
+          "spider:wta_1": {
+            "precision": 0.5,
+            "recall": 0.10526315789473684,
+            "f1": 0.17391304347826086,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 17.0
+          }
+        },
+        "precision": {
+          "min": 0.3333333333333333,
+          "max": 1.0,
+          "max_absolute_change": 0.5
+        },
+        "recall": {
+          "min": 0.047619047619047616,
+          "max": 0.1111111111111111,
+          "max_absolute_change": 0.043290043290043295
+        },
+        "f1": {
+          "min": 0.08333333333333333,
+          "max": 0.18181818181818182,
+          "max_absolute_change": 0.07051282051282053
+        }
+      }
+    },
+    {
+      "scope": "full_pool",
+      "dataset": "all",
+      "model": "all",
+      "n": 1634,
+      "positive": 192,
+      "negative": 1442,
+      "tp": 86,
+      "fp": 17,
+      "fn": 106,
+      "tn": 1425,
+      "precision": 0.8349514563106796,
+      "recall": 0.4479166666666667,
+      "f1": 0.5830508474576271,
+      "decided": 1100,
+      "decision_coverage": 0.6731946144430845,
+      "status_counts": {
+        "ABSTAIN": 48,
+        "INVALID_WITNESS": 8,
+        "PASS": 997,
+        "SPECIFICATION_ABSTENTION": 474,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 103
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.8349514563106796,
+          "ci_95": [
+            0.6470588235294118,
+            0.9404761904761905
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.4479166666666667,
+          "ci_95": [
+            0.30146070524984186,
+            0.5585601118359736
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.5830508474576271,
+          "ci_95": [
+            0.4195112816296702,
+            0.6847304026558149
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 30,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 0.9166666666666666,
+            "recall": 0.6470588235294118,
+            "f1": 0.7586206896551724,
+            "tp": 11.0,
+            "fp": 1.0,
+            "fn": 6.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.9285714285714286,
+            "recall": 0.5652173913043478,
+            "f1": 0.7027027027027027,
+            "tp": 13.0,
+            "fp": 1.0,
+            "fn": 10.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.5,
+            "recall": 0.25,
+            "f1": 0.3333333333333333,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 6.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 0.4444444444444444,
+            "f1": 0.6153846153846154,
+            "tp": 4.0,
+            "fp": 0.0,
+            "fn": 5.0
+          },
+          "bird:financial": {
+            "precision": 0.875,
+            "recall": 0.5833333333333334,
+            "f1": 0.7,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 5.0
+          },
+          "bird:formula_1": {
+            "precision": 0.625,
+            "recall": 0.5,
+            "f1": 0.5555555555555556,
+            "tp": 5.0,
+            "fp": 3.0,
+            "fn": 5.0
+          },
+          "bird:student_club": {
+            "precision": 0.4,
+            "recall": 0.25,
+            "f1": 0.3076923076923077,
+            "tp": 2.0,
+            "fp": 3.0,
+            "fn": 6.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.9375,
+            "recall": 0.5882352941176471,
+            "f1": 0.7228915662650602,
+            "tp": 30.0,
+            "fp": 2.0,
+            "fn": 21.0
+          },
+          "bird:toxicology": {
+            "precision": 0.9,
+            "recall": 0.375,
+            "f1": 0.5294117647058824,
+            "tp": 9.0,
+            "fp": 1.0,
+            "fn": 15.0
+          },
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 0.2857142857142857,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 5.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 6.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 5.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 3.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 3.0
+          }
+        },
+        "precision": 0.7568948412698413,
+        "precision_eligible_databases": 12,
+        "recall": 0.32288256308491,
+        "recall_eligible_databases": 17,
+        "f1": 0.37055760998550413,
+        "f1_eligible_databases": 18
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "bird:card_games": {
+            "precision": 0.8241758241758241,
+            "recall": 0.42857142857142855,
+            "f1": 0.5639097744360902,
+            "tp": 75.0,
+            "fp": 16.0,
+            "fn": 100.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.8202247191011236,
+            "recall": 0.4319526627218935,
+            "f1": 0.5658914728682171,
+            "tp": 73.0,
+            "fp": 16.0,
+            "fn": 96.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.8484848484848485,
+            "recall": 0.45652173913043476,
+            "f1": 0.5936395759717314,
+            "tp": 84.0,
+            "fp": 15.0,
+            "fn": 100.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.8282828282828283,
+            "recall": 0.44808743169398907,
+            "f1": 0.5815602836879432,
+            "tp": 82.0,
+            "fp": 17.0,
+            "fn": 101.0
+          },
+          "bird:financial": {
+            "precision": 0.8315789473684211,
+            "recall": 0.4388888888888889,
+            "f1": 0.5745454545454546,
+            "tp": 79.0,
+            "fp": 16.0,
+            "fn": 101.0
+          },
+          "bird:formula_1": {
+            "precision": 0.8526315789473684,
+            "recall": 0.44505494505494503,
+            "f1": 0.5848375451263538,
+            "tp": 81.0,
+            "fp": 14.0,
+            "fn": 101.0
+          },
+          "bird:student_club": {
+            "precision": 0.8571428571428571,
+            "recall": 0.45652173913043476,
+            "f1": 0.5957446808510638,
+            "tp": 84.0,
+            "fp": 14.0,
+            "fn": 100.0
+          },
+          "bird:superhero": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.7887323943661971,
+            "recall": 0.3971631205673759,
+            "f1": 0.5283018867924528,
+            "tp": 56.0,
+            "fp": 15.0,
+            "fn": 85.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8279569892473119,
+            "recall": 0.4583333333333333,
+            "f1": 0.5900383141762452,
+            "tp": 77.0,
+            "fp": 16.0,
+            "fn": 91.0
+          },
+          "spider:battle_death": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:car_1": {
+            "precision": 0.8333333333333334,
+            "recall": 0.44502617801047123,
+            "f1": 0.5802047781569966,
+            "tp": 85.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:course_teach": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.8316831683168316,
+            "recall": 0.4540540540540541,
+            "f1": 0.5874125874125874,
+            "tp": 84.0,
+            "fp": 17.0,
+            "fn": 101.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:flight_2": {
+            "precision": 0.8349514563106796,
+            "recall": 0.46236559139784944,
+            "f1": 0.5951557093425606,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 100.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:network_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.45989304812834225,
+            "f1": 0.593103448275862,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 101.0
+          },
+          "spider:orchestra": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:pets_1": {
+            "precision": 0.86,
+            "recall": 0.4479166666666667,
+            "f1": 0.589041095890411,
+            "tp": 86.0,
+            "fp": 14.0,
+            "fn": 106.0
+          },
+          "spider:poker_player": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:singer": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.8349514563106796,
+            "recall": 0.45263157894736844,
+            "f1": 0.5870307167235495,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 104.0
+          },
+          "spider:tvshow": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4479166666666667,
+            "f1": 0.5830508474576271,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 106.0
+          },
+          "spider:voter_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.45263157894736844,
+            "f1": 0.5870307167235495,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 104.0
+          },
+          "spider:world_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.4574468085106383,
+            "f1": 0.5910652920962199,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 102.0
+          },
+          "spider:wta_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.455026455026455,
+            "f1": 0.589041095890411,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 103.0
+          }
+        },
+        "precision": {
+          "min": 0.7887323943661971,
+          "max": 0.86,
+          "max_absolute_change": 0.04621906194448244
+        },
+        "recall": {
+          "min": 0.3971631205673759,
+          "max": 0.46236559139784944,
+          "max_absolute_change": 0.05075354609929078
+        },
+        "f1": {
+          "min": 0.5283018867924528,
+          "max": 0.5957446808510638,
+          "max_absolute_change": 0.05474896066517432
+        }
+      }
+    },
+    {
+      "scope": "gate_valid",
+      "dataset": "bird",
+      "model": "glm-5.1",
+      "n": 322,
+      "positive": 18,
+      "negative": 304,
+      "tp": 12,
+      "fp": 5,
+      "fn": 6,
+      "tn": 299,
+      "precision": 0.7058823529411765,
+      "recall": 0.6666666666666666,
+      "f1": 0.6857142857142857,
+      "decided": 293,
+      "decision_coverage": 0.9099378881987578,
+      "status_counts": {
+        "ABSTAIN": 22,
+        "INVALID_WITNESS": 3,
+        "PASS": 276,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 17
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.7058823529411765,
+          "ci_95": [
+            0.29411764705882354,
+            0.9583333333333334
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.6666666666666666,
+          "ci_95": [
+            0.3157894736842105,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 19997,
+          "undefined_bootstrap_replicates": 3
+        },
+        "f1": {
+          "estimate": 0.6857142857142857,
+          "ci_95": [
+            0.3331081081081083,
+            0.8888888888888888
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 11,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.8888888888888888,
+            "tp": 4.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "bird:codebase_community": {
+            "precision": 1.0,
+            "recall": 0.6,
+            "f1": 0.75,
+            "tp": 3.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:financial": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:formula_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:student_club": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "tp": 2.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:toxicology": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.5740740740740741,
+        "precision_eligible_databases": 9,
+        "recall": 0.7000000000000001,
+        "recall_eligible_databases": 7,
+        "f1": 0.5487654320987655,
+        "f1_eligible_databases": 9
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.7058823529411765,
+            "recall": 0.6666666666666666,
+            "f1": 0.6857142857142857,
+            "tp": 12.0,
+            "fp": 5.0,
+            "fn": 6.0
+          },
+          "bird:card_games": {
+            "precision": 0.6153846153846154,
+            "recall": 0.6153846153846154,
+            "f1": 0.6153846153846154,
+            "tp": 8.0,
+            "fp": 5.0,
+            "fn": 5.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.6428571428571429,
+            "recall": 0.6923076923076923,
+            "f1": 0.6666666666666666,
+            "tp": 9.0,
+            "fp": 5.0,
+            "fn": 4.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.75,
+            "recall": 0.6666666666666666,
+            "f1": 0.7058823529411765,
+            "tp": 12.0,
+            "fp": 4.0,
+            "fn": 6.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.6875,
+            "recall": 0.6470588235294118,
+            "f1": 0.6666666666666666,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 6.0
+          },
+          "bird:financial": {
+            "precision": 0.75,
+            "recall": 0.75,
+            "f1": 0.75,
+            "tp": 12.0,
+            "fp": 4.0,
+            "fn": 4.0
+          },
+          "bird:formula_1": {
+            "precision": 0.75,
+            "recall": 0.6666666666666666,
+            "f1": 0.7058823529411765,
+            "tp": 12.0,
+            "fp": 4.0,
+            "fn": 6.0
+          },
+          "bird:student_club": {
+            "precision": 0.7333333333333333,
+            "recall": 0.6875,
+            "f1": 0.7096774193548387,
+            "tp": 11.0,
+            "fp": 4.0,
+            "fn": 5.0
+          },
+          "bird:superhero": {
+            "precision": 0.7058823529411765,
+            "recall": 0.6666666666666666,
+            "f1": 0.6857142857142857,
+            "tp": 12.0,
+            "fp": 5.0,
+            "fn": 6.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.7142857142857143,
+            "recall": 0.625,
+            "f1": 0.6666666666666666,
+            "tp": 10.0,
+            "fp": 4.0,
+            "fn": 6.0
+          },
+          "bird:toxicology": {
+            "precision": 0.6875,
+            "recall": 0.6470588235294118,
+            "f1": 0.6666666666666666,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 6.0
+          }
+        },
+        "precision": {
+          "min": 0.6153846153846154,
+          "max": 0.75,
+          "max_absolute_change": 0.0904977375565611
+        },
+        "recall": {
+          "min": 0.6153846153846154,
+          "max": 0.75,
+          "max_absolute_change": 0.08333333333333337
+        },
+        "f1": {
+          "min": 0.6153846153846154,
+          "max": 0.75,
+          "max_absolute_change": 0.0703296703296703
+        }
+      }
+    },
+    {
+      "scope": "gate_valid",
+      "dataset": "bird",
+      "model": "qwen3.6-27b",
+      "n": 322,
+      "positive": 84,
+      "negative": 238,
+      "tp": 71,
+      "fp": 9,
+      "fn": 13,
+      "tn": 229,
+      "precision": 0.8875,
+      "recall": 0.8452380952380952,
+      "f1": 0.8658536585365854,
+      "decided": 295,
+      "decision_coverage": 0.9161490683229814,
+      "status_counts": {
+        "ABSTAIN": 24,
+        "INVALID_WITNESS": 3,
+        "PASS": 215,
+        "VIOLATION": 80
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.8875,
+          "ci_95": [
+            0.7313289322617681,
+            0.9662921348314607
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.8452380952380952,
+          "ci_95": [
+            0.671875,
+            0.9565217391304348
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.8658536585365854,
+          "ci_95": [
+            0.722686364868528,
+            0.9423076923076923
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 11,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 0.875,
+            "recall": 0.7777777777777778,
+            "f1": 0.8235294117647058,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.9090909090909091,
+            "recall": 0.6666666666666666,
+            "f1": 0.7692307692307693,
+            "tp": 10.0,
+            "fp": 1.0,
+            "fn": 5.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285714,
+            "tp": 2.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 3.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:financial": {
+            "precision": 1.0,
+            "recall": 0.7777777777777778,
+            "f1": 0.875,
+            "tp": 7.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "bird:formula_1": {
+            "precision": 0.7142857142857143,
+            "recall": 1.0,
+            "f1": 0.8333333333333334,
+            "tp": 5.0,
+            "fp": 2.0,
+            "fn": 0.0
+          },
+          "bird:student_club": {
+            "precision": 0.3333333333333333,
+            "recall": 0.5,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 1.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.9655172413793104,
+            "recall": 0.9655172413793104,
+            "f1": 0.9655172413793104,
+            "tp": 28.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8888888888888888,
+            "recall": 1.0,
+            "f1": 0.9411764705882353,
+            "tp": 8.0,
+            "fp": 1.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.8169758615160914,
+        "precision_eligible_databases": 9,
+        "recall": 0.798637718177948,
+        "recall_eligible_databases": 9,
+        "f1": 0.7976906441916585,
+        "f1_eligible_databases": 9
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.8875,
+            "recall": 0.8452380952380952,
+            "f1": 0.8658536585365854,
+            "tp": 71.0,
+            "fp": 9.0,
+            "fn": 13.0
+          },
+          "bird:card_games": {
+            "precision": 0.8888888888888888,
+            "recall": 0.8533333333333334,
+            "f1": 0.8707482993197279,
+            "tp": 64.0,
+            "fp": 8.0,
+            "fn": 11.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.8840579710144928,
+            "recall": 0.8840579710144928,
+            "f1": 0.8840579710144928,
+            "tp": 61.0,
+            "fp": 8.0,
+            "fn": 8.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.8961038961038961,
+            "recall": 0.8625,
+            "f1": 0.8789808917197452,
+            "tp": 69.0,
+            "fp": 8.0,
+            "fn": 11.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.8831168831168831,
+            "recall": 0.8395061728395061,
+            "f1": 0.8607594936708861,
+            "tp": 68.0,
+            "fp": 9.0,
+            "fn": 13.0
+          },
+          "bird:financial": {
+            "precision": 0.8767123287671232,
+            "recall": 0.8533333333333334,
+            "f1": 0.8648648648648649,
+            "tp": 64.0,
+            "fp": 9.0,
+            "fn": 11.0
+          },
+          "bird:formula_1": {
+            "precision": 0.9041095890410958,
+            "recall": 0.8354430379746836,
+            "f1": 0.868421052631579,
+            "tp": 66.0,
+            "fp": 7.0,
+            "fn": 13.0
+          },
+          "bird:student_club": {
+            "precision": 0.9090909090909091,
+            "recall": 0.8536585365853658,
+            "f1": 0.8805031446540881,
+            "tp": 70.0,
+            "fp": 7.0,
+            "fn": 12.0
+          },
+          "bird:superhero": {
+            "precision": 0.8875,
+            "recall": 0.8452380952380952,
+            "f1": 0.8658536585365854,
+            "tp": 71.0,
+            "fp": 9.0,
+            "fn": 13.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.8431372549019608,
+            "recall": 0.7818181818181819,
+            "f1": 0.8113207547169812,
+            "tp": 43.0,
+            "fp": 8.0,
+            "fn": 12.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8873239436619719,
+            "recall": 0.8289473684210527,
+            "f1": 0.8571428571428571,
+            "tp": 63.0,
+            "fp": 8.0,
+            "fn": 13.0
+          }
+        },
+        "precision": {
+          "min": 0.8431372549019608,
+          "max": 0.9090909090909091,
+          "max_absolute_change": 0.04436274509803917
+        },
+        "recall": {
+          "min": 0.7818181818181819,
+          "max": 0.8840579710144928,
+          "max_absolute_change": 0.06341991341991338
+        },
+        "f1": {
+          "min": 0.8113207547169812,
+          "max": 0.8840579710144928,
+          "max_absolute_change": 0.054532903819604184
+        }
+      }
+    },
+    {
+      "scope": "gate_valid",
+      "dataset": "spider",
+      "model": "glm-5.1",
+      "n": 258,
+      "positive": 3,
+      "negative": 255,
+      "tp": 1,
+      "fp": 1,
+      "fn": 2,
+      "tn": 254,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "ABSTAIN": 2,
+        "PASS": 254,
+        "VIOLATION": 2
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.5,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 14829,
+          "undefined_bootstrap_replicates": 5171
+        },
+        "recall": {
+          "estimate": 0.3333333333333333,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 17654,
+          "undefined_bootstrap_replicates": 2346
+        },
+        "f1": {
+          "estimate": 0.4,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 18834,
+          "undefined_bootstrap_replicates": 1166
+        }
+      },
+      "database_macro": {
+        "database_count": 19,
+        "per_database": {
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.5,
+        "precision_eligible_databases": 2,
+        "recall": 0.3333333333333333,
+        "recall_eligible_databases": 3,
+        "f1": 0.25,
+        "f1_eligible_databases": 4
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "spider:battle_death": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:car_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:course_teach": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:flight_2": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:network_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:pets_1": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:poker_player": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:tvshow": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:voter_1": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:wta_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "precision": {
+          "min": 0.0,
+          "max": 1.0,
+          "max_absolute_change": 0.5
+        },
+        "recall": {
+          "min": 0.0,
+          "max": 0.5,
+          "max_absolute_change": 0.3333333333333333
+        },
+        "f1": {
+          "min": 0.0,
+          "max": 0.5,
+          "max_absolute_change": 0.4
+        }
+      }
+    },
+    {
+      "scope": "gate_valid",
+      "dataset": "spider",
+      "model": "qwen3.6-27b",
+      "n": 258,
+      "positive": 6,
+      "negative": 252,
+      "tp": 2,
+      "fp": 2,
+      "fn": 4,
+      "tn": 250,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "INVALID_WITNESS": 2,
+        "PASS": 252,
+        "VIOLATION": 4
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.5,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 17920,
+          "undefined_bootstrap_replicates": 2080
+        },
+        "recall": {
+          "estimate": 0.3333333333333333,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 19607,
+          "undefined_bootstrap_replicates": 393
+        },
+        "f1": {
+          "estimate": 0.4,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 19879,
+          "undefined_bootstrap_replicates": 121
+        }
+      },
+      "database_macro": {
+        "database_count": 19,
+        "per_database": {
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.6666666666666666,
+        "precision_eligible_databases": 3,
+        "recall": 0.4,
+        "recall_eligible_databases": 5,
+        "f1": 0.3333333333333333,
+        "f1_eligible_databases": 6
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "spider:battle_death": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:car_1": {
+            "precision": 0.3333333333333333,
+            "recall": 0.2,
+            "f1": 0.25,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:course_teach": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.3333333333333333,
+            "recall": 0.2,
+            "f1": 0.25,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:flight_2": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:network_1": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:pets_1": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5,
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "spider:poker_player": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:tvshow": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:voter_1": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 3.0
+          },
+          "spider:world_1": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 3.0
+          },
+          "spider:wta_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          }
+        },
+        "precision": {
+          "min": 0.3333333333333333,
+          "max": 1.0,
+          "max_absolute_change": 0.5
+        },
+        "recall": {
+          "min": 0.2,
+          "max": 0.5,
+          "max_absolute_change": 0.16666666666666669
+        },
+        "f1": {
+          "min": 0.25,
+          "max": 0.5,
+          "max_absolute_change": 0.15000000000000002
+        }
+      }
+    },
+    {
+      "scope": "gate_valid",
+      "dataset": "all",
+      "model": "all",
+      "n": 1160,
+      "positive": 111,
+      "negative": 1049,
+      "tp": 86,
+      "fp": 17,
+      "fn": 25,
+      "tn": 1032,
+      "precision": 0.8349514563106796,
+      "recall": 0.7747747747747747,
+      "f1": 0.8037383177570093,
+      "decided": 1100,
+      "decision_coverage": 0.9482758620689655,
+      "status_counts": {
+        "ABSTAIN": 48,
+        "INVALID_WITNESS": 8,
+        "PASS": 997,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 103
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.8349514563106796,
+          "ci_95": [
+            0.6516811372148451,
+            0.9396551724137931
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.7747747747747747,
+          "ci_95": [
+            0.5859355271464647,
+            0.910258620689655
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.8037383177570093,
+          "ci_95": [
+            0.6415094339622641,
+            0.900709219858156
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 30,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 0.9166666666666666,
+            "recall": 0.7857142857142857,
+            "f1": 0.8461538461538461,
+            "tp": 11.0,
+            "fp": 1.0,
+            "fn": 3.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.9285714285714286,
+            "recall": 0.65,
+            "f1": 0.7647058823529411,
+            "tp": 13.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 2.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 4.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:financial": {
+            "precision": 0.875,
+            "recall": 0.6363636363636364,
+            "f1": 0.7368421052631579,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 4.0
+          },
+          "bird:formula_1": {
+            "precision": 0.625,
+            "recall": 1.0,
+            "f1": 0.7692307692307693,
+            "tp": 5.0,
+            "fp": 3.0,
+            "fn": 0.0
+          },
+          "bird:student_club": {
+            "precision": 0.4,
+            "recall": 0.5,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 3.0,
+            "fn": 2.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.9375,
+            "recall": 0.967741935483871,
+            "f1": 0.9523809523809523,
+            "tp": 30.0,
+            "fp": 2.0,
+            "fn": 1.0
+          },
+          "bird:toxicology": {
+            "precision": 0.9,
+            "recall": 1.0,
+            "f1": 0.9473684210526315,
+            "tp": 9.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 3.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.7568948412698413,
+        "precision_eligible_databases": 12,
+        "recall": 0.6026546571707861,
+        "recall_eligible_databases": 15,
+        "f1": 0.5600704013049215,
+        "f1_eligible_databases": 16
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "bird:card_games": {
+            "precision": 0.8241758241758241,
+            "recall": 0.7731958762886598,
+            "f1": 0.7978723404255319,
+            "tp": 75.0,
+            "fp": 16.0,
+            "fn": 22.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.8202247191011236,
+            "recall": 0.8021978021978022,
+            "f1": 0.8111111111111111,
+            "tp": 73.0,
+            "fp": 16.0,
+            "fn": 18.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.8484848484848485,
+            "recall": 0.7850467289719626,
+            "f1": 0.8155339805825242,
+            "tp": 84.0,
+            "fp": 15.0,
+            "fn": 23.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.8282828282828283,
+            "recall": 0.7663551401869159,
+            "f1": 0.7961165048543689,
+            "tp": 82.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "bird:financial": {
+            "precision": 0.8315789473684211,
+            "recall": 0.79,
+            "f1": 0.8102564102564103,
+            "tp": 79.0,
+            "fp": 16.0,
+            "fn": 21.0
+          },
+          "bird:formula_1": {
+            "precision": 0.8526315789473684,
+            "recall": 0.7641509433962265,
+            "f1": 0.8059701492537313,
+            "tp": 81.0,
+            "fp": 14.0,
+            "fn": 25.0
+          },
+          "bird:student_club": {
+            "precision": 0.8571428571428571,
+            "recall": 0.7850467289719626,
+            "f1": 0.8195121951219512,
+            "tp": 84.0,
+            "fp": 14.0,
+            "fn": 23.0
+          },
+          "bird:superhero": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.7887323943661971,
+            "recall": 0.7,
+            "f1": 0.7417218543046358,
+            "tp": 56.0,
+            "fp": 15.0,
+            "fn": 24.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8279569892473119,
+            "recall": 0.7549019607843137,
+            "f1": 0.7897435897435897,
+            "tp": 77.0,
+            "fp": 16.0,
+            "fn": 25.0
+          },
+          "spider:battle_death": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:car_1": {
+            "precision": 0.8333333333333334,
+            "recall": 0.7727272727272727,
+            "f1": 0.8018867924528302,
+            "tp": 85.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:course_teach": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.8316831683168316,
+            "recall": 0.7706422018348624,
+            "f1": 0.8,
+            "tp": 84.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:flight_2": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7818181818181819,
+            "f1": 0.8075117370892019,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 24.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:network_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7889908256880734,
+            "f1": 0.8113207547169812,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 23.0
+          },
+          "spider:orchestra": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:pets_1": {
+            "precision": 0.86,
+            "recall": 0.7747747747747747,
+            "f1": 0.8151658767772512,
+            "tp": 86.0,
+            "fp": 14.0,
+            "fn": 25.0
+          },
+          "spider:poker_player": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:singer": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:tvshow": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          },
+          "spider:voter_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7889908256880734,
+            "f1": 0.8113207547169812,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 23.0
+          },
+          "spider:world_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7818181818181819,
+            "f1": 0.8075117370892019,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 24.0
+          },
+          "spider:wta_1": {
+            "precision": 0.8349514563106796,
+            "recall": 0.7747747747747747,
+            "f1": 0.8037383177570093,
+            "tp": 86.0,
+            "fp": 17.0,
+            "fn": 25.0
+          }
+        },
+        "precision": {
+          "min": 0.7887323943661971,
+          "max": 0.86,
+          "max_absolute_change": 0.04621906194448244
+        },
+        "recall": {
+          "min": 0.7,
+          "max": 0.8021978021978022,
+          "max_absolute_change": 0.07477477477477479
+        },
+        "f1": {
+          "min": 0.7417218543046358,
+          "max": 0.8195121951219512,
+          "max_absolute_change": 0.06201646345237355
+        }
+      }
+    },
+    {
+      "scope": "adequate_contract",
+      "dataset": "bird",
+      "model": "glm-5.1",
+      "n": 316,
+      "positive": 15,
+      "negative": 301,
+      "tp": 11,
+      "fp": 5,
+      "fn": 4,
+      "tn": 296,
+      "precision": 0.6875,
+      "recall": 0.7333333333333333,
+      "f1": 0.7096774193548387,
+      "decided": 287,
+      "decision_coverage": 0.9082278481012658,
+      "status_counts": {
+        "ABSTAIN": 22,
+        "INVALID_WITNESS": 3,
+        "PASS": 271,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 16
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.6875,
+          "ci_95": [
+            0.23076923076923078,
+            0.9545948616600748
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.7333333333333333,
+          "ci_95": [
+            0.4,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 19923,
+          "undefined_bootstrap_replicates": 77
+        },
+        "f1": {
+          "estimate": 0.7096774193548387,
+          "ci_95": [
+            0.31570723684210533,
+            0.8947368421052632
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 11,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.8888888888888888,
+            "tp": 4.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "bird:codebase_community": {
+            "precision": 1.0,
+            "recall": 0.6,
+            "f1": 0.75,
+            "tp": 3.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:financial": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:formula_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:student_club": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1": 0.8,
+            "tp": 2.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "bird:toxicology": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.5208333333333334,
+        "precision_eligible_databases": 8,
+        "recall": 0.78,
+        "recall_eligible_databases": 5,
+        "f1": 0.49236111111111114,
+        "f1_eligible_databases": 8
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.6875,
+            "recall": 0.7333333333333333,
+            "f1": 0.7096774193548387,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 4.0
+          },
+          "bird:card_games": {
+            "precision": 0.5833333333333334,
+            "recall": 0.7,
+            "f1": 0.6363636363636364,
+            "tp": 7.0,
+            "fp": 5.0,
+            "fn": 3.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.6153846153846154,
+            "recall": 0.8,
+            "f1": 0.6956521739130435,
+            "tp": 8.0,
+            "fp": 5.0,
+            "fn": 2.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.7333333333333333,
+            "recall": 0.7333333333333333,
+            "f1": 0.7333333333333333,
+            "tp": 11.0,
+            "fp": 4.0,
+            "fn": 4.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.6666666666666666,
+            "recall": 0.7142857142857143,
+            "f1": 0.6896551724137931,
+            "tp": 10.0,
+            "fp": 5.0,
+            "fn": 4.0
+          },
+          "bird:financial": {
+            "precision": 0.7333333333333333,
+            "recall": 0.7333333333333333,
+            "f1": 0.7333333333333333,
+            "tp": 11.0,
+            "fp": 4.0,
+            "fn": 4.0
+          },
+          "bird:formula_1": {
+            "precision": 0.7333333333333333,
+            "recall": 0.7333333333333333,
+            "f1": 0.7333333333333333,
+            "tp": 11.0,
+            "fp": 4.0,
+            "fn": 4.0
+          },
+          "bird:student_club": {
+            "precision": 0.7142857142857143,
+            "recall": 0.7692307692307693,
+            "f1": 0.7407407407407407,
+            "tp": 10.0,
+            "fp": 4.0,
+            "fn": 3.0
+          },
+          "bird:superhero": {
+            "precision": 0.6875,
+            "recall": 0.7333333333333333,
+            "f1": 0.7096774193548387,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 4.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.6923076923076923,
+            "recall": 0.6923076923076923,
+            "f1": 0.6923076923076923,
+            "tp": 9.0,
+            "fp": 4.0,
+            "fn": 4.0
+          },
+          "bird:toxicology": {
+            "precision": 0.6875,
+            "recall": 0.7333333333333333,
+            "f1": 0.7096774193548387,
+            "tp": 11.0,
+            "fp": 5.0,
+            "fn": 4.0
+          }
+        },
+        "precision": {
+          "min": 0.5833333333333334,
+          "max": 0.7333333333333333,
+          "max_absolute_change": 0.10416666666666663
+        },
+        "recall": {
+          "min": 0.6923076923076923,
+          "max": 0.8,
+          "max_absolute_change": 0.06666666666666676
+        },
+        "f1": {
+          "min": 0.6363636363636364,
+          "max": 0.7407407407407407,
+          "max_absolute_change": 0.07331378299120239
+        }
+      }
+    },
+    {
+      "scope": "adequate_contract",
+      "dataset": "bird",
+      "model": "qwen3.6-27b",
+      "n": 316,
+      "positive": 81,
+      "negative": 235,
+      "tp": 69,
+      "fp": 9,
+      "fn": 12,
+      "tn": 226,
+      "precision": 0.8846153846153846,
+      "recall": 0.8518518518518519,
+      "f1": 0.8679245283018868,
+      "decided": 289,
+      "decision_coverage": 0.9145569620253164,
+      "status_counts": {
+        "ABSTAIN": 24,
+        "INVALID_WITNESS": 3,
+        "PASS": 211,
+        "VIOLATION": 78
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.8846153846153846,
+          "ci_95": [
+            0.717948717948718,
+            0.9645405761626811
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.8518518518518519,
+          "ci_95": [
+            0.675,
+            0.9629629629629629
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.8679245283018868,
+          "ci_95": [
+            0.7222222222222222,
+            0.9459459459459459
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 11,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 0.875,
+            "recall": 0.7777777777777778,
+            "f1": 0.8235294117647058,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.9090909090909091,
+            "recall": 0.6666666666666666,
+            "f1": 0.7692307692307693,
+            "tp": 10.0,
+            "fp": 1.0,
+            "fn": 5.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285714,
+            "tp": 2.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 3.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:financial": {
+            "precision": 1.0,
+            "recall": 0.8571428571428571,
+            "f1": 0.9230769230769231,
+            "tp": 6.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "bird:formula_1": {
+            "precision": 0.7142857142857143,
+            "recall": 1.0,
+            "f1": 0.8333333333333334,
+            "tp": 5.0,
+            "fp": 2.0,
+            "fn": 0.0
+          },
+          "bird:student_club": {
+            "precision": 0.3333333333333333,
+            "recall": 0.5,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 1.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.9655172413793104,
+            "recall": 0.9655172413793104,
+            "f1": 0.9655172413793104,
+            "tp": 28.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:toxicology": {
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333333333333333,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.8154326516395483,
+        "precision_eligible_databases": 9,
+        "recall": 0.8074560603296237,
+        "recall_eligible_databases": 9,
+        "f1": 0.8021610648385498,
+        "f1_eligible_databases": 9
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.8846153846153846,
+            "recall": 0.8518518518518519,
+            "f1": 0.8679245283018868,
+            "tp": 69.0,
+            "fp": 9.0,
+            "fn": 12.0
+          },
+          "bird:card_games": {
+            "precision": 0.8857142857142857,
+            "recall": 0.8611111111111112,
+            "f1": 0.8732394366197183,
+            "tp": 62.0,
+            "fp": 8.0,
+            "fn": 10.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.8805970149253731,
+            "recall": 0.8939393939393939,
+            "f1": 0.8872180451127819,
+            "tp": 59.0,
+            "fp": 8.0,
+            "fn": 7.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.8933333333333333,
+            "recall": 0.8701298701298701,
+            "f1": 0.881578947368421,
+            "tp": 67.0,
+            "fp": 8.0,
+            "fn": 10.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.88,
+            "recall": 0.8461538461538461,
+            "f1": 0.8627450980392157,
+            "tp": 66.0,
+            "fp": 9.0,
+            "fn": 12.0
+          },
+          "bird:financial": {
+            "precision": 0.875,
+            "recall": 0.8513513513513513,
+            "f1": 0.863013698630137,
+            "tp": 63.0,
+            "fp": 9.0,
+            "fn": 11.0
+          },
+          "bird:formula_1": {
+            "precision": 0.9014084507042254,
+            "recall": 0.8421052631578947,
+            "f1": 0.8707482993197279,
+            "tp": 64.0,
+            "fp": 7.0,
+            "fn": 12.0
+          },
+          "bird:student_club": {
+            "precision": 0.9066666666666666,
+            "recall": 0.8607594936708861,
+            "f1": 0.8831168831168831,
+            "tp": 68.0,
+            "fp": 7.0,
+            "fn": 11.0
+          },
+          "bird:superhero": {
+            "precision": 0.8846153846153846,
+            "recall": 0.8518518518518519,
+            "f1": 0.8679245283018868,
+            "tp": 69.0,
+            "fp": 9.0,
+            "fn": 12.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.8367346938775511,
+            "recall": 0.7884615384615384,
+            "f1": 0.8118811881188119,
+            "tp": 41.0,
+            "fp": 8.0,
+            "fn": 11.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8857142857142857,
+            "recall": 0.8378378378378378,
+            "f1": 0.8611111111111112,
+            "tp": 62.0,
+            "fp": 8.0,
+            "fn": 12.0
+          }
+        },
+        "precision": {
+          "min": 0.8367346938775511,
+          "max": 0.9066666666666666,
+          "max_absolute_change": 0.04788069073783352
+        },
+        "recall": {
+          "min": 0.7884615384615384,
+          "max": 0.8939393939393939,
+          "max_absolute_change": 0.06339031339031342
+        },
+        "f1": {
+          "min": 0.8118811881188119,
+          "max": 0.8872180451127819,
+          "max_absolute_change": 0.056043340183074886
+        }
+      }
+    },
+    {
+      "scope": "adequate_contract",
+      "dataset": "spider",
+      "model": "glm-5.1",
+      "n": 257,
+      "positive": 3,
+      "negative": 254,
+      "tp": 1,
+      "fp": 1,
+      "fn": 2,
+      "tn": 253,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 255,
+      "decision_coverage": 0.9922178988326849,
+      "status_counts": {
+        "ABSTAIN": 2,
+        "PASS": 253,
+        "VIOLATION": 2
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.5,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 14864,
+          "undefined_bootstrap_replicates": 5136
+        },
+        "recall": {
+          "estimate": 0.3333333333333333,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 17549,
+          "undefined_bootstrap_replicates": 2451
+        },
+        "f1": {
+          "estimate": 0.4,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 18794,
+          "undefined_bootstrap_replicates": 1206
+        }
+      },
+      "database_macro": {
+        "database_count": 19,
+        "per_database": {
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.5,
+        "precision_eligible_databases": 2,
+        "recall": 0.3333333333333333,
+        "recall_eligible_databases": 3,
+        "f1": 0.25,
+        "f1_eligible_databases": 4
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "spider:battle_death": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:car_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:course_teach": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:flight_2": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:network_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:pets_1": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:poker_player": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:tvshow": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:voter_1": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          },
+          "spider:wta_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 1.0,
+            "fp": 1.0,
+            "fn": 2.0
+          }
+        },
+        "precision": {
+          "min": 0.0,
+          "max": 1.0,
+          "max_absolute_change": 0.5
+        },
+        "recall": {
+          "min": 0.0,
+          "max": 0.5,
+          "max_absolute_change": 0.3333333333333333
+        },
+        "f1": {
+          "min": 0.0,
+          "max": 0.5,
+          "max_absolute_change": 0.4
+        }
+      }
+    },
+    {
+      "scope": "adequate_contract",
+      "dataset": "spider",
+      "model": "qwen3.6-27b",
+      "n": 257,
+      "positive": 6,
+      "negative": 251,
+      "tp": 2,
+      "fp": 2,
+      "fn": 4,
+      "tn": 249,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 255,
+      "decision_coverage": 0.9922178988326849,
+      "status_counts": {
+        "INVALID_WITNESS": 2,
+        "PASS": 251,
+        "VIOLATION": 4
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.5,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 17923,
+          "undefined_bootstrap_replicates": 2077
+        },
+        "recall": {
+          "estimate": 0.3333333333333333,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 19597,
+          "undefined_bootstrap_replicates": 403
+        },
+        "f1": {
+          "estimate": 0.4,
+          "ci_95": [
+            0.0,
+            1.0
+          ],
+          "defined_bootstrap_replicates": 19863,
+          "undefined_bootstrap_replicates": 137
+        }
+      },
+      "database_macro": {
+        "database_count": 19,
+        "per_database": {
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 2.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.6666666666666666,
+        "precision_eligible_databases": 3,
+        "recall": 0.4,
+        "recall_eligible_databases": 5,
+        "f1": 0.3333333333333333,
+        "f1_eligible_databases": 6
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "spider:battle_death": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:car_1": {
+            "precision": 0.3333333333333333,
+            "recall": 0.2,
+            "f1": 0.25,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:course_teach": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.3333333333333333,
+            "recall": 0.2,
+            "f1": 0.25,
+            "tp": 1.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:flight_2": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:network_1": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:pets_1": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1": 0.5,
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 4.0
+          },
+          "spider:poker_player": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:singer": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:tvshow": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          },
+          "spider:voter_1": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 3.0
+          },
+          "spider:world_1": {
+            "precision": 0.5,
+            "recall": 0.4,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 3.0
+          },
+          "spider:wta_1": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1": 0.4,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 4.0
+          }
+        },
+        "precision": {
+          "min": 0.3333333333333333,
+          "max": 1.0,
+          "max_absolute_change": 0.5
+        },
+        "recall": {
+          "min": 0.2,
+          "max": 0.5,
+          "max_absolute_change": 0.16666666666666669
+        },
+        "f1": {
+          "min": 0.25,
+          "max": 0.5,
+          "max_absolute_change": 0.15000000000000002
+        }
+      }
+    },
+    {
+      "scope": "adequate_contract",
+      "dataset": "all",
+      "model": "all",
+      "n": 1146,
+      "positive": 105,
+      "negative": 1041,
+      "tp": 83,
+      "fp": 17,
+      "fn": 22,
+      "tn": 1024,
+      "precision": 0.83,
+      "recall": 0.7904761904761904,
+      "f1": 0.8097560975609757,
+      "decided": 1086,
+      "decision_coverage": 0.9476439790575916,
+      "status_counts": {
+        "ABSTAIN": 48,
+        "INVALID_WITNESS": 8,
+        "PASS": 986,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 100
+      },
+      "cluster_bootstrap": {
+        "precision": {
+          "estimate": 0.83,
+          "ci_95": [
+            0.6352901430842607,
+            0.9387794048917274
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "recall": {
+          "estimate": 0.7904761904761904,
+          "ci_95": [
+            0.6020383396076878,
+            0.9212620543218613
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        },
+        "f1": {
+          "estimate": 0.8097560975609757,
+          "ci_95": [
+            0.6424220305242203,
+            0.9048991354466859
+          ],
+          "defined_bootstrap_replicates": 20000,
+          "undefined_bootstrap_replicates": 0
+        }
+      },
+      "database_macro": {
+        "database_count": 30,
+        "per_database": {
+          "bird:california_schools": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:card_games": {
+            "precision": 0.9166666666666666,
+            "recall": 0.7857142857142857,
+            "f1": 0.8461538461538461,
+            "tp": 11.0,
+            "fp": 1.0,
+            "fn": 3.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.9285714285714286,
+            "recall": 0.65,
+            "f1": 0.7647058823529411,
+            "tp": 13.0,
+            "fp": 1.0,
+            "fn": 7.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5,
+            "tp": 2.0,
+            "fp": 2.0,
+            "fn": 2.0
+          },
+          "bird:european_football_2": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 4.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:financial": {
+            "precision": 0.8571428571428571,
+            "recall": 0.8571428571428571,
+            "f1": 0.8571428571428571,
+            "tp": 6.0,
+            "fp": 1.0,
+            "fn": 1.0
+          },
+          "bird:formula_1": {
+            "precision": 0.625,
+            "recall": 1.0,
+            "f1": 0.7692307692307693,
+            "tp": 5.0,
+            "fp": 3.0,
+            "fn": 0.0
+          },
+          "bird:student_club": {
+            "precision": 0.4,
+            "recall": 0.5,
+            "f1": 0.4444444444444444,
+            "tp": 2.0,
+            "fp": 3.0,
+            "fn": 2.0
+          },
+          "bird:superhero": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.9375,
+            "recall": 0.967741935483871,
+            "f1": 0.9523809523809523,
+            "tp": 30.0,
+            "fp": 2.0,
+            "fn": 1.0
+          },
+          "bird:toxicology": {
+            "precision": 0.875,
+            "recall": 1.0,
+            "f1": 0.9333333333333333,
+            "tp": 7.0,
+            "fp": 1.0,
+            "fn": 0.0
+          },
+          "spider:battle_death": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:car_1": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 1.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:concert_singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:course_teach": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:dog_kennels": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "tp": 2.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:flight_2": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:museum_visit": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:network_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:orchestra": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:pets_1": {
+            "precision": 0.0,
+            "recall": null,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 3.0,
+            "fn": 0.0
+          },
+          "spider:poker_player": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:singer": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:tvshow": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          },
+          "spider:voter_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 2.0
+          },
+          "spider:world_1": {
+            "precision": null,
+            "recall": 0.0,
+            "f1": 0.0,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 1.0
+          },
+          "spider:wta_1": {
+            "precision": null,
+            "recall": null,
+            "f1": null,
+            "tp": 0.0,
+            "fp": 0.0,
+            "fn": 0.0
+          }
+        },
+        "precision": 0.7533234126984127,
+        "precision_eligible_databases": 12,
+        "recall": 0.6173732718894008,
+        "recall_eligible_databases": 15,
+        "f1": 0.5667120053149466,
+        "f1_eligible_databases": 16
+      },
+      "leave_one_database_out": {
+        "per_omitted_database": {
+          "bird:california_schools": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "bird:card_games": {
+            "precision": 0.8181818181818182,
+            "recall": 0.7912087912087912,
+            "f1": 0.8044692737430168,
+            "tp": 72.0,
+            "fp": 16.0,
+            "fn": 19.0
+          },
+          "bird:codebase_community": {
+            "precision": 0.813953488372093,
+            "recall": 0.8235294117647058,
+            "f1": 0.8187134502923976,
+            "tp": 70.0,
+            "fp": 16.0,
+            "fn": 15.0
+          },
+          "bird:debit_card_specializing": {
+            "precision": 0.84375,
+            "recall": 0.801980198019802,
+            "f1": 0.8223350253807107,
+            "tp": 81.0,
+            "fp": 15.0,
+            "fn": 20.0
+          },
+          "bird:european_football_2": {
+            "precision": 0.8229166666666666,
+            "recall": 0.7821782178217822,
+            "f1": 0.8020304568527918,
+            "tp": 79.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "bird:financial": {
+            "precision": 0.8279569892473119,
+            "recall": 0.7857142857142857,
+            "f1": 0.806282722513089,
+            "tp": 77.0,
+            "fp": 16.0,
+            "fn": 21.0
+          },
+          "bird:formula_1": {
+            "precision": 0.8478260869565217,
+            "recall": 0.78,
+            "f1": 0.8125,
+            "tp": 78.0,
+            "fp": 14.0,
+            "fn": 22.0
+          },
+          "bird:student_club": {
+            "precision": 0.8526315789473684,
+            "recall": 0.801980198019802,
+            "f1": 0.826530612244898,
+            "tp": 81.0,
+            "fp": 14.0,
+            "fn": 20.0
+          },
+          "bird:superhero": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "bird:thrombosis_prediction": {
+            "precision": 0.7794117647058824,
+            "recall": 0.7162162162162162,
+            "f1": 0.7464788732394366,
+            "tp": 53.0,
+            "fp": 15.0,
+            "fn": 21.0
+          },
+          "bird:toxicology": {
+            "precision": 0.8260869565217391,
+            "recall": 0.7755102040816326,
+            "f1": 0.8,
+            "tp": 76.0,
+            "fp": 16.0,
+            "fn": 22.0
+          },
+          "spider:battle_death": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:car_1": {
+            "precision": 0.8282828282828283,
+            "recall": 0.7884615384615384,
+            "f1": 0.8078817733990148,
+            "tp": 82.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:concert_singer": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:course_teach": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:cre_Doc_Template_Mgt": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:dog_kennels": {
+            "precision": 0.826530612244898,
+            "recall": 0.7864077669902912,
+            "f1": 0.8059701492537313,
+            "tp": 81.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:employee_hire_evaluation": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:flight_2": {
+            "precision": 0.83,
+            "recall": 0.7980769230769231,
+            "f1": 0.8137254901960784,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 21.0
+          },
+          "spider:museum_visit": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:network_1": {
+            "precision": 0.83,
+            "recall": 0.8058252427184466,
+            "f1": 0.8177339901477833,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 20.0
+          },
+          "spider:orchestra": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:pets_1": {
+            "precision": 0.8556701030927835,
+            "recall": 0.7904761904761904,
+            "f1": 0.8217821782178217,
+            "tp": 83.0,
+            "fp": 14.0,
+            "fn": 22.0
+          },
+          "spider:poker_player": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:singer": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:student_transcripts_tracking": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:tvshow": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          },
+          "spider:voter_1": {
+            "precision": 0.83,
+            "recall": 0.8058252427184466,
+            "f1": 0.8177339901477833,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 20.0
+          },
+          "spider:world_1": {
+            "precision": 0.83,
+            "recall": 0.7980769230769231,
+            "f1": 0.8137254901960784,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 21.0
+          },
+          "spider:wta_1": {
+            "precision": 0.83,
+            "recall": 0.7904761904761904,
+            "f1": 0.8097560975609757,
+            "tp": 83.0,
+            "fp": 17.0,
+            "fn": 22.0
+          }
+        },
+        "precision": {
+          "min": 0.7794117647058824,
+          "max": 0.8556701030927835,
+          "max_absolute_change": 0.0505882352941176
+        },
+        "recall": {
+          "min": 0.7162162162162162,
+          "max": 0.8235294117647058,
+          "max_absolute_change": 0.07425997425997422
+        },
+        "f1": {
+          "min": 0.7464788732394366,
+          "max": 0.826530612244898,
+          "max_absolute_change": 0.06327722432153904
+        }
+      }
+    }
+  ],
+  "gate_selection": [
+    {
+      "dataset": "bird",
+      "accepted_candidates": 644,
+      "accepted_positive": 102,
+      "accepted_positive_rate": 0.15838509316770186,
+      "rejected_candidates": 314,
+      "rejected_positive": 60,
+      "rejected_positive_rate": 0.1910828025477707,
+      "rejected_to_accepted_prevalence_ratio": 1.2064443611839641
+    },
+    {
+      "dataset": "spider",
+      "accepted_candidates": 516,
+      "accepted_positive": 9,
+      "accepted_positive_rate": 0.01744186046511628,
+      "rejected_candidates": 160,
+      "rejected_positive": 21,
+      "rejected_positive_rate": 0.13125,
+      "rejected_to_accepted_prevalence_ratio": 7.525
+    },
+    {
+      "dataset": "all",
+      "accepted_candidates": 1160,
+      "accepted_positive": 111,
+      "accepted_positive_rate": 0.09568965517241379,
+      "rejected_candidates": 474,
+      "rejected_positive": 81,
+      "rejected_positive_rate": 0.17088607594936708,
+      "rejected_to_accepted_prevalence_ratio": 1.7858364693807731
+    }
+  ],
+  "gate_valid_by_operator": [
+    {
+      "operator": "ART",
+      "n": 92,
+      "positive": 3,
+      "negative": 89,
+      "tp": 3,
+      "fp": 2,
+      "fn": 0,
+      "tn": 87,
+      "precision": 0.6,
+      "recall": 1.0,
+      "f1": 0.75,
+      "decided": 92,
+      "decision_coverage": 1.0,
+      "status_counts": {
+        "PASS": 87,
+        "VIOLATION": 5
+      }
+    },
+    {
+      "operator": "CGR",
+      "n": 744,
+      "positive": 33,
+      "negative": 711,
+      "tp": 12,
+      "fp": 5,
+      "fn": 21,
+      "tn": 706,
+      "precision": 0.7058823529411765,
+      "recall": 0.36363636363636365,
+      "f1": 0.48,
+      "decided": 741,
+      "decision_coverage": 0.9959677419354839,
+      "status_counts": {
+        "INVALID_WITNESS": 1,
+        "PASS": 724,
+        "UNSUPPORTED": 2,
+        "VIOLATION": 17
+      }
+    },
+    {
+      "operator": "DET",
+      "n": 208,
+      "positive": 70,
+      "negative": 138,
+      "tp": 69,
+      "fp": 42,
+      "fn": 1,
+      "tn": 96,
+      "precision": 0.6216216216216216,
+      "recall": 0.9857142857142858,
+      "f1": 0.7624309392265194,
+      "decided": 203,
+      "decision_coverage": 0.9759615384615384,
+      "status_counts": {
+        "INVALID_WITNESS": 3,
+        "PASS": 92,
+        "UNSUPPORTED": 2,
+        "VIOLATION": 111
+      }
+    },
+    {
+      "operator": "EST",
+      "n": 2,
+      "positive": 0,
+      "negative": 2,
+      "tp": 0,
+      "fp": 2,
+      "fn": 0,
+      "tn": 0,
+      "precision": 0.0,
+      "recall": null,
+      "f1": 0.0,
+      "decided": 2,
+      "decision_coverage": 1.0,
+      "status_counts": {
+        "VIOLATION": 2
+      }
+    },
+    {
+      "operator": "GRT",
+      "n": 54,
+      "positive": 4,
+      "negative": 50,
+      "tp": 4,
+      "fp": 2,
+      "fn": 0,
+      "tn": 48,
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "decided": 54,
+      "decision_coverage": 1.0,
+      "status_counts": {
+        "PASS": 48,
+        "VIOLATION": 6
+      }
+    },
+    {
+      "operator": "TST",
+      "n": 60,
+      "positive": 1,
+      "negative": 59,
+      "tp": 1,
+      "fp": 9,
+      "fn": 0,
+      "tn": 50,
+      "precision": 0.1,
+      "recall": 1.0,
+      "f1": 0.18181818181818182,
+      "decided": 56,
+      "decision_coverage": 0.9333333333333333,
+      "status_counts": {
+        "INVALID_WITNESS": 4,
+        "PASS": 46,
+        "VIOLATION": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,417 @@
+tables:
+  Ref_Payment_Methods:
+    columns:
+      payment_method_code: text
+      payment_method_description: text
+    primary_key: &id001
+    - payment_method_code
+    grain: *id001
+  Ref_Service_Types:
+    columns:
+      Service_Type_Code: text
+      Parent_Service_Type_Code: text
+      Service_Type_Description: text
+    primary_key: &id002
+    - Service_Type_Code
+    grain: *id002
+  Addresses:
+    columns:
+      Address_ID: text
+      Line_1: text
+      Line_2: text
+      City_Town: text
+      State_County: text
+      Other_Details: text
+    primary_key: &id003
+    - Address_ID
+    grain: *id003
+  Products:
+    columns:
+      Product_ID: text
+      Product_Name: text
+      Product_Price: number
+      Product_Description: text
+      Other_Product_Service_Details: text
+    primary_key: &id004
+    - Product_ID
+    grain: *id004
+  Marketing_Regions:
+    columns:
+      Marketing_Region_Code: text
+      Marketing_Region_Name: text
+      Marketing_Region_Descriptrion: text
+      Other_Details: text
+    primary_key: &id005
+    - Marketing_Region_Code
+    grain: *id005
+  Clients:
+    columns:
+      Client_ID: number
+      Address_ID: number
+      Customer_Email_Address: text
+      Customer_Name: text
+      Customer_Phone: text
+      Other_Details: text
+    primary_key: &id006
+    - Client_ID
+    grain: *id006
+    observed_non_unique:
+    - - Address_ID
+    foreign_keys:
+    - columns:
+      - Address_ID
+      references:
+        table: Addresses
+        columns:
+        - Address_ID
+      many_allowed: true
+  Drama_Workshop_Groups:
+    columns:
+      Workshop_Group_ID: number
+      Address_ID: number
+      Currency_Code: text
+      Marketing_Region_Code: text
+      Store_Name: text
+      Store_Phone: text
+      Store_Email_Address: text
+      Other_Details: text
+    primary_key: &id007
+    - Workshop_Group_ID
+    grain: *id007
+    observed_non_unique:
+    - - Address_ID
+    foreign_keys:
+    - columns:
+      - Address_ID
+      references:
+        table: Addresses
+        columns:
+        - Address_ID
+      many_allowed: true
+  Performers:
+    columns:
+      Performer_ID: number
+      Address_ID: number
+      Customer_Name: text
+      Customer_Phone: text
+      Customer_Email_Address: text
+      Other_Details: text
+    primary_key: &id008
+    - Performer_ID
+    grain: *id008
+    observed_non_unique:
+    - - Address_ID
+    foreign_keys:
+    - columns:
+      - Address_ID
+      references:
+        table: Addresses
+        columns:
+        - Address_ID
+      many_allowed: true
+  Customers:
+    columns:
+      Customer_ID: text
+      Address_ID: number
+      Customer_Name: text
+      Customer_Phone: text
+      Customer_Email_Address: text
+      Other_Details: text
+    primary_key: &id009
+    - Customer_ID
+    grain: *id009
+    observed_non_unique:
+    - - Address_ID
+    foreign_keys:
+    - columns:
+      - Address_ID
+      references:
+        table: Addresses
+        columns:
+        - Address_ID
+      many_allowed: true
+  Stores:
+    columns:
+      Store_ID: text
+      Address_ID: number
+      Marketing_Region_Code: text
+      Store_Name: text
+      Store_Phone: text
+      Store_Email_Address: text
+      Other_Details: text
+    primary_key: &id010
+    - Store_ID
+    grain: *id010
+    observed_non_unique:
+    - - Marketing_Region_Code
+    - - Address_ID
+    foreign_keys:
+    - columns:
+      - Marketing_Region_Code
+      references:
+        table: Marketing_Regions
+        columns:
+        - Marketing_Region_Code
+      many_allowed: true
+    - columns:
+      - Address_ID
+      references:
+        table: Addresses
+        columns:
+        - Address_ID
+      many_allowed: true
+  Bookings:
+    columns:
+      Booking_ID: number
+      Customer_ID: number
+      Workshop_Group_ID: text
+      Status_Code: text
+      Store_ID: number
+      Order_Date: time
+      Planned_Delivery_Date: time
+      Actual_Delivery_Date: time
+      Other_Order_Details: text
+    primary_key: &id011
+    - Booking_ID
+    grain: *id011
+    observed_non_unique:
+    - - Workshop_Group_ID
+    - - Customer_ID
+    foreign_keys:
+    - columns:
+      - Workshop_Group_ID
+      references:
+        table: Drama_Workshop_Groups
+        columns:
+        - Workshop_Group_ID
+      many_allowed: true
+    - columns:
+      - Customer_ID
+      references:
+        table: Clients
+        columns:
+        - Client_ID
+      many_allowed: true
+  Performers_in_Bookings:
+    columns:
+      Order_ID: number
+      Performer_ID: number
+    primary_key: &id012
+    - Order_ID
+    - Performer_ID
+    grain: *id012
+    observed_non_unique:
+    - - Order_ID
+    - - Performer_ID
+    foreign_keys:
+    - columns:
+      - Order_ID
+      references:
+        table: Bookings
+        columns:
+        - Booking_ID
+      many_allowed: true
+    - columns:
+      - Performer_ID
+      references:
+        table: Performers
+        columns:
+        - Performer_ID
+      many_allowed: true
+  Customer_Orders:
+    columns:
+      Order_ID: number
+      Customer_ID: number
+      Store_ID: number
+      Order_Date: time
+      Planned_Delivery_Date: time
+      Actual_Delivery_Date: time
+      Other_Order_Details: text
+    primary_key: &id013
+    - Order_ID
+    grain: *id013
+    observed_non_unique:
+    - - Store_ID
+    - - Customer_ID
+    foreign_keys:
+    - columns:
+      - Store_ID
+      references:
+        table: Stores
+        columns:
+        - Store_ID
+      many_allowed: true
+    - columns:
+      - Customer_ID
+      references:
+        table: Customers
+        columns:
+        - Customer_ID
+      many_allowed: true
+  Order_Items:
+    columns:
+      Order_Item_ID: number
+      Order_ID: number
+      Product_ID: number
+      Order_Quantity: text
+      Other_Item_Details: text
+    primary_key: &id014
+    - Order_Item_ID
+    grain: *id014
+    observed_non_unique:
+    - - Product_ID
+    - - Order_ID
+    foreign_keys:
+    - columns:
+      - Product_ID
+      references:
+        table: Products
+        columns:
+        - Product_ID
+      many_allowed: true
+    - columns:
+      - Order_ID
+      references:
+        table: Customer_Orders
+        columns:
+        - Order_ID
+      many_allowed: true
+  Invoices:
+    columns:
+      Invoice_ID: number
+      Order_ID: number
+      payment_method_code: text
+      Product_ID: number
+      Order_Quantity: text
+      Other_Item_Details: text
+      Order_Item_ID: number
+    primary_key: &id015
+    - Invoice_ID
+    grain: *id015
+    observed_non_unique:
+    - - payment_method_code
+    - - Order_ID
+    foreign_keys:
+    - columns:
+      - payment_method_code
+      references:
+        table: Ref_Payment_Methods
+        columns:
+        - payment_method_code
+      many_allowed: true
+    - columns:
+      - Order_ID
+      references:
+        table: Bookings
+        columns:
+        - Booking_ID
+      many_allowed: true
+    - columns:
+      - Order_ID
+      references:
+        table: Customer_Orders
+        columns:
+        - Order_ID
+      many_allowed: true
+  Services:
+    columns:
+      Service_ID: number
+      Service_Type_Code: text
+      Workshop_Group_ID: number
+      Product_Description: text
+      Product_Name: text
+      Product_Price: number
+      Other_Product_Service_Details: text
+    primary_key: &id016
+    - Service_ID
+    grain: *id016
+    observed_non_unique:
+    - - Service_Type_Code
+    - - Workshop_Group_ID
+    foreign_keys:
+    - columns:
+      - Service_Type_Code
+      references:
+        table: Ref_Service_Types
+        columns:
+        - Service_Type_Code
+      many_allowed: true
+    - columns:
+      - Workshop_Group_ID
+      references:
+        table: Drama_Workshop_Groups
+        columns:
+        - Workshop_Group_ID
+      many_allowed: true
+  Bookings_Services:
+    columns:
+      Order_ID: number
+      Product_ID: number
+    primary_key: &id017
+    - Order_ID
+    - Product_ID
+    grain: *id017
+    observed_non_unique:
+    - - Product_ID
+    - - Order_ID
+    foreign_keys:
+    - columns:
+      - Product_ID
+      references:
+        table: Services
+        columns:
+        - Service_ID
+      many_allowed: true
+    - columns:
+      - Order_ID
+      references:
+        table: Bookings
+        columns:
+        - Booking_ID
+      many_allowed: true
+  Invoice_Items:
+    columns:
+      Invoice_Item_ID: number
+      Invoice_ID: number
+      Order_ID: number
+      Order_Item_ID: number
+      Product_ID: number
+      Order_Quantity: number
+      Other_Item_Details: text
+    primary_key: &id018
+    - Invoice_Item_ID
+    grain: *id018
+    observed_unique:
+    - - Order_ID
+    - - Product_ID
+    - - Invoice_ID
+    - - Order_Item_ID
+    foreign_keys:
+    - columns:
+      - Order_ID
+      references:
+        table: Bookings_Services
+        columns:
+        - Order_ID
+      many_allowed: true
+    - columns:
+      - Product_ID
+      references:
+        table: Bookings_Services
+        columns:
+        - Product_ID
+      many_allowed: true
+    - columns:
+      - Invoice_ID
+      references:
+        table: Invoices
+        columns:
+        - Invoice_ID
+      many_allowed: true
+    - columns:
+      - Order_Item_ID
+      references:
+        table: Order_Items
+        columns:
+        - Order_Item_ID
+      many_allowed: true

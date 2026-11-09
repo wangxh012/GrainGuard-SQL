@@ -1,0 +1,49 @@
+tables:
+  college:
+    columns:
+      College_ID: number
+      Name: text
+      Leader_Name: text
+      College_Location: text
+    primary_key: &id001
+    - College_ID
+    grain: *id001
+  member:
+    columns:
+      Member_ID: number
+      Name: text
+      Country: text
+      College_ID: number
+    primary_key: &id002
+    - Member_ID
+    grain: *id002
+    observed_non_unique:
+    - - College_ID
+    foreign_keys:
+    - columns:
+      - College_ID
+      references:
+        table: college
+        columns:
+        - College_ID
+      many_allowed: true
+  round:
+    columns:
+      Round_ID: number
+      Member_ID: number
+      Decoration_Theme: text
+      Rank_in_Round: number
+    primary_key: &id003
+    - Member_ID
+    - Round_ID
+    grain: *id003
+    observed_unique:
+    - - Member_ID
+    foreign_keys:
+    - columns:
+      - Member_ID
+      references:
+        table: member
+        columns:
+        - Member_ID
+      many_allowed: true

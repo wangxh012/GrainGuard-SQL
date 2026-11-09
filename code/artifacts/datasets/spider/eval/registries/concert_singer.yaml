@@ -1,0 +1,71 @@
+tables:
+  stadium:
+    columns:
+      Stadium_ID: number
+      Location: text
+      Name: text
+      Capacity: number
+      Highest: number
+      Lowest: number
+      Average: number
+    primary_key: &id001
+    - Stadium_ID
+    grain: *id001
+  singer:
+    columns:
+      Singer_ID: number
+      Name: text
+      Country: text
+      Song_Name: text
+      Song_release_year: text
+      Age: number
+      Is_male: others
+    primary_key: &id002
+    - Singer_ID
+    grain: *id002
+  concert:
+    columns:
+      concert_ID: number
+      concert_Name: text
+      Theme: text
+      Stadium_ID: text
+      Year: text
+    primary_key: &id003
+    - concert_ID
+    grain: *id003
+    observed_non_unique:
+    - - Stadium_ID
+    foreign_keys:
+    - columns:
+      - Stadium_ID
+      references:
+        table: stadium
+        columns:
+        - Stadium_ID
+      many_allowed: true
+  singer_in_concert:
+    columns:
+      concert_ID: number
+      Singer_ID: text
+    primary_key: &id004
+    - concert_ID
+    - Singer_ID
+    grain: *id004
+    observed_non_unique:
+    - - Singer_ID
+    - - concert_ID
+    foreign_keys:
+    - columns:
+      - Singer_ID
+      references:
+        table: singer
+        columns:
+        - Singer_ID
+      many_allowed: true
+    - columns:
+      - concert_ID
+      references:
+        table: concert
+        columns:
+        - concert_ID
+      many_allowed: true

@@ -1,0 +1,224 @@
+tables:
+  alignment:
+    columns:
+      id: integer
+      alignment: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  attribute:
+    columns:
+      id: integer
+      attribute_name: text
+    primary_key: &id002
+    - id
+    grain: *id002
+  colour:
+    columns:
+      id: integer
+      colour: text
+    primary_key: &id003
+    - id
+    grain: *id003
+  gender:
+    columns:
+      id: integer
+      gender: text
+    primary_key: &id004
+    - id
+    grain: *id004
+  publisher:
+    columns:
+      id: integer
+      publisher_name: text
+    primary_key: &id005
+    - id
+    grain: *id005
+  race:
+    columns:
+      id: integer
+      race: text
+    primary_key: &id006
+    - id
+    grain: *id006
+  superhero:
+    columns:
+      id: integer
+      superhero_name: text
+      full_name: text
+      gender_id: integer
+      eye_colour_id: integer
+      hair_colour_id: integer
+      skin_colour_id: integer
+      race_id: integer
+      publisher_id: integer
+      alignment_id: integer
+      height_cm: integer
+      weight_kg: integer
+    primary_key: &id007
+    - id
+    grain: *id007
+    observed_non_unique:
+    - - skin_colour_id
+    - - race_id
+    - - publisher_id
+    - - hair_colour_id
+    - - gender_id
+    - - eye_colour_id
+    - - alignment_id
+    - - skin_colour_id
+      - race_id
+    - - skin_colour_id
+      - publisher_id
+    - - skin_colour_id
+      - hair_colour_id
+    - - skin_colour_id
+      - gender_id
+    - - skin_colour_id
+      - eye_colour_id
+    - - skin_colour_id
+      - alignment_id
+    - - race_id
+      - publisher_id
+    - - race_id
+      - hair_colour_id
+    - - race_id
+      - gender_id
+    - - race_id
+      - eye_colour_id
+    - - race_id
+      - alignment_id
+    - - publisher_id
+      - hair_colour_id
+    - - publisher_id
+      - gender_id
+    - - publisher_id
+      - eye_colour_id
+    - - publisher_id
+      - alignment_id
+    - - hair_colour_id
+      - gender_id
+    - - hair_colour_id
+      - eye_colour_id
+    - - hair_colour_id
+      - alignment_id
+    - - gender_id
+      - eye_colour_id
+    - - gender_id
+      - alignment_id
+    - - eye_colour_id
+      - alignment_id
+    foreign_keys:
+    - columns:
+      - skin_colour_id
+      references:
+        table: colour
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - race_id
+      references:
+        table: race
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - publisher_id
+      references:
+        table: publisher
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - hair_colour_id
+      references:
+        table: colour
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - gender_id
+      references:
+        table: gender
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - eye_colour_id
+      references:
+        table: colour
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - alignment_id
+      references:
+        table: alignment
+        columns:
+        - id
+      many_allowed: true
+  hero_attribute:
+    columns:
+      hero_id: integer
+      attribute_id: integer
+      attribute_value: integer
+    primary_key: []
+    grain:
+    - hero_id
+    observed_unique:
+    - - hero_id
+      - attribute_id
+    observed_non_unique:
+    - - hero_id
+    - - attribute_id
+    foreign_keys:
+    - columns:
+      - hero_id
+      references:
+        table: superhero
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - attribute_id
+      references:
+        table: attribute
+        columns:
+        - id
+      many_allowed: true
+  superpower:
+    columns:
+      id: integer
+      power_name: text
+    primary_key: &id008
+    - id
+    grain: *id008
+  hero_power:
+    columns:
+      hero_id: integer
+      power_id: integer
+    primary_key: []
+    grain:
+    - hero_id
+    observed_unique:
+    - - power_id
+      - hero_id
+    observed_non_unique:
+    - - power_id
+    - - hero_id
+    foreign_keys:
+    - columns:
+      - power_id
+      references:
+        table: superpower
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - hero_id
+      references:
+        table: superhero
+        columns:
+        - id
+      many_allowed: true

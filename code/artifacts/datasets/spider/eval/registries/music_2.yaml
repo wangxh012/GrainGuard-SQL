@@ -1,0 +1,123 @@
+tables:
+  Songs:
+    columns:
+      SongId: number
+      Title: text
+    primary_key: &id001
+    - SongId
+    grain: *id001
+  Albums:
+    columns:
+      AId: number
+      Title: text
+      Year: number
+      Label: text
+      Type: text
+    primary_key: &id002
+    - AId
+    grain: *id002
+  Band:
+    columns:
+      Id: number
+      Firstname: text
+      Lastname: text
+    primary_key: &id003
+    - Id
+    grain: *id003
+  Instruments:
+    columns:
+      SongId: number
+      BandmateId: number
+      Instrument: text
+    primary_key: &id004
+    - SongId
+    - BandmateId
+    - Instrument
+    grain: *id004
+    foreign_keys:
+    - columns:
+      - BandmateId
+      references:
+        table: Band
+        columns:
+        - Id
+      many_allowed: true
+    - columns:
+      - SongId
+      references:
+        table: Songs
+        columns:
+        - SongId
+      many_allowed: true
+  Performance:
+    columns:
+      SongId: number
+      Bandmate: number
+      StagePosition: text
+    primary_key: &id005
+    - SongId
+    - Bandmate
+    grain: *id005
+    foreign_keys:
+    - columns:
+      - Bandmate
+      references:
+        table: Band
+        columns:
+        - Id
+      many_allowed: true
+    - columns:
+      - SongId
+      references:
+        table: Songs
+        columns:
+        - SongId
+      many_allowed: true
+  Tracklists:
+    columns:
+      AlbumId: number
+      Position: number
+      SongId: number
+    primary_key: &id006
+    - AlbumId
+    - Position
+    grain: *id006
+    foreign_keys:
+    - columns:
+      - AlbumId
+      references:
+        table: Albums
+        columns:
+        - AId
+      many_allowed: true
+    - columns:
+      - SongId
+      references:
+        table: Songs
+        columns:
+        - SongId
+      many_allowed: true
+  Vocals:
+    columns:
+      SongId: number
+      Bandmate: number
+      Type: text
+    primary_key: &id007
+    - SongId
+    - Bandmate
+    grain: *id007
+    foreign_keys:
+    - columns:
+      - Bandmate
+      references:
+        table: Band
+        columns:
+        - Id
+      many_allowed: true
+    - columns:
+      - SongId
+      references:
+        table: Songs
+        columns:
+        - SongId
+      many_allowed: true

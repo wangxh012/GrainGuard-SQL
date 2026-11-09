@@ -1,0 +1,48 @@
+tables:
+  event:
+    columns:
+      Event_ID: number
+      Date: text
+      Venue: text
+      Name: text
+      Event_Attendance: number
+    primary_key: &id001
+    - Event_ID
+    grain: *id001
+  journalist:
+    columns:
+      journalist_ID: number
+      Name: text
+      Nationality: text
+      Age: text
+      Years_working: number
+    primary_key: &id002
+    - journalist_ID
+    grain: *id002
+  news_report:
+    columns:
+      journalist_ID: number
+      Event_ID: number
+      Work_Type: text
+    primary_key: &id003
+    - journalist_ID
+    - Event_ID
+    grain: *id003
+    observed_non_unique:
+    - - Event_ID
+    - - journalist_ID
+    foreign_keys:
+    - columns:
+      - Event_ID
+      references:
+        table: event
+        columns:
+        - Event_ID
+      many_allowed: true
+    - columns:
+      - journalist_ID
+      references:
+        table: journalist
+        columns:
+        - journalist_ID
+      many_allowed: true

@@ -1,0 +1,101 @@
+tables:
+  Ref_Feature_Types:
+    columns:
+      feature_type_code: text
+      feature_type_name: text
+    primary_key: &id001
+    - feature_type_code
+    grain: *id001
+  Ref_Property_Types:
+    columns:
+      property_type_code: text
+      property_type_description: text
+    primary_key: &id002
+    - property_type_code
+    grain: *id002
+  Other_Available_Features:
+    columns:
+      feature_id: number
+      feature_type_code: text
+      feature_name: text
+      feature_description: text
+    primary_key: &id003
+    - feature_id
+    grain: *id003
+    observed_non_unique:
+    - - feature_type_code
+    foreign_keys:
+    - columns:
+      - feature_type_code
+      references:
+        table: Ref_Feature_Types
+        columns:
+        - feature_type_code
+      many_allowed: true
+  Properties:
+    columns:
+      property_id: number
+      property_type_code: text
+      date_on_market: time
+      date_sold: time
+      property_name: text
+      property_address: text
+      room_count: number
+      vendor_requested_price: number
+      buyer_offered_price: number
+      agreed_selling_price: number
+      apt_feature_1: text
+      apt_feature_2: text
+      apt_feature_3: text
+      fld_feature_1: text
+      fld_feature_2: text
+      fld_feature_3: text
+      hse_feature_1: text
+      hse_feature_2: text
+      hse_feature_3: text
+      oth_feature_1: text
+      oth_feature_2: text
+      oth_feature_3: text
+      shp_feature_1: text
+      shp_feature_2: text
+      shp_feature_3: text
+      other_property_details: text
+    primary_key: &id004
+    - property_id
+    grain: *id004
+    observed_non_unique:
+    - - property_type_code
+    foreign_keys:
+    - columns:
+      - property_type_code
+      references:
+        table: Ref_Property_Types
+        columns:
+        - property_type_code
+      many_allowed: true
+  Other_Property_Features:
+    columns:
+      property_id: number
+      feature_id: number
+      property_feature_description: text
+    primary_key: []
+    grain:
+    - property_id
+    observed_non_unique:
+    - - property_id
+    - - feature_id
+    foreign_keys:
+    - columns:
+      - property_id
+      references:
+        table: Properties
+        columns:
+        - property_id
+      many_allowed: true
+    - columns:
+      - feature_id
+      references:
+        table: Other_Available_Features
+        columns:
+        - feature_id
+      many_allowed: true

@@ -1,0 +1,334 @@
+{
+  "experiment": "v23_predeclared_evidence_scope",
+  "policy": {
+    "assignment_time": "before witness construction and execution",
+    "supported": "Only supported-scope witnesses confirm VIOLATION.",
+    "deferred_tst_only": "TST-only alarms return ABSTAIN.",
+    "deferred_instance_only_uniqueness": "Alarms whose plan is discharged only by observed, undeclared uniqueness return ABSTAIN."
+  },
+  "input": {
+    "path": "artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/replay/natural_candidate_v23.traces.jsonl",
+    "sha256": "bf44385300f6f4b474973333950293d95d169ff5bcd3976b007359e912567fee"
+  },
+  "decision_class_counts": {
+    "CONFIRMED_VIOLATION": 103,
+    "DEFERRED_INSTANCE_ONLY_UNIQUENESS": 38,
+    "DEFERRED_TST_ONLY": 10,
+    "INVALID_WITNESS": 8,
+    "PASS": 997,
+    "UNSUPPORTED": 4
+  },
+  "rows": [
+    {
+      "scope": "overall",
+      "policy": "unrestricted",
+      "n": 1160,
+      "positive": 111,
+      "tp": 89,
+      "fp": 62,
+      "fn": 22,
+      "tn": 987,
+      "precision": 0.5894039735099338,
+      "recall": 0.8018018018018018,
+      "f1": 0.6793893129770993,
+      "decided": 1148,
+      "decision_coverage": 0.9896551724137931,
+      "status_counts": {
+        "INVALID_WITNESS": 8,
+        "PASS": 997,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 151
+      }
+    },
+    {
+      "scope": "overall",
+      "policy": "defer_tst_only",
+      "n": 1160,
+      "positive": 111,
+      "tp": 88,
+      "fp": 53,
+      "fn": 23,
+      "tn": 996,
+      "precision": 0.624113475177305,
+      "recall": 0.7927927927927928,
+      "f1": 0.6984126984126984,
+      "decided": 1138,
+      "decision_coverage": 0.9810344827586207,
+      "status_counts": {
+        "ABSTAIN": 10,
+        "INVALID_WITNESS": 8,
+        "PASS": 997,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 141
+      }
+    },
+    {
+      "scope": "overall",
+      "policy": "supported",
+      "n": 1160,
+      "positive": 111,
+      "tp": 86,
+      "fp": 17,
+      "fn": 25,
+      "tn": 1032,
+      "precision": 0.8349514563106796,
+      "recall": 0.7747747747747747,
+      "f1": 0.8037383177570093,
+      "decided": 1100,
+      "decision_coverage": 0.9482758620689655,
+      "status_counts": {
+        "ABSTAIN": 48,
+        "INVALID_WITNESS": 8,
+        "PASS": 997,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 103
+      }
+    },
+    {
+      "scope": "bird_glm",
+      "policy": "unrestricted",
+      "n": 322,
+      "positive": 18,
+      "tp": 12,
+      "fp": 27,
+      "fn": 6,
+      "tn": 277,
+      "precision": 0.3076923076923077,
+      "recall": 0.6666666666666666,
+      "f1": 0.42105263157894735,
+      "decided": 315,
+      "decision_coverage": 0.9782608695652174,
+      "status_counts": {
+        "INVALID_WITNESS": 3,
+        "PASS": 276,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 39
+      }
+    },
+    {
+      "scope": "bird_glm",
+      "policy": "defer_tst_only",
+      "n": 322,
+      "positive": 18,
+      "tp": 12,
+      "fp": 23,
+      "fn": 6,
+      "tn": 281,
+      "precision": 0.34285714285714286,
+      "recall": 0.6666666666666666,
+      "f1": 0.4528301886792453,
+      "decided": 311,
+      "decision_coverage": 0.9658385093167702,
+      "status_counts": {
+        "ABSTAIN": 4,
+        "INVALID_WITNESS": 3,
+        "PASS": 276,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 35
+      }
+    },
+    {
+      "scope": "bird_glm",
+      "policy": "supported",
+      "n": 322,
+      "positive": 18,
+      "tp": 12,
+      "fp": 5,
+      "fn": 6,
+      "tn": 299,
+      "precision": 0.7058823529411765,
+      "recall": 0.6666666666666666,
+      "f1": 0.6857142857142857,
+      "decided": 293,
+      "decision_coverage": 0.9099378881987578,
+      "status_counts": {
+        "ABSTAIN": 22,
+        "INVALID_WITNESS": 3,
+        "PASS": 276,
+        "UNSUPPORTED": 4,
+        "VIOLATION": 17
+      }
+    },
+    {
+      "scope": "bird_qwen",
+      "policy": "unrestricted",
+      "n": 322,
+      "positive": 84,
+      "tp": 74,
+      "fp": 30,
+      "fn": 10,
+      "tn": 208,
+      "precision": 0.7115384615384616,
+      "recall": 0.8809523809523809,
+      "f1": 0.7872340425531915,
+      "decided": 319,
+      "decision_coverage": 0.9906832298136646,
+      "status_counts": {
+        "INVALID_WITNESS": 3,
+        "PASS": 215,
+        "VIOLATION": 104
+      }
+    },
+    {
+      "scope": "bird_qwen",
+      "policy": "defer_tst_only",
+      "n": 322,
+      "positive": 84,
+      "tp": 73,
+      "fp": 27,
+      "fn": 11,
+      "tn": 211,
+      "precision": 0.73,
+      "recall": 0.8690476190476191,
+      "f1": 0.7934782608695652,
+      "decided": 315,
+      "decision_coverage": 0.9782608695652174,
+      "status_counts": {
+        "ABSTAIN": 4,
+        "INVALID_WITNESS": 3,
+        "PASS": 215,
+        "VIOLATION": 100
+      }
+    },
+    {
+      "scope": "bird_qwen",
+      "policy": "supported",
+      "n": 322,
+      "positive": 84,
+      "tp": 71,
+      "fp": 9,
+      "fn": 13,
+      "tn": 229,
+      "precision": 0.8875,
+      "recall": 0.8452380952380952,
+      "f1": 0.8658536585365854,
+      "decided": 295,
+      "decision_coverage": 0.9161490683229814,
+      "status_counts": {
+        "ABSTAIN": 24,
+        "INVALID_WITNESS": 3,
+        "PASS": 215,
+        "VIOLATION": 80
+      }
+    },
+    {
+      "scope": "spider_glm",
+      "policy": "unrestricted",
+      "n": 258,
+      "positive": 3,
+      "tp": 1,
+      "fp": 3,
+      "fn": 2,
+      "tn": 252,
+      "precision": 0.25,
+      "recall": 0.3333333333333333,
+      "f1": 0.2857142857142857,
+      "decided": 258,
+      "decision_coverage": 1.0,
+      "status_counts": {
+        "PASS": 254,
+        "VIOLATION": 4
+      }
+    },
+    {
+      "scope": "spider_glm",
+      "policy": "defer_tst_only",
+      "n": 258,
+      "positive": 3,
+      "tp": 1,
+      "fp": 1,
+      "fn": 2,
+      "tn": 254,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "ABSTAIN": 2,
+        "PASS": 254,
+        "VIOLATION": 2
+      }
+    },
+    {
+      "scope": "spider_glm",
+      "policy": "supported",
+      "n": 258,
+      "positive": 3,
+      "tp": 1,
+      "fp": 1,
+      "fn": 2,
+      "tn": 254,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "ABSTAIN": 2,
+        "PASS": 254,
+        "VIOLATION": 2
+      }
+    },
+    {
+      "scope": "spider_qwen",
+      "policy": "unrestricted",
+      "n": 258,
+      "positive": 6,
+      "tp": 2,
+      "fp": 2,
+      "fn": 4,
+      "tn": 250,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "INVALID_WITNESS": 2,
+        "PASS": 252,
+        "VIOLATION": 4
+      }
+    },
+    {
+      "scope": "spider_qwen",
+      "policy": "defer_tst_only",
+      "n": 258,
+      "positive": 6,
+      "tp": 2,
+      "fp": 2,
+      "fn": 4,
+      "tn": 250,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "INVALID_WITNESS": 2,
+        "PASS": 252,
+        "VIOLATION": 4
+      }
+    },
+    {
+      "scope": "spider_qwen",
+      "policy": "supported",
+      "n": 258,
+      "positive": 6,
+      "tp": 2,
+      "fp": 2,
+      "fn": 4,
+      "tn": 250,
+      "precision": 0.5,
+      "recall": 0.3333333333333333,
+      "f1": 0.4,
+      "decided": 256,
+      "decision_coverage": 0.9922480620155039,
+      "status_counts": {
+        "INVALID_WITNESS": 2,
+        "PASS": 252,
+        "VIOLATION": 4
+      }
+    }
+  ]
+}

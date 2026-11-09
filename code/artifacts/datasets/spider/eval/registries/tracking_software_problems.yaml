@@ -1,0 +1,119 @@
+tables:
+  Problem_Category_Codes:
+    columns:
+      problem_category_code: text
+      problem_category_description: text
+    primary_key: &id001
+    - problem_category_code
+    grain: *id001
+  Problem_Log:
+    columns:
+      problem_log_id: number
+      assigned_to_staff_id: number
+      problem_id: number
+      problem_category_code: text
+      problem_status_code: text
+      log_entry_date: time
+      log_entry_description: text
+      log_entry_fix: text
+      other_log_details: text
+    primary_key: &id002
+    - problem_log_id
+    grain: *id002
+    observed_non_unique:
+    - - problem_status_code
+    - - problem_id
+    - - assigned_to_staff_id
+    - - problem_category_code
+    foreign_keys:
+    - columns:
+      - problem_status_code
+      references:
+        table: Problem_Status_Codes
+        columns:
+        - problem_status_code
+      many_allowed: true
+    - columns:
+      - problem_id
+      references:
+        table: Problems
+        columns:
+        - problem_id
+      many_allowed: true
+    - columns:
+      - assigned_to_staff_id
+      references:
+        table: Staff
+        columns:
+        - staff_id
+      many_allowed: true
+    - columns:
+      - problem_category_code
+      references:
+        table: Problem_Category_Codes
+        columns:
+        - problem_category_code
+      many_allowed: true
+  Problem_Status_Codes:
+    columns:
+      problem_status_code: text
+      problem_status_description: text
+    primary_key: &id003
+    - problem_status_code
+    grain: *id003
+  Product:
+    columns:
+      product_id: number
+      product_name: text
+      product_details: text
+    primary_key: &id004
+    - product_id
+    grain: *id004
+  Staff:
+    columns:
+      staff_id: number
+      staff_first_name: text
+      staff_last_name: text
+      other_staff_details: text
+    primary_key: &id005
+    - staff_id
+    grain: *id005
+  Problems:
+    columns:
+      problem_id: number
+      product_id: number
+      closure_authorised_by_staff_id: number
+      reported_by_staff_id: number
+      date_problem_reported: time
+      date_problem_closed: time
+      problem_description: text
+      other_problem_details: text
+    primary_key: &id006
+    - problem_id
+    grain: *id006
+    observed_non_unique:
+    - - reported_by_staff_id
+    - - product_id
+    - - closure_authorised_by_staff_id
+    foreign_keys:
+    - columns:
+      - reported_by_staff_id
+      references:
+        table: Staff
+        columns:
+        - staff_id
+      many_allowed: true
+    - columns:
+      - product_id
+      references:
+        table: Product
+        columns:
+        - product_id
+      many_allowed: true
+    - columns:
+      - closure_authorised_by_staff_id
+      references:
+        table: Staff
+        columns:
+        - staff_id
+      many_allowed: true

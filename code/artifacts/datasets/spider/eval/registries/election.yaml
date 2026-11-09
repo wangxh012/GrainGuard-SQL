@@ -1,0 +1,53 @@
+tables:
+  county:
+    columns:
+      County_Id: number
+      County_name: text
+      Population: number
+      Zip_code: text
+    primary_key: &id001
+    - County_Id
+    grain: *id001
+  party:
+    columns:
+      Party_ID: number
+      Year: number
+      Party: text
+      Governor: text
+      Lieutenant_Governor: text
+      Comptroller: text
+      Attorney_General: text
+      US_Senate: text
+    primary_key: &id002
+    - Party_ID
+    grain: *id002
+  election:
+    columns:
+      Election_ID: number
+      Counties_Represented: text
+      District: number
+      Delegate: text
+      Party: number
+      First_Elected: number
+      Committee: text
+    primary_key: &id003
+    - Election_ID
+    grain: *id003
+    observed_non_unique:
+    - - District
+    - - Party
+    foreign_keys:
+    - columns:
+      - District
+      references:
+        table: county
+        columns:
+        - County_Id
+      many_allowed: true
+    - columns:
+      - Party
+      references:
+        table: party
+        columns:
+        - Party_ID
+      many_allowed: true

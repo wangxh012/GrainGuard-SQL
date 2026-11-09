@@ -1,0 +1,229 @@
+tables:
+  artists:
+    columns:
+      id: number
+      name: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  sqlite_sequence:
+    columns:
+      name: text
+      seq: text
+    primary_key: []
+    grain: []
+  albums:
+    columns:
+      id: number
+      title: text
+      artist_id: number
+    primary_key: &id002
+    - id
+    grain: *id002
+    observed_non_unique:
+    - - artist_id
+    foreign_keys:
+    - columns:
+      - artist_id
+      references:
+        table: artists
+        columns:
+        - id
+      many_allowed: true
+  employees:
+    columns:
+      id: number
+      last_name: text
+      first_name: text
+      title: text
+      reports_to: number
+      birth_date: time
+      hire_date: time
+      address: text
+      city: text
+      state: text
+      country: text
+      postal_code: text
+      phone: text
+      fax: text
+      email: text
+    primary_key: &id003
+    - id
+    grain: *id003
+    observed_non_unique:
+    - - reports_to
+    foreign_keys:
+    - columns:
+      - reports_to
+      references:
+        table: employees
+        columns:
+        - id
+      many_allowed: true
+  customers:
+    columns:
+      id: number
+      first_name: text
+      last_name: text
+      company: text
+      address: text
+      city: text
+      state: text
+      country: text
+      postal_code: text
+      phone: text
+      fax: text
+      email: text
+      support_rep_id: number
+    primary_key: &id004
+    - id
+    grain: *id004
+    observed_non_unique:
+    - - support_rep_id
+    foreign_keys:
+    - columns:
+      - support_rep_id
+      references:
+        table: employees
+        columns:
+        - id
+      many_allowed: true
+  genres:
+    columns:
+      id: number
+      name: text
+    primary_key: &id005
+    - id
+    grain: *id005
+  invoices:
+    columns:
+      id: number
+      customer_id: number
+      invoice_date: time
+      billing_address: text
+      billing_city: text
+      billing_state: text
+      billing_country: text
+      billing_postal_code: text
+      total: number
+    primary_key: &id006
+    - id
+    grain: *id006
+    observed_non_unique:
+    - - customer_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: customers
+        columns:
+        - id
+      many_allowed: true
+  media_types:
+    columns:
+      id: number
+      name: text
+    primary_key: &id007
+    - id
+    grain: *id007
+  tracks:
+    columns:
+      id: number
+      name: text
+      album_id: number
+      media_type_id: number
+      genre_id: number
+      composer: text
+      milliseconds: number
+      bytes: number
+      unit_price: number
+    primary_key: &id008
+    - id
+    grain: *id008
+    observed_non_unique:
+    - - media_type_id
+    - - genre_id
+    - - album_id
+    foreign_keys:
+    - columns:
+      - media_type_id
+      references:
+        table: media_types
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - genre_id
+      references:
+        table: genres
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - album_id
+      references:
+        table: albums
+        columns:
+        - id
+      many_allowed: true
+  invoice_lines:
+    columns:
+      id: number
+      invoice_id: number
+      track_id: number
+      unit_price: number
+      quantity: number
+    primary_key: &id009
+    - id
+    grain: *id009
+    observed_non_unique:
+    - - track_id
+    - - invoice_id
+    foreign_keys:
+    - columns:
+      - track_id
+      references:
+        table: tracks
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - invoice_id
+      references:
+        table: invoices
+        columns:
+        - id
+      many_allowed: true
+  playlists:
+    columns:
+      id: number
+      name: text
+    primary_key: &id010
+    - id
+    grain: *id010
+  playlist_tracks:
+    columns:
+      playlist_id: number
+      track_id: number
+    primary_key: &id011
+    - playlist_id
+    - track_id
+    grain: *id011
+    observed_non_unique:
+    - - track_id
+    - - playlist_id
+    foreign_keys:
+    - columns:
+      - track_id
+      references:
+        table: tracks
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - playlist_id
+      references:
+        table: playlists
+        columns:
+        - id
+      many_allowed: true

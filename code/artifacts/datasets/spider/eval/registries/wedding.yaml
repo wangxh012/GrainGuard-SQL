@@ -1,0 +1,58 @@
+tables:
+  people:
+    columns:
+      People_ID: number
+      Name: text
+      Country: text
+      Is_Male: text
+      Age: number
+    primary_key: &id001
+    - People_ID
+    grain: *id001
+  church:
+    columns:
+      Church_ID: number
+      Name: text
+      Organized_by: text
+      Open_Date: number
+      Continuation_of: text
+    primary_key: &id002
+    - Church_ID
+    grain: *id002
+  wedding:
+    columns:
+      Church_ID: number
+      Male_ID: number
+      Female_ID: number
+      Year: number
+    primary_key: &id003
+    - Church_ID
+    - Male_ID
+    - Female_ID
+    grain: *id003
+    observed_unique:
+    - - Female_ID
+    - - Male_ID
+    - - Church_ID
+    foreign_keys:
+    - columns:
+      - Female_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+    - columns:
+      - Male_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+    - columns:
+      - Church_ID
+      references:
+        table: church
+        columns:
+        - Church_ID
+      many_allowed: true

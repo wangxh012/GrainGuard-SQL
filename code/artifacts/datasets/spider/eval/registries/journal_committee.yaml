@@ -1,0 +1,46 @@
+tables:
+  journal:
+    columns:
+      Journal_ID: number
+      Date: text
+      Theme: text
+      Sales: number
+    primary_key: &id001
+    - Journal_ID
+    grain: *id001
+  editor:
+    columns:
+      Editor_ID: number
+      Name: text
+      Age: number
+    primary_key: &id002
+    - Editor_ID
+    grain: *id002
+  journal_committee:
+    columns:
+      Editor_ID: number
+      Journal_ID: number
+      Work_Type: text
+    primary_key: &id003
+    - Editor_ID
+    - Journal_ID
+    grain: *id003
+    observed_unique:
+    - - Journal_ID
+    observed_non_unique:
+    - - Editor_ID
+    foreign_keys:
+    - columns:
+      - Journal_ID
+      references:
+        table: journal
+        columns:
+        - Journal_ID
+      many_allowed: true
+    - columns:
+      - Editor_ID
+      references:
+        table: editor
+        columns:
+        - Editor_ID
+      many_allowed: true

@@ -1,0 +1,68 @@
+tables:
+  Ref_Template_Types:
+    columns:
+      Template_Type_Code: text
+      Template_Type_Description: text
+    primary_key: &id001
+    - Template_Type_Code
+    grain: *id001
+  Templates:
+    columns:
+      Template_ID: number
+      Version_Number: number
+      Template_Type_Code: text
+      Date_Effective_From: time
+      Date_Effective_To: time
+      Template_Details: text
+    primary_key: &id002
+    - Template_ID
+    grain: *id002
+    observed_non_unique:
+    - - Template_Type_Code
+    foreign_keys:
+    - columns:
+      - Template_Type_Code
+      references:
+        table: Ref_Template_Types
+        columns:
+        - Template_Type_Code
+      many_allowed: true
+  Documents:
+    columns:
+      Document_ID: number
+      Template_ID: number
+      Document_Name: text
+      Document_Description: text
+      Other_Details: text
+    primary_key: &id003
+    - Document_ID
+    grain: *id003
+    observed_non_unique:
+    - - Template_ID
+    foreign_keys:
+    - columns:
+      - Template_ID
+      references:
+        table: Templates
+        columns:
+        - Template_ID
+      many_allowed: true
+  Paragraphs:
+    columns:
+      Paragraph_ID: number
+      Document_ID: number
+      Paragraph_Text: text
+      Other_Details: text
+    primary_key: &id004
+    - Paragraph_ID
+    grain: *id004
+    observed_non_unique:
+    - - Document_ID
+    foreign_keys:
+    - columns:
+      - Document_ID
+      references:
+        table: Documents
+        columns:
+        - Document_ID
+      many_allowed: true

@@ -1,0 +1,48 @@
+tables:
+  airlines:
+    columns:
+      uid: number
+      Airline: text
+      Abbreviation: text
+      Country: text
+    primary_key: &id001
+    - uid
+    grain: *id001
+  airports:
+    columns:
+      City: text
+      AirportCode: text
+      AirportName: text
+      Country: text
+      CountryAbbrev: text
+    primary_key: &id002
+    - AirportCode
+    grain: *id002
+  flights:
+    columns:
+      Airline: number
+      FlightNo: number
+      SourceAirport: text
+      DestAirport: text
+    primary_key: &id003
+    - Airline
+    - FlightNo
+    grain: *id003
+    observed_non_unique:
+    - - DestAirport
+    - - SourceAirport
+    foreign_keys:
+    - columns:
+      - DestAirport
+      references:
+        table: airports
+        columns:
+        - AirportCode
+      many_allowed: true
+    - columns:
+      - SourceAirport
+      references:
+        table: airports
+        columns:
+        - AirportCode
+      many_allowed: true

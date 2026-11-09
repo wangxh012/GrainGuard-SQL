@@ -1,0 +1,177 @@
+tables:
+  account:
+    columns:
+      account_id: integer
+      district_id: integer
+      frequency: text
+      date: date
+    primary_key: &id001
+    - account_id
+    grain: *id001
+    observed_non_unique:
+    - - district_id
+    foreign_keys:
+    - columns:
+      - district_id
+      references:
+        table: district
+        columns:
+        - district_id
+      many_allowed: true
+  card:
+    columns:
+      card_id: integer
+      disp_id: integer
+      type: text
+      issued: date
+    primary_key: &id002
+    - card_id
+    grain: *id002
+    observed_unique:
+    - - disp_id
+    foreign_keys:
+    - columns:
+      - disp_id
+      references:
+        table: disp
+        columns:
+        - disp_id
+      many_allowed: true
+  client:
+    columns:
+      client_id: integer
+      gender: text
+      birth_date: date
+      district_id: integer
+    primary_key: &id003
+    - client_id
+    grain: *id003
+    observed_non_unique:
+    - - district_id
+    foreign_keys:
+    - columns:
+      - district_id
+      references:
+        table: district
+        columns:
+        - district_id
+      many_allowed: true
+  disp:
+    columns:
+      disp_id: integer
+      client_id: integer
+      account_id: integer
+      type: text
+    primary_key: &id004
+    - disp_id
+    grain: *id004
+    observed_unique:
+    - - client_id
+    - - client_id
+      - account_id
+    observed_non_unique:
+    - - account_id
+    foreign_keys:
+    - columns:
+      - client_id
+      references:
+        table: client
+        columns:
+        - client_id
+      many_allowed: true
+    - columns:
+      - account_id
+      references:
+        table: account
+        columns:
+        - account_id
+      many_allowed: true
+  district:
+    columns:
+      district_id: integer
+      A2: text
+      A3: text
+      A4: text
+      A5: text
+      A6: text
+      A7: text
+      A8: integer
+      A9: integer
+      A10: real
+      A11: integer
+      A12: real
+      A13: real
+      A14: integer
+      A15: integer
+      A16: integer
+    primary_key: &id005
+    - district_id
+    grain: *id005
+  loan:
+    columns:
+      loan_id: integer
+      account_id: integer
+      date: date
+      amount: integer
+      duration: integer
+      payments: real
+      status: text
+    primary_key: &id006
+    - loan_id
+    grain: *id006
+    observed_unique:
+    - - account_id
+    foreign_keys:
+    - columns:
+      - account_id
+      references:
+        table: account
+        columns:
+        - account_id
+      many_allowed: true
+  order:
+    columns:
+      order_id: integer
+      account_id: integer
+      bank_to: text
+      account_to: integer
+      amount: real
+      k_symbol: text
+    primary_key: &id007
+    - order_id
+    grain: *id007
+    observed_non_unique:
+    - - account_id
+    foreign_keys:
+    - columns:
+      - account_id
+      references:
+        table: account
+        columns:
+        - account_id
+      many_allowed: true
+  trans:
+    columns:
+      trans_id: integer
+      account_id: integer
+      date: date
+      type: text
+      operation: text
+      amount: integer
+      balance: integer
+      k_symbol: text
+      bank: text
+      account: integer
+    primary_key: &id008
+    - trans_id
+    grain: *id008
+    observed_non_unique:
+    - - account_id
+    foreign_keys:
+    - columns:
+      - account_id
+      references:
+        table: account
+        columns:
+        - account_id
+      many_allowed: true

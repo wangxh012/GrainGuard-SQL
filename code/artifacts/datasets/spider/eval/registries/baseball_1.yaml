@@ -1,0 +1,664 @@
+tables:
+  all_star:
+    columns:
+      player_id: text
+      year: number
+      game_num: number
+      game_id: text
+      team_id: text
+      league_id: text
+      gp: number
+      starting_pos: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  appearances:
+    columns:
+      year: number
+      team_id: text
+      league_id: text
+      player_id: text
+      g_all: number
+      gs: number
+      g_batting: number
+      g_defense: number
+      g_p: number
+      g_c: number
+      g_1b: number
+      g_2b: number
+      g_3b: number
+      g_ss: number
+      g_lf: number
+      g_cf: number
+      g_rf: number
+      g_of: number
+      g_dh: number
+      g_ph: number
+      g_pr: number
+    primary_key: []
+    grain:
+    - team_id
+    observed_non_unique:
+    - - player_id
+    - - team_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+    - columns:
+      - team_id
+      references:
+        table: team
+        columns:
+        - team_id
+      many_allowed: true
+  manager_award:
+    columns:
+      player_id: text
+      award_id: text
+      year: number
+      league_id: text
+      tie: text
+      notes: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  player_award:
+    columns:
+      player_id: text
+      award_id: text
+      year: number
+      league_id: text
+      tie: text
+      notes: text
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  manager_award_vote:
+    columns:
+      award_id: text
+      year: number
+      league_id: text
+      player_id: text
+      points_won: number
+      points_max: number
+      votes_first: number
+    primary_key: []
+    grain:
+    - award_id
+  player_award_vote:
+    columns:
+      award_id: text
+      year: number
+      league_id: text
+      player_id: text
+      points_won: number
+      points_max: number
+      votes_first: number
+    primary_key: []
+    grain:
+    - award_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  batting:
+    columns:
+      player_id: text
+      year: number
+      stint: number
+      team_id: text
+      league_id: text
+      g: number
+      ab: number
+      r: number
+      h: number
+      double: number
+      triple: number
+      hr: number
+      rbi: number
+      sb: number
+      cs: number
+      bb: number
+      so: number
+      ibb: number
+      hbp: number
+      sh: number
+      sf: number
+      g_idp: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  batting_postseason:
+    columns:
+      year: number
+      round: text
+      player_id: text
+      team_id: text
+      league_id: text
+      g: number
+      ab: number
+      r: number
+      h: number
+      double: number
+      triple: number
+      hr: number
+      rbi: number
+      sb: number
+      cs: number
+      bb: number
+      so: number
+      ibb: number
+      hbp: number
+      sh: number
+      sf: number
+      g_idp: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - team_id
+    - - player_id
+    foreign_keys:
+    - columns:
+      - team_id
+      references:
+        table: team
+        columns:
+        - team_id
+      many_allowed: true
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  player_college:
+    columns:
+      player_id: text
+      college_id: text
+      year: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - college_id
+    - - player_id
+    foreign_keys:
+    - columns:
+      - college_id
+      references:
+        table: college
+        columns:
+        - college_id
+      many_allowed: true
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  fielding:
+    columns:
+      player_id: text
+      year: number
+      stint: number
+      team_id: text
+      league_id: text
+      pos: text
+      g: number
+      gs: number
+      inn_outs: number
+      po: number
+      a: number
+      e: number
+      dp: number
+      pb: number
+      wp: number
+      sb: number
+      cs: number
+      zr: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  fielding_outfield:
+    columns:
+      player_id: text
+      year: number
+      stint: number
+      glf: number
+      gcf: number
+      grf: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  fielding_postseason:
+    columns:
+      player_id: text
+      year: number
+      team_id: text
+      league_id: text
+      round: text
+      pos: text
+      g: number
+      gs: number
+      inn_outs: number
+      po: number
+      a: number
+      e: number
+      dp: number
+      tp: number
+      pb: number
+      sb: number
+      cs: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  hall_of_fame:
+    columns:
+      player_id: text
+      yearid: number
+      votedby: text
+      ballots: number
+      needed: number
+      votes: number
+      inducted: text
+      category: text
+      needed_note: text
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: player
+        columns:
+        - player_id
+      many_allowed: true
+  home_game:
+    columns:
+      year: number
+      league_id: text
+      team_id: text
+      park_id: text
+      span_first: text
+      span_last: text
+      games: number
+      openings: number
+      attendance: number
+    primary_key: []
+    grain:
+    - league_id
+    observed_non_unique:
+    - - park_id
+    - - team_id
+    foreign_keys:
+    - columns:
+      - park_id
+      references:
+        table: park
+        columns:
+        - park_id
+      many_allowed: true
+    - columns:
+      - team_id
+      references:
+        table: team
+        columns:
+        - team_id
+      many_allowed: true
+  manager:
+    columns:
+      player_id: text
+      year: number
+      team_id: text
+      league_id: text
+      inseason: number
+      g: number
+      w: number
+      l: number
+      rank: number
+      plyr_mgr: text
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - team_id
+    foreign_keys:
+    - columns:
+      - team_id
+      references:
+        table: team
+        columns:
+        - team_id
+      many_allowed: true
+  manager_half:
+    columns:
+      player_id: text
+      year: number
+      team_id: text
+      league_id: text
+      inseason: number
+      half: number
+      g: number
+      w: number
+      l: number
+      rank: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - team_id
+    foreign_keys:
+    - columns:
+      - team_id
+      references:
+        table: team
+        columns:
+        - team_id
+      many_allowed: true
+  player:
+    columns:
+      player_id: text
+      birth_year: number
+      birth_month: number
+      birth_day: number
+      birth_country: text
+      birth_state: text
+      birth_city: text
+      death_year: number
+      death_month: number
+      death_day: number
+      death_country: text
+      death_state: text
+      death_city: text
+      name_first: text
+      name_last: text
+      name_given: text
+      weight: number
+      height: number
+      bats: text
+      throws: text
+      debut: text
+      final_game: text
+      retro_id: text
+      bbref_id: text
+    primary_key: []
+    grain:
+    - player_id
+  park:
+    columns:
+      park_id: text
+      park_name: text
+      park_alias: text
+      city: text
+      state: text
+      country: text
+    primary_key: []
+    grain:
+    - park_id
+  pitching:
+    columns:
+      player_id: text
+      year: number
+      stint: number
+      team_id: text
+      league_id: text
+      w: number
+      l: number
+      g: number
+      gs: number
+      cg: number
+      sho: number
+      sv: number
+      ipouts: number
+      h: number
+      er: number
+      hr: number
+      bb: number
+      so: number
+      baopp: number
+      era: number
+      ibb: number
+      wp: number
+      hbp: number
+      bk: number
+      bfp: number
+      gf: number
+      r: number
+      sh: number
+      sf: number
+      g_idp: number
+    primary_key: []
+    grain:
+    - player_id
+  pitching_postseason:
+    columns:
+      player_id: text
+      year: number
+      round: text
+      team_id: text
+      league_id: text
+      w: number
+      l: number
+      g: number
+      gs: number
+      cg: number
+      sho: number
+      sv: number
+      ipouts: number
+      h: number
+      er: number
+      hr: number
+      bb: number
+      so: number
+      baopp: text
+      era: number
+      ibb: number
+      wp: number
+      hbp: number
+      bk: number
+      bfp: number
+      gf: number
+      r: number
+      sh: number
+      sf: number
+      g_idp: number
+    primary_key: []
+    grain:
+    - player_id
+  salary:
+    columns:
+      year: number
+      team_id: text
+      league_id: text
+      player_id: text
+      salary: number
+    primary_key: []
+    grain:
+    - team_id
+  college:
+    columns:
+      college_id: text
+      name_full: text
+      city: text
+      state: text
+      country: text
+    primary_key: []
+    grain:
+    - college_id
+  postseason:
+    columns:
+      year: number
+      round: text
+      team_id_winner: text
+      league_id_winner: text
+      team_id_loser: text
+      league_id_loser: text
+      wins: number
+      losses: number
+      ties: number
+    primary_key: []
+    grain: []
+  team:
+    columns:
+      year: number
+      league_id: text
+      team_id: text
+      franchise_id: text
+      div_id: text
+      rank: number
+      g: number
+      ghome: number
+      w: number
+      l: number
+      div_win: text
+      wc_win: text
+      lg_win: text
+      ws_win: text
+      r: number
+      ab: number
+      h: number
+      double: number
+      triple: number
+      hr: number
+      bb: number
+      so: number
+      sb: number
+      cs: number
+      hbp: number
+      sf: number
+      ra: number
+      er: number
+      era: number
+      cg: number
+      sho: number
+      sv: number
+      ipouts: number
+      ha: number
+      hra: number
+      bba: number
+      soa: number
+      e: number
+      dp: number
+      fp: number
+      name: text
+      park: text
+      attendance: number
+      bpf: number
+      ppf: number
+      team_id_br: text
+      team_id_lahman45: text
+      team_id_retro: text
+    primary_key: []
+    grain:
+    - league_id
+  team_franchise:
+    columns:
+      franchise_id: text
+      franchise_name: text
+      active: text
+      na_assoc: text
+    primary_key: []
+    grain:
+    - franchise_id
+  team_half:
+    columns:
+      year: number
+      league_id: text
+      team_id: text
+      half: number
+      div_id: text
+      div_win: text
+      rank: number
+      g: number
+      w: number
+      l: number
+    primary_key: []
+    grain:
+    - league_id

@@ -1,0 +1,41 @@
+tables:
+  basketball_match:
+    columns:
+      Team_ID: number
+      School_ID: number
+      Team_Name: text
+      ACC_Regular_Season: text
+      ACC_Percent: text
+      ACC_Home: text
+      ACC_Road: text
+      All_Games: text
+      All_Games_Percent: number
+      All_Home: text
+      All_Road: text
+      All_Neutral: text
+    primary_key: &id001
+    - Team_ID
+    grain: *id001
+    observed_unique:
+    - - School_ID
+    foreign_keys:
+    - columns:
+      - School_ID
+      references:
+        table: university
+        columns:
+        - School_ID
+      many_allowed: true
+  university:
+    columns:
+      School_ID: number
+      School: text
+      Location: text
+      Founded: number
+      Affiliation: text
+      Enrollment: number
+      Nickname: text
+      Primary_conference: text
+    primary_key: &id002
+    - School_ID
+    grain: *id002

@@ -1,0 +1,74 @@
+tables:
+  conductor:
+    columns:
+      Conductor_ID: number
+      Name: text
+      Age: number
+      Nationality: text
+      Year_of_Work: number
+    primary_key: &id001
+    - Conductor_ID
+    grain: *id001
+  orchestra:
+    columns:
+      Orchestra_ID: number
+      Orchestra: text
+      Conductor_ID: number
+      Record_Company: text
+      Year_of_Founded: number
+      Major_Record_Format: text
+    primary_key: &id002
+    - Orchestra_ID
+    grain: *id002
+    observed_unique:
+    - - Conductor_ID
+    foreign_keys:
+    - columns:
+      - Conductor_ID
+      references:
+        table: conductor
+        columns:
+        - Conductor_ID
+      many_allowed: true
+  performance:
+    columns:
+      Performance_ID: number
+      Orchestra_ID: number
+      Type: text
+      Date: text
+      Official_ratings_(millions): number
+      Weekly_rank: text
+      Share: text
+    primary_key: &id003
+    - Performance_ID
+    grain: *id003
+    observed_unique:
+    - - Orchestra_ID
+    foreign_keys:
+    - columns:
+      - Orchestra_ID
+      references:
+        table: orchestra
+        columns:
+        - Orchestra_ID
+      many_allowed: true
+  show:
+    columns:
+      Show_ID: number
+      Performance_ID: number
+      If_first_show: others
+      Result: text
+      Attendance: number
+    primary_key: []
+    grain:
+    - Show_ID
+    observed_unique:
+    - - Performance_ID
+    foreign_keys:
+    - columns:
+      - Performance_ID
+      references:
+        table: performance
+        columns:
+        - Performance_ID
+      many_allowed: true

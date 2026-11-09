@@ -1,0 +1,62 @@
+tables:
+  works_on:
+    columns:
+      Essn: number
+      Pno: number
+      Hours: number
+    primary_key: &id001
+    - Essn
+    - Pno
+    grain: *id001
+  employee:
+    columns:
+      Fname: text
+      Minit: text
+      Lname: text
+      Ssn: number
+      Bdate: text
+      Address: text
+      Sex: text
+      Salary: number
+      Super_ssn: number
+      Dno: number
+    primary_key: &id002
+    - Ssn
+    grain: *id002
+  department:
+    columns:
+      Dname: text
+      Dnumber: number
+      Mgr_ssn: number
+      Mgr_start_date: text
+    primary_key: &id003
+    - Dnumber
+    grain: *id003
+  project:
+    columns:
+      Pname: text
+      Pnumber: number
+      Plocation: text
+      Dnum: number
+    primary_key: &id004
+    - Pnumber
+    grain: *id004
+  dependent:
+    columns:
+      Essn: number
+      Dependent_name: text
+      Sex: text
+      Bdate: text
+      Relationship: text
+    primary_key: &id005
+    - Essn
+    - Dependent_name
+    grain: *id005
+  dept_locations:
+    columns:
+      Dnumber: number
+      Dlocation: text
+    primary_key: &id006
+    - Dnumber
+    - Dlocation
+    grain: *id006

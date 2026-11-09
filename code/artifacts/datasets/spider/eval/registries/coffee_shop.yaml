@@ -1,0 +1,63 @@
+tables:
+  shop:
+    columns:
+      Shop_ID: number
+      Address: text
+      Num_of_staff: text
+      Score: number
+      Open_Year: text
+    primary_key: &id001
+    - Shop_ID
+    grain: *id001
+  member:
+    columns:
+      Member_ID: number
+      Name: text
+      Membership_card: text
+      Age: number
+      Time_of_purchase: number
+      Level_of_membership: number
+      Address: text
+    primary_key: &id002
+    - Member_ID
+    grain: *id002
+  happy_hour:
+    columns:
+      HH_ID: number
+      Shop_ID: number
+      Month: text
+      Num_of_shaff_in_charge: number
+    primary_key: &id003
+    - HH_ID
+    - Shop_ID
+    - Month
+    grain: *id003
+    observed_non_unique:
+    - - Shop_ID
+    foreign_keys:
+    - columns:
+      - Shop_ID
+      references:
+        table: shop
+        columns:
+        - Shop_ID
+      many_allowed: true
+  happy_hour_member:
+    columns:
+      HH_ID: number
+      Member_ID: number
+      Total_amount: number
+    primary_key: &id004
+    - HH_ID
+    - Member_ID
+    grain: *id004
+    observed_non_unique:
+    - - Member_ID
+    foreign_keys:
+    - columns:
+      - Member_ID
+      references:
+        table: member
+        columns:
+        - Member_ID
+      many_allowed: true

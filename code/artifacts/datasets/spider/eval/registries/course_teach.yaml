@@ -1,0 +1,46 @@
+tables:
+  course:
+    columns:
+      Course_ID: number
+      Staring_Date: text
+      Course: text
+    primary_key: &id001
+    - Course_ID
+    grain: *id001
+  teacher:
+    columns:
+      Teacher_ID: number
+      Name: text
+      Age: text
+      Hometown: text
+    primary_key: &id002
+    - Teacher_ID
+    grain: *id002
+  course_arrange:
+    columns:
+      Course_ID: number
+      Teacher_ID: number
+      Grade: number
+    primary_key: &id003
+    - Course_ID
+    - Teacher_ID
+    - Grade
+    grain: *id003
+    observed_non_unique:
+    - - Teacher_ID
+    - - Course_ID
+    foreign_keys:
+    - columns:
+      - Teacher_ID
+      references:
+        table: teacher
+        columns:
+        - Teacher_ID
+      many_allowed: true
+    - columns:
+      - Course_ID
+      references:
+        table: course
+        columns:
+        - Course_ID
+      many_allowed: true

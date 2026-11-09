@@ -1,0 +1,20 @@
+{
+  "adjudication_version": "paper_core_supplemental_final_reference_v1",
+  "reference_status": "final_independent_sql_expert_reference",
+  "provenance_note": "SQL experts A and B reviewed separately ordered masked packets independently; senior SQL expert C independently resolved every case without supported A--B agreement.",
+  "item_count": 174,
+  "final_label_counts": {
+    "negative": 137,
+    "positive": 37
+  },
+  "a_b_relation_counts": {
+    "agree": 155,
+    "disagree": 19
+  },
+  "independent_c_review": {
+    "items": 19,
+    "decision_mode": "independent_blind_review",
+    "remaining_unresolved_items": 0
+  },
+  "final_labels_sha256": "fec47039ce797c9ef06534c26b763817be07ff133a61f144f03ae87fc606e69a"
+}

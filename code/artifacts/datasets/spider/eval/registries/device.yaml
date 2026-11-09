@@ -1,0 +1,49 @@
+tables:
+  device:
+    columns:
+      Device_ID: number
+      Device: text
+      Carrier: text
+      Package_Version: text
+      Applications: text
+      Software_Platform: text
+    primary_key: &id001
+    - Device_ID
+    grain: *id001
+  shop:
+    columns:
+      Shop_ID: number
+      Shop_Name: text
+      Location: text
+      Open_Date: text
+      Open_Year: number
+    primary_key: &id002
+    - Shop_ID
+    grain: *id002
+  stock:
+    columns:
+      Shop_ID: number
+      Device_ID: number
+      Quantity: number
+    primary_key: &id003
+    - Shop_ID
+    - Device_ID
+    grain: *id003
+    observed_non_unique:
+    - - Device_ID
+    - - Shop_ID
+    foreign_keys:
+    - columns:
+      - Device_ID
+      references:
+        table: device
+        columns:
+        - Device_ID
+      many_allowed: true
+    - columns:
+      - Shop_ID
+      references:
+        table: shop
+        columns:
+        - Shop_ID
+      many_allowed: true

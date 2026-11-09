@@ -1,0 +1,94 @@
+tables:
+  player:
+    columns:
+      Player_ID: number
+      Sponsor_name: text
+      Player_name: text
+      Gender: text
+      Residence: text
+      Occupation: text
+      Votes: number
+      Rank: text
+    primary_key: &id001
+    - Player_ID
+    grain: *id001
+  club:
+    columns:
+      Club_ID: number
+      Club_name: text
+      Region: text
+      Start_year: number
+    primary_key: &id002
+    - Club_ID
+    grain: *id002
+  coach:
+    columns:
+      Coach_ID: number
+      Coach_name: text
+      Gender: text
+      Club_ID: number
+      Rank: number
+    primary_key: &id003
+    - Coach_ID
+    grain: *id003
+    observed_non_unique:
+    - - Club_ID
+    foreign_keys:
+    - columns:
+      - Club_ID
+      references:
+        table: club
+        columns:
+        - Club_ID
+      many_allowed: true
+  player_coach:
+    columns:
+      Player_ID: number
+      Coach_ID: number
+      Starting_year: number
+    primary_key: &id004
+    - Player_ID
+    - Coach_ID
+    grain: *id004
+    observed_unique:
+    - - Player_ID
+    observed_non_unique:
+    - - Coach_ID
+    foreign_keys:
+    - columns:
+      - Coach_ID
+      references:
+        table: coach
+        columns:
+        - Coach_ID
+      many_allowed: true
+    - columns:
+      - Player_ID
+      references:
+        table: player
+        columns:
+        - Player_ID
+      many_allowed: true
+  match_result:
+    columns:
+      Rank: number
+      Club_ID: number
+      Gold: number
+      Big_Silver: number
+      Small_Silver: number
+      Bronze: number
+      Points: number
+    primary_key: &id005
+    - Rank
+    - Club_ID
+    grain: *id005
+    observed_unique:
+    - - Club_ID
+    foreign_keys:
+    - columns:
+      - Club_ID
+      references:
+        table: club
+        columns:
+        - Club_ID
+      many_allowed: true

@@ -1,0 +1,93 @@
+tables:
+  Attribute_Definitions:
+    columns:
+      attribute_id: number
+      attribute_name: text
+      attribute_data_type: text
+    primary_key: &id001
+    - attribute_id
+    grain: *id001
+  Catalogs:
+    columns:
+      catalog_id: number
+      catalog_name: text
+      catalog_publisher: text
+      date_of_publication: time
+      date_of_latest_revision: time
+    primary_key: &id002
+    - catalog_id
+    grain: *id002
+  Catalog_Structure:
+    columns:
+      catalog_level_number: number
+      catalog_id: number
+      catalog_level_name: text
+    primary_key: &id003
+    - catalog_level_number
+    grain: *id003
+    observed_unique:
+    - - catalog_id
+    foreign_keys:
+    - columns:
+      - catalog_id
+      references:
+        table: Catalogs
+        columns:
+        - catalog_id
+      many_allowed: true
+  Catalog_Contents:
+    columns:
+      catalog_entry_id: number
+      catalog_level_number: number
+      parent_entry_id: number
+      previous_entry_id: number
+      next_entry_id: number
+      catalog_entry_name: text
+      product_stock_number: text
+      price_in_dollars: number
+      price_in_euros: number
+      price_in_pounds: number
+      capacity: text
+      length: text
+      height: text
+      width: text
+    primary_key: &id004
+    - catalog_entry_id
+    grain: *id004
+    observed_non_unique:
+    - - catalog_level_number
+    foreign_keys:
+    - columns:
+      - catalog_level_number
+      references:
+        table: Catalog_Structure
+        columns:
+        - catalog_level_number
+      many_allowed: true
+  Catalog_Contents_Additional_Attributes:
+    columns:
+      catalog_entry_id: number
+      catalog_level_number: number
+      attribute_id: number
+      attribute_value: text
+    primary_key: []
+    grain:
+    - catalog_entry_id
+    observed_non_unique:
+    - - catalog_level_number
+    - - catalog_entry_id
+    foreign_keys:
+    - columns:
+      - catalog_level_number
+      references:
+        table: Catalog_Structure
+        columns:
+        - catalog_level_number
+      many_allowed: true
+    - columns:
+      - catalog_entry_id
+      references:
+        table: Catalog_Contents
+        columns:
+        - catalog_entry_id
+      many_allowed: true

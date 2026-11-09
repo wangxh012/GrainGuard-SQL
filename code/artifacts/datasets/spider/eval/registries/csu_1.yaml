@@ -1,0 +1,104 @@
+tables:
+  Campuses:
+    columns:
+      Id: number
+      Campus: text
+      Location: text
+      County: text
+      Year: number
+    primary_key: &id001
+    - Id
+    grain: *id001
+  csu_fees:
+    columns:
+      Campus: number
+      Year: number
+      CampusFee: number
+    primary_key: &id002
+    - Campus
+    grain: *id002
+    foreign_keys:
+    - columns:
+      - Campus
+      references:
+        table: Campuses
+        columns:
+        - Id
+      many_allowed: true
+  degrees:
+    columns:
+      Year: number
+      Campus: number
+      Degrees: number
+    primary_key: &id003
+    - Year
+    - Campus
+    grain: *id003
+    observed_non_unique:
+    - - Campus
+    foreign_keys:
+    - columns:
+      - Campus
+      references:
+        table: Campuses
+        columns:
+        - Id
+      many_allowed: true
+  discipline_enrollments:
+    columns:
+      Campus: number
+      Discipline: number
+      Year: number
+      Undergraduate: number
+      Graduate: number
+    primary_key: &id004
+    - Campus
+    - Discipline
+    grain: *id004
+    observed_non_unique:
+    - - Campus
+    foreign_keys:
+    - columns:
+      - Campus
+      references:
+        table: Campuses
+        columns:
+        - Id
+      many_allowed: true
+  enrollments:
+    columns:
+      Campus: number
+      Year: number
+      TotalEnrollment_AY: number
+      FTE_AY: number
+    primary_key: &id005
+    - Campus
+    - Year
+    grain: *id005
+    observed_non_unique:
+    - - Campus
+    foreign_keys:
+    - columns:
+      - Campus
+      references:
+        table: Campuses
+        columns:
+        - Id
+      many_allowed: true
+  faculty:
+    columns:
+      Campus: number
+      Year: number
+      Faculty: number
+    primary_key: []
+    grain: []
+    observed_non_unique:
+    - - Campus
+    foreign_keys:
+    - columns:
+      - Campus
+      references:
+        table: Campuses
+        columns:
+        - Id
+      many_allowed: true

@@ -1,0 +1,52 @@
+tables:
+  buildings:
+    columns:
+      id: number
+      name: text
+      City: text
+      Height: number
+      Stories: number
+      Status: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  Companies:
+    columns:
+      id: number
+      name: text
+      Headquarters: text
+      Industry: text
+      Sales_billion: number
+      Profits_billion: number
+      Assets_billion: number
+      Market_Value_billion: text
+    primary_key: &id002
+    - id
+    grain: *id002
+  Office_locations:
+    columns:
+      building_id: number
+      company_id: number
+      move_in_year: number
+    primary_key: &id003
+    - building_id
+    - company_id
+    grain: *id003
+    observed_non_unique:
+    - - company_id
+    - - building_id
+    foreign_keys:
+    - columns:
+      - company_id
+      references:
+        table: Companies
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - building_id
+      references:
+        table: buildings
+        columns:
+        - id
+      many_allowed: true

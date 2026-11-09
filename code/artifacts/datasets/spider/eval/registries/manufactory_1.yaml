@@ -1,0 +1,30 @@
+tables:
+  Manufacturers:
+    columns:
+      Code: number
+      Name: text
+      Headquarter: text
+      Founder: text
+      Revenue: number
+    primary_key: &id001
+    - Code
+    grain: *id001
+  Products:
+    columns:
+      Code: number
+      Name: text
+      Price: number
+      Manufacturer: number
+    primary_key: &id002
+    - Code
+    grain: *id002
+    observed_non_unique:
+    - - Manufacturer
+    foreign_keys:
+    - columns:
+      - Manufacturer
+      references:
+        table: Manufacturers
+        columns:
+        - Code
+      many_allowed: true

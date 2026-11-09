@@ -1,0 +1,46 @@
+tables:
+  workshop:
+    columns:
+      Workshop_ID: number
+      Date: text
+      Venue: text
+      Name: text
+    primary_key: &id001
+    - Workshop_ID
+    grain: *id001
+  submission:
+    columns:
+      Submission_ID: number
+      Scores: number
+      Author: text
+      College: text
+    primary_key: &id002
+    - Submission_ID
+    grain: *id002
+  Acceptance:
+    columns:
+      Submission_ID: number
+      Workshop_ID: number
+      Result: text
+    primary_key: &id003
+    - Submission_ID
+    - Workshop_ID
+    grain: *id003
+    observed_non_unique:
+    - - Workshop_ID
+    - - Submission_ID
+    foreign_keys:
+    - columns:
+      - Workshop_ID
+      references:
+        table: workshop
+        columns:
+        - Workshop_ID
+      many_allowed: true
+    - columns:
+      - Submission_ID
+      references:
+        table: submission
+        columns:
+        - Submission_ID
+      many_allowed: true

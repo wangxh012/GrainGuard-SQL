@@ -1,0 +1,69 @@
+tables:
+  item:
+    columns:
+      i_id: number
+      title: text
+    primary_key: &id001
+    - i_id
+    grain: *id001
+  review:
+    columns:
+      a_id: number
+      u_id: number
+      i_id: number
+      rating: number
+      rank: number
+    primary_key: &id002
+    - a_id
+    grain: *id002
+    observed_non_unique:
+    - - i_id
+    - - u_id
+    foreign_keys:
+    - columns:
+      - i_id
+      references:
+        table: item
+        columns:
+        - i_id
+      many_allowed: true
+    - columns:
+      - u_id
+      references:
+        table: useracct
+        columns:
+        - u_id
+      many_allowed: true
+  useracct:
+    columns:
+      u_id: number
+      name: text
+    primary_key: &id003
+    - u_id
+    grain: *id003
+  trust:
+    columns:
+      source_u_id: number
+      target_u_id: number
+      trust: number
+    primary_key: []
+    grain:
+    - source_u_id
+    observed_non_unique:
+    - - target_u_id
+    - - source_u_id
+    foreign_keys:
+    - columns:
+      - target_u_id
+      references:
+        table: useracct
+        columns:
+        - u_id
+      many_allowed: true
+    - columns:
+      - source_u_id
+      references:
+        table: useracct
+        columns:
+        - u_id
+      many_allowed: true

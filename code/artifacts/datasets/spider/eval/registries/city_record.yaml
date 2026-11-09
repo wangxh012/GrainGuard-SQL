@@ -1,0 +1,75 @@
+tables:
+  city:
+    columns:
+      City_ID: number
+      City: text
+      Hanzi: text
+      Hanyu_Pinyin: text
+      Regional_Population: number
+      GDP: number
+    primary_key: &id001
+    - City_ID
+    grain: *id001
+  match:
+    columns:
+      Match_ID: number
+      Date: text
+      Venue: text
+      Score: text
+      Result: text
+      Competition: text
+    primary_key: &id002
+    - Match_ID
+    grain: *id002
+  temperature:
+    columns:
+      City_ID: number
+      Jan: number
+      Feb: number
+      Mar: number
+      Apr: number
+      Jun: number
+      Jul: number
+      Aug: number
+      Sep: number
+      Oct: number
+      Nov: number
+      Dec: number
+    primary_key: &id003
+    - City_ID
+    grain: *id003
+    foreign_keys:
+    - columns:
+      - City_ID
+      references:
+        table: city
+        columns:
+        - City_ID
+      many_allowed: true
+  hosting_city:
+    columns:
+      Year: number
+      Match_ID: number
+      Host_City: text
+    primary_key: &id004
+    - Year
+    grain: *id004
+    observed_unique:
+    - - Match_ID
+    observed_non_unique:
+    - - Host_City
+    foreign_keys:
+    - columns:
+      - Match_ID
+      references:
+        table: match
+        columns:
+        - Match_ID
+      many_allowed: true
+    - columns:
+      - Host_City
+      references:
+        table: city
+        columns:
+        - City_ID
+      many_allowed: true

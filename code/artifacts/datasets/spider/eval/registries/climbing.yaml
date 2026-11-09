@@ -1,0 +1,33 @@
+tables:
+  mountain:
+    columns:
+      Mountain_ID: number
+      Name: text
+      Height: number
+      Prominence: number
+      Range: text
+      Country: text
+    primary_key: &id001
+    - Mountain_ID
+    grain: *id001
+  climber:
+    columns:
+      Climber_ID: number
+      Name: text
+      Country: text
+      Time: text
+      Points: number
+      Mountain_ID: number
+    primary_key: &id002
+    - Climber_ID
+    grain: *id002
+    observed_non_unique:
+    - - Mountain_ID
+    foreign_keys:
+    - columns:
+      - Mountain_ID
+      references:
+        table: mountain
+        columns:
+        - Mountain_ID
+      many_allowed: true

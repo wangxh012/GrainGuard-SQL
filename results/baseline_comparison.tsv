@@ -1,0 +1,34 @@
+pool	method	method_label	n	positive	tp	fp	fn	tn	precision_pct	recall_pct	f1_pct	coverage_pct
+bird_glm	grain_guard_v23	GrainGuard-SQL	307	16	12	5	4	286	70.59	75.00	72.73	91.21
+bird_glm	original_execution_matching	Original-DB execution match	307	16	10	94	6	197	9.62	62.50	16.67	99.67
+bird_glm	static_grain_screening	Static grain screening	307	16	9	35	7	256	20.45	56.25	30.00	99.02
+bird_glm	test_suite_adaptation	TSA adaptation	307	16	10	113	6	178	8.13	62.50	14.39	98.05
+bird_glm	sqlhd_inspired	SQLHD-inspired MR	307	16	7	100	9	191	6.54	43.75	11.38	100.00
+bird_glm	sqldriller_inspired	SQLDriller-inspired separation	307	16	3	58	13	233	4.92	18.75	7.79	51.79
+bird_glm	spotit_plus_official	SpotIt+ official	307	16	7	89	9	202	7.29	43.75	12.50	77.85
+bird_glm	llm_self_check_glm_judge	Prompt-only GLM-5.1 judge	307	16	12	41	4	250	22.64	75.00	34.78	100.00
+bird_glm	llm_self_check_qwen_judge	Prompt-only Qwen3.6-27B judge	307	16	12	26	4	265	31.58	75.00	44.44	100.00
+bird_glm	contract_aware_llm_judge_glm	Contract-aware GLM-5.1 judge	307	16	13	67	3	224	16.25	81.25	27.08	100.00
+bird_glm	contract_aware_llm_judge_qwen	Contract-aware Qwen3.6-27B judge	307	16	13	73	3	218	15.12	81.25	25.49	100.00
+bird_qwen	grain_guard_v23	GrainGuard-SQL	307	79	70	8	9	220	89.74	88.61	89.17	91.21
+bird_qwen	original_execution_matching	Original-DB execution match	307	79	35	53	44	175	39.77	44.30	41.92	99.67
+bird_qwen	static_grain_screening	Static grain screening	307	79	61	30	18	198	67.03	77.22	71.76	100.00
+bird_qwen	test_suite_adaptation	TSA adaptation	307	79	36	67	43	161	34.95	45.57	39.56	97.72
+bird_qwen	sqlhd_inspired	SQLHD-inspired MR	307	79	20	93	59	135	17.70	25.32	20.83	99.67
+bird_qwen	sqldriller_inspired	SQLDriller-inspired separation	307	79	39	34	40	194	53.42	49.37	51.32	44.30
+bird_qwen	spotit_plus_official	SpotIt+ official	307	79	19	53	60	175	26.39	24.05	25.17	75.90
+bird_qwen	llm_self_check_glm_judge	Prompt-only GLM-5.1 judge	307	79	76	44	3	184	63.33	96.20	76.38	100.00
+bird_qwen	llm_self_check_qwen_judge	Prompt-only Qwen3.6-27B judge	307	79	77	28	2	200	73.33	97.47	83.70	100.00
+bird_qwen	contract_aware_llm_judge_glm	Contract-aware GLM-5.1 judge	307	79	75	61	4	167	55.15	94.94	69.77	100.00
+bird_qwen	contract_aware_llm_judge_qwen	Contract-aware Qwen3.6-27B judge	307	79	77	66	2	162	53.85	97.47	69.37	100.00
+bird_pooled	grain_guard_v23	GrainGuard-SQL	614	95	82	13	13	506	86.32	86.32	86.32	91.21
+bird_pooled	original_execution_matching	Original-DB execution match	614	95	45	147	50	372	23.44	47.37	31.36	99.67
+bird_pooled	static_grain_screening	Static grain screening	614	95	70	65	25	454	51.85	73.68	60.87	99.51
+bird_pooled	test_suite_adaptation	TSA adaptation	614	95	46	180	49	339	20.35	48.42	28.66	97.88
+bird_pooled	sqlhd_inspired	SQLHD-inspired MR	614	95	27	193	68	326	12.27	28.42	17.14	99.84
+bird_pooled	sqldriller_inspired	SQLDriller-inspired separation	614	95	42	92	53	427	31.34	44.21	36.68	48.05
+bird_pooled	spotit_plus_official	SpotIt+ official	614	95	26	142	69	377	15.48	27.37	19.77	76.87
+bird_pooled	llm_self_check_glm_judge	Prompt-only GLM-5.1 judge	614	95	88	85	7	434	50.87	92.63	65.67	100.00
+bird_pooled	llm_self_check_qwen_judge	Prompt-only Qwen3.6-27B judge	614	95	89	54	6	465	62.24	93.68	74.79	100.00
+bird_pooled	contract_aware_llm_judge_glm	Contract-aware GLM-5.1 judge	614	95	88	128	7	391	40.74	92.63	56.59	100.00
+bird_pooled	contract_aware_llm_judge_qwen	Contract-aware Qwen3.6-27B judge	614	95	90	139	5	380	39.30	94.74	55.56	100.00

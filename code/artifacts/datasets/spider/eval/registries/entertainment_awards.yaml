@@ -1,0 +1,48 @@
+tables:
+  festival_detail:
+    columns:
+      Festival_ID: number
+      Festival_Name: text
+      Chair_Name: text
+      Location: text
+      Year: number
+      Num_of_Audience: number
+    primary_key: &id001
+    - Festival_ID
+    grain: *id001
+  artwork:
+    columns:
+      Artwork_ID: number
+      Type: text
+      Name: text
+    primary_key: &id002
+    - Artwork_ID
+    grain: *id002
+  nomination:
+    columns:
+      Artwork_ID: number
+      Festival_ID: number
+      Result: text
+    primary_key: &id003
+    - Artwork_ID
+    - Festival_ID
+    grain: *id003
+    observed_unique:
+    - - Artwork_ID
+    observed_non_unique:
+    - - Festival_ID
+    foreign_keys:
+    - columns:
+      - Festival_ID
+      references:
+        table: festival_detail
+        columns:
+        - Festival_ID
+      many_allowed: true
+    - columns:
+      - Artwork_ID
+      references:
+        table: artwork
+        columns:
+        - Artwork_ID
+      many_allowed: true

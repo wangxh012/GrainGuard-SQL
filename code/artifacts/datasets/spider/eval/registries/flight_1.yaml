@@ -1,0 +1,66 @@
+tables:
+  flight:
+    columns:
+      flno: number
+      origin: text
+      destination: text
+      distance: number
+      departure_date: time
+      arrival_date: time
+      price: number
+      aid: number
+    primary_key: &id001
+    - flno
+    grain: *id001
+    observed_non_unique:
+    - - aid
+    foreign_keys:
+    - columns:
+      - aid
+      references:
+        table: aircraft
+        columns:
+        - aid
+      many_allowed: true
+  aircraft:
+    columns:
+      aid: number
+      name: text
+      distance: number
+    primary_key: &id002
+    - aid
+    grain: *id002
+  employee:
+    columns:
+      eid: number
+      name: text
+      salary: number
+    primary_key: &id003
+    - eid
+    grain: *id003
+  certificate:
+    columns:
+      eid: number
+      aid: number
+    primary_key: &id004
+    - eid
+    - aid
+    grain: *id004
+    observed_non_unique:
+    - - aid
+    - - eid
+    foreign_keys:
+    - columns:
+      - aid
+      references:
+        table: aircraft
+        columns:
+        - aid
+      many_allowed: true
+    - columns:
+      - eid
+      references:
+        table: employee
+        columns:
+        - eid
+      many_allowed: true

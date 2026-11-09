@@ -1,0 +1,61 @@
+tables:
+  Inst:
+    columns:
+      instID: number
+      name: text
+      country: text
+    primary_key: &id001
+    - instID
+    grain: *id001
+  Authors:
+    columns:
+      authID: number
+      lname: text
+      fname: text
+    primary_key: &id002
+    - authID
+    grain: *id002
+  Papers:
+    columns:
+      paperID: number
+      title: text
+    primary_key: &id003
+    - paperID
+    grain: *id003
+  Authorship:
+    columns:
+      authID: number
+      instID: number
+      paperID: number
+      authOrder: number
+    primary_key: &id004
+    - authID
+    - instID
+    - paperID
+    grain: *id004
+    observed_non_unique:
+    - - paperID
+    - - instID
+    - - authID
+    foreign_keys:
+    - columns:
+      - paperID
+      references:
+        table: Papers
+        columns:
+        - paperID
+      many_allowed: true
+    - columns:
+      - instID
+      references:
+        table: Inst
+        columns:
+        - instID
+      many_allowed: true
+    - columns:
+      - authID
+      references:
+        table: Authors
+        columns:
+        - authID
+      many_allowed: true

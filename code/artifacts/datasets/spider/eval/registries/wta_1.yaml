@@ -1,0 +1,87 @@
+tables:
+  players:
+    columns:
+      player_id: number
+      first_name: text
+      last_name: text
+      hand: text
+      birth_date: time
+      country_code: text
+    primary_key: &id001
+    - player_id
+    grain: *id001
+  matches:
+    columns:
+      best_of: number
+      draw_size: number
+      loser_age: number
+      loser_entry: text
+      loser_hand: text
+      loser_ht: number
+      loser_id: number
+      loser_ioc: text
+      loser_name: text
+      loser_rank: number
+      loser_rank_points: number
+      loser_seed: number
+      match_num: number
+      minutes: number
+      round: text
+      score: text
+      surface: text
+      tourney_date: time
+      tourney_id: text
+      tourney_level: text
+      tourney_name: text
+      winner_age: number
+      winner_entry: text
+      winner_hand: text
+      winner_ht: number
+      winner_id: number
+      winner_ioc: text
+      winner_name: text
+      winner_rank: number
+      winner_rank_points: number
+      winner_seed: number
+      year: number
+    primary_key: []
+    grain:
+    - loser_id
+    observed_non_unique:
+    - - winner_id
+    - - loser_id
+    foreign_keys:
+    - columns:
+      - winner_id
+      references:
+        table: players
+        columns:
+        - player_id
+      many_allowed: true
+    - columns:
+      - loser_id
+      references:
+        table: players
+        columns:
+        - player_id
+      many_allowed: true
+  rankings:
+    columns:
+      ranking_date: time
+      ranking: number
+      player_id: number
+      ranking_points: number
+      tours: number
+    primary_key: []
+    grain:
+    - player_id
+    observed_non_unique:
+    - - player_id
+    foreign_keys:
+    - columns:
+      - player_id
+      references:
+        table: players
+        columns:
+        - player_id
+      many_allowed: true

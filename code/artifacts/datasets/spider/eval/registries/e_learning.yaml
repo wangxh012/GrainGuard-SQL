@@ -1,0 +1,109 @@
+tables:
+  Course_Authors_and_Tutors:
+    columns:
+      author_id: number
+      author_tutor_ATB: text
+      login_name: text
+      password: text
+      personal_name: text
+      middle_name: text
+      family_name: text
+      gender_mf: text
+      address_line_1: text
+    primary_key: &id001
+    - author_id
+    grain: *id001
+  Students:
+    columns:
+      student_id: number
+      date_of_registration: time
+      date_of_latest_logon: time
+      login_name: text
+      password: text
+      personal_name: text
+      middle_name: text
+      family_name: text
+    primary_key: &id002
+    - student_id
+    grain: *id002
+  Subjects:
+    columns:
+      subject_id: number
+      subject_name: text
+    primary_key: &id003
+    - subject_id
+    grain: *id003
+  Courses:
+    columns:
+      course_id: number
+      author_id: number
+      subject_id: number
+      course_name: text
+      course_description: text
+    primary_key: &id004
+    - course_id
+    grain: *id004
+    observed_non_unique:
+    - - subject_id
+    - - author_id
+    foreign_keys:
+    - columns:
+      - subject_id
+      references:
+        table: Subjects
+        columns:
+        - subject_id
+      many_allowed: true
+    - columns:
+      - author_id
+      references:
+        table: Course_Authors_and_Tutors
+        columns:
+        - author_id
+      many_allowed: true
+  Student_Course_Enrolment:
+    columns:
+      registration_id: number
+      student_id: number
+      course_id: number
+      date_of_enrolment: time
+      date_of_completion: time
+    primary_key: &id005
+    - registration_id
+    grain: *id005
+    observed_non_unique:
+    - - student_id
+    - - course_id
+    foreign_keys:
+    - columns:
+      - student_id
+      references:
+        table: Students
+        columns:
+        - student_id
+      many_allowed: true
+    - columns:
+      - course_id
+      references:
+        table: Courses
+        columns:
+        - course_id
+      many_allowed: true
+  Student_Tests_Taken:
+    columns:
+      registration_id: number
+      date_test_taken: time
+      test_result: text
+    primary_key: []
+    grain:
+    - registration_id
+    observed_non_unique:
+    - - registration_id
+    foreign_keys:
+    - columns:
+      - registration_id
+      references:
+        table: Student_Course_Enrolment
+        columns:
+        - registration_id
+      many_allowed: true

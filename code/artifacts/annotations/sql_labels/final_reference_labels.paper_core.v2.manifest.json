@@ -1,0 +1,62 @@
+{
+  "adjudication_version": "paper_core_final_reference_v2",
+  "reference_status": "final_independent_reference",
+  "item_count": 2190,
+  "decision_rule": "Use supported A/B agreement. Send every A/B disagreement and B abstention to an independent, identity-masked C decision.",
+  "scope_note": "C receives only question, schema, SQL, and necessary benchmark evidence; GrainGuard-SQL outputs and A/B labels, identities, rationales, and ordering are excluded.",
+  "final_label_counts": {
+    "negative": 1947,
+    "positive": 243
+  },
+  "a_b_relation_counts": {
+    "agree": 2094,
+    "b_abstained": 27,
+    "disagree": 69
+  },
+  "resolution_counts": {
+    "a_b_supported_agreement": 2094,
+    "independent_c_review": 96
+  },
+  "independent_c_review": {
+    "items": 96,
+    "decision_mode": "independent_blind_review",
+    "remaining_unresolved_items": 0
+  },
+  "split_final_label_counts": {
+    "BIRD GLM": {
+      "negative": 392,
+      "positive": 27
+    },
+    "BIRD Qwen": {
+      "negative": 309,
+      "positive": 110
+    },
+    "BIRD reference": {
+      "negative": 343,
+      "positive": 76
+    },
+    "Spider GLM": {
+      "negative": 308,
+      "positive": 3
+    },
+    "Spider Qwen": {
+      "negative": 296,
+      "positive": 15
+    },
+    "Spider reference": {
+      "negative": 299,
+      "positive": 12
+    }
+  },
+  "builder": {
+    "path": "code/workflows/06_annotation/build_final_reference_sql_labels_v2.py",
+    "sha256": "f255d0bf484d8c44effc3f72372550dcf6ded0762ecc1d702d2bd2a722a6e270",
+    "dependencies": {
+      "v1_source_adapter": {
+        "path": "code/workflows/06_annotation/build_final_reference_sql_labels.py",
+        "sha256": "c0d58bd2a5c4561bc8292edf927bf99ae6228f8692376ce1d9c2cc4bc0edaf67"
+      }
+    }
+  },
+  "final_labels_sha256": "11849aca6e20aa8206e3aa5ae3f46cab87b570c38db6c781bf35e4d6e9aa6049"
+}

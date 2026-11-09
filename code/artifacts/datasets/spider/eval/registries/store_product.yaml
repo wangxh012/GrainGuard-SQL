@@ -1,0 +1,76 @@
+tables:
+  product:
+    columns:
+      product_id: number
+      product: text
+      dimensions: text
+      dpi: number
+      pages_per_minute_color: number
+      max_page_size: text
+      interface: text
+    primary_key: &id001
+    - product_id
+    grain: *id001
+  store:
+    columns:
+      Store_ID: number
+      Store_Name: text
+      Type: text
+      Area_size: number
+      Number_of_product_category: number
+      Ranking: number
+    primary_key: &id002
+    - Store_ID
+    grain: *id002
+  district:
+    columns:
+      District_ID: number
+      District_name: text
+      Headquartered_City: text
+      City_Population: number
+      City_Area: number
+    primary_key: &id003
+    - District_ID
+    grain: *id003
+  store_product:
+    columns:
+      Store_ID: number
+      Product_ID: number
+    primary_key: &id004
+    - Store_ID
+    - Product_ID
+    grain: *id004
+    observed_non_unique:
+    - - Store_ID
+    foreign_keys:
+    - columns:
+      - Store_ID
+      references:
+        table: store
+        columns:
+        - Store_ID
+      many_allowed: true
+  store_district:
+    columns:
+      Store_ID: number
+      District_ID: number
+    primary_key: &id005
+    - Store_ID
+    grain: *id005
+    observed_non_unique:
+    - - District_ID
+    foreign_keys:
+    - columns:
+      - District_ID
+      references:
+        table: district
+        columns:
+        - District_ID
+      many_allowed: true
+    - columns:
+      - Store_ID
+      references:
+        table: store
+        columns:
+        - Store_ID
+      many_allowed: true

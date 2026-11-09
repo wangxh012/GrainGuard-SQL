@@ -1,0 +1,67 @@
+{
+  "schema_version": "v23_canonical_manifest_v2",
+  "canonical_revision": "predeclared_evidence_scope_2026_09_09",
+  "estimand": "The 1,160 candidates attached to 580 gate-valid Contract V2.1 questions.",
+  "executor_policy": "Extended executor with grouped-CGR and balanced entity-list replication witnesses.",
+  "executor_profile_provenance": "The canonical witness forms were not introduced or selected after false-negative inspection. Witness scope is assigned before pair construction and execution, no global static guard overrides dynamic evidence, and dynamic PASS requires at least one executable pair.",
+  "decision_policy": {
+    "witness_admissibility_assignment": "pre_execution",
+    "tst_only_witness": "ABSTAIN",
+    "instance_only_uniqueness_witness": "ABSTAIN",
+    "supported_witness": "VIOLATION",
+    "guard_static_pass_violations": false,
+    "dynamic_pass_requires_executable_pair": true
+  },
+  "primary_run": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope",
+  "ablation_run": "code/artifacts/runs/v23_natural_candidate_validation/run_017_predeclared_scope_ablations",
+  "candidate_aggregate": {
+    "n": 1160,
+    "positive": 111,
+    "tp": 86,
+    "fp": 17,
+    "fn": 25,
+    "tn": 1032,
+    "precision": 0.8349514563106796,
+    "recall": 0.7747747747747747,
+    "f1": 0.8037383177570093,
+    "decision_coverage": 0.9482758620689655
+  },
+  "artifacts": {
+    "replay_summary": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/replay/natural_candidate_v23.summary.json",
+      "sha256": "47aa3f839e1569ec7f16099aba9fdf95da993e5dbe16044ee20d94772e41fa7c"
+    },
+    "replay_table": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/replay/natural_candidate_v23.table.tsv",
+      "sha256": "7535a8d5eaee6d0f65a7c803a3eca6615140c31a42f2dfcc2717211efefdf250"
+    },
+    "replay_traces": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/replay/natural_candidate_v23.traces.jsonl",
+      "sha256": "bf44385300f6f4b474973333950293d95d169ff5bcd3976b007359e912567fee"
+    },
+    "effectiveness_summary": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/effectiveness/v23_effectiveness.summary.json",
+      "sha256": "d418ab2285c40451e367caf628a8eda8bbd6d959dd3de8b4fe44252d9264e752"
+    },
+    "effectiveness_table": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/effectiveness/v23_effectiveness.table.tsv",
+      "sha256": "c8cb2d2cbdffe09fd84c2d1ec3683e7f66862dc68b2387da5ceccfb563b99e36"
+    },
+    "evidence_scope_summary": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/evidence_scope/evidence_scope.summary.json",
+      "sha256": "e6890477e9ce8a019a9806fdf3fa3f2460d0cd69139fd5852e60c878edd754e2"
+    },
+    "evidence_scope_table": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/evidence_scope/evidence_scope.table.tsv",
+      "sha256": "e10913dd45899e9daf669fd26dd81820df00b12dc9e6a480fd0b4c84a139728b"
+    },
+    "ablation_summary": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_017_predeclared_scope_ablations/v23_ablations.summary.json",
+      "sha256": "b682fbc0de8e3040510bf624a81c0d9c9bae9717d5cc3c45bd3cdca02d71d391"
+    },
+    "ablation_table": {
+      "path": "code/artifacts/runs/v23_natural_candidate_validation/run_017_predeclared_scope_ablations/v23_ablations.table.tsv",
+      "sha256": "79b3f0ab9f2e7af6c5a94f5fb9ed9906a246559edf56b1e6c3944f7a1e6286b0"
+    }
+  }
+}

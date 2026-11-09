@@ -1,0 +1,49 @@
+tables:
+  party:
+    columns:
+      Party_ID: number
+      Party_Theme: text
+      Location: text
+      First_year: text
+      Last_year: text
+      Number_of_hosts: number
+    primary_key: &id001
+    - Party_ID
+    grain: *id001
+  host:
+    columns:
+      Host_ID: number
+      Name: text
+      Nationality: text
+      Age: text
+    primary_key: &id002
+    - Host_ID
+    grain: *id002
+  party_host:
+    columns:
+      Party_ID: number
+      Host_ID: number
+      Is_Main_in_Charge: others
+    primary_key: &id003
+    - Party_ID
+    - Host_ID
+    grain: *id003
+    observed_unique:
+    - - Host_ID
+    observed_non_unique:
+    - - Party_ID
+    foreign_keys:
+    - columns:
+      - Party_ID
+      references:
+        table: party
+        columns:
+        - Party_ID
+      many_allowed: true
+    - columns:
+      - Host_ID
+      references:
+        table: host
+        columns:
+        - Host_ID
+      many_allowed: true

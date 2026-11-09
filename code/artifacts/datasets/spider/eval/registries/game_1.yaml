@@ -1,0 +1,68 @@
+tables:
+  Student:
+    columns:
+      StuID: number
+      LName: text
+      Fname: text
+      Age: number
+      Sex: text
+      Major: number
+      Advisor: number
+      city_code: text
+    primary_key: &id001
+    - StuID
+    grain: *id001
+  Video_Games:
+    columns:
+      GameID: number
+      GName: text
+      GType: text
+    primary_key: &id002
+    - GameID
+    grain: *id002
+  Plays_Games:
+    columns:
+      StuID: number
+      GameID: number
+      Hours_Played: number
+    primary_key: []
+    grain:
+    - StuID
+    observed_non_unique:
+    - - StuID
+    - - GameID
+    foreign_keys:
+    - columns:
+      - StuID
+      references:
+        table: Student
+        columns:
+        - StuID
+      many_allowed: true
+    - columns:
+      - GameID
+      references:
+        table: Video_Games
+        columns:
+        - GameID
+      many_allowed: true
+  SportsInfo:
+    columns:
+      StuID: number
+      SportName: text
+      HoursPerWeek: number
+      GamesPlayed: number
+      OnScholarship: text
+    primary_key: []
+    grain:
+    - StuID
+    observed_non_unique:
+    - - StuID
+    foreign_keys:
+    - columns:
+      - StuID
+      references:
+        table: Student
+        columns:
+        - StuID
+      many_allowed: true

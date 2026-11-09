@@ -1,0 +1,94 @@
+GrainGuard-SQL Noncommercial License
+Version 1.0, 2026-11-06
+
+Copyright (c) 2026 the respective copyright holders.
+All rights reserved except as expressly permitted below.
+
+This is a custom noncommercial software license.
+
+1. Scope
+
+This license applies only to the original GrainGuard-SQL implementation and
+reproduction software in the following locations, to the extent the relevant
+copyright holders have the right to license that software:
+
+  code/grain_test_sql/
+  code/workflows/
+  scripts/
+  reproduce.sh
+
+Third-party software and benchmark material are excluded. In particular,
+BIRD and Spider questions, reference SQL, evidence, database schemas, and
+adaptations of those materials remain governed by their applicable upstream
+licenses, wherever they occur in this package. See THIRD_PARTY_NOTICES.md.
+No restriction in this license overrides rights granted by those licenses.
+
+2. Noncommercial permission
+
+Subject to these terms, you may access, download, inspect, copy, execute,
+modify, and redistribute the covered software and your modifications solely
+for noncommercial purposes. These may include peer review, reproducibility,
+education, personal study, and noncommercial research.
+
+Public access is permitted. Permission is not limited to assigned reviewers.
+
+3. Commercial use is prohibited
+
+No permission is granted to use the covered software or its modifications
+for any purpose intended for or directed toward commercial advantage or
+monetary compensation, whether directly or indirectly. Prohibited uses
+include, without limitation:
+
+  a. selling, sublicensing for payment, renting, or charging for access to
+     the software or a service that uses it;
+  b. incorporating it into a commercial product, hosted service, paid API,
+     or other revenue-generating offering;
+  c. using it for commercial product research, development, testing,
+     evaluation, or deployment, including work performed for a commercial
+     client or in anticipation of commercial application;
+  d. using it in internal business or production operations intended to
+     support commercial activity, even if access is not separately charged;
+  e. using it to train, fine-tune, distill, or evaluate models for commercial
+     application.
+
+The absence of a fee, current revenue, or profit does not by itself make a
+use noncommercial. Academic, charitable, governmental, or nonprofit status
+does not create an exception for a commercial purpose. Funding source or
+organizational status alone does not determine whether a use is commercial;
+the purpose and anticipated application of the particular use control.
+
+4. Copies, modifications, and redistribution
+
+You must retain this license and all applicable copyright and attribution
+notices in copies and substantial portions of the covered software. You must
+clearly identify modifications you make. Redistribution must be free of
+charge and remain subject to this license's noncommercial restrictions.
+
+You may not remove these restrictions or relicense the covered software
+under terms that permit commercial use. You must not imply endorsement by
+the original authors or copyright holders. Independent third-party material
+retains its own license as described in Section 1.
+
+5. Rights reserved
+
+No commercial-use, trademark, or general patent license is granted. Rights
+not expressly granted are reserved. Making the source publicly accessible
+does not grant additional rights. Nothing in these terms restricts rights
+that cannot be restricted under applicable law, or changes an independent
+license granted by a third-party rightsholder.
+
+6. Termination
+
+Permissions under this license terminate automatically if you violate its
+terms. Following termination, you must stop using and redistributing the
+covered software and delete copies under your control, except to the extent
+retention is required by applicable law. No continuing commercial permission
+arises from retaining a copy.
+
+7. Disclaimer
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+THE COPYRIGHT HOLDERS ARE NOT LIABLE FOR DAMAGES ARISING FROM THE SOFTWARE
+OR ITS USE TO THE EXTENT THAT SUCH LIABILITY MAY LAWFULLY BE EXCLUDED.

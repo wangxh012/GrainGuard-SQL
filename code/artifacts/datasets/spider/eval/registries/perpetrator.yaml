@@ -1,0 +1,34 @@
+tables:
+  perpetrator:
+    columns:
+      Perpetrator_ID: number
+      People_ID: number
+      Date: text
+      Year: number
+      Location: text
+      Country: text
+      Killed: number
+      Injured: number
+    primary_key: &id001
+    - Perpetrator_ID
+    grain: *id001
+    observed_unique:
+    - - People_ID
+    foreign_keys:
+    - columns:
+      - People_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+  people:
+    columns:
+      People_ID: number
+      Name: text
+      Height: number
+      Weight: number
+      Home Town: text
+    primary_key: &id002
+    - People_ID
+    grain: *id002

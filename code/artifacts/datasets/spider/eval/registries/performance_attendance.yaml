@@ -1,0 +1,47 @@
+tables:
+  member:
+    columns:
+      Member_ID: text
+      Name: text
+      Nationality: text
+      Role: text
+    primary_key: &id001
+    - Member_ID
+    grain: *id001
+  performance:
+    columns:
+      Performance_ID: number
+      Date: text
+      Host: text
+      Location: text
+      Attendance: number
+    primary_key: &id002
+    - Performance_ID
+    grain: *id002
+  member_attendance:
+    columns:
+      Member_ID: number
+      Performance_ID: number
+      Num_of_Pieces: number
+    primary_key: &id003
+    - Member_ID
+    - Performance_ID
+    grain: *id003
+    observed_non_unique:
+    - - Performance_ID
+    - - Member_ID
+    foreign_keys:
+    - columns:
+      - Performance_ID
+      references:
+        table: performance
+        columns:
+        - Performance_ID
+      many_allowed: true
+    - columns:
+      - Member_ID
+      references:
+        table: member
+        columns:
+        - Member_ID
+      many_allowed: true

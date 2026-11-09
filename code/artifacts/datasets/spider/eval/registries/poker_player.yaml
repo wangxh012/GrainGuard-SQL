@@ -1,0 +1,32 @@
+tables:
+  poker_player:
+    columns:
+      Poker_Player_ID: number
+      People_ID: number
+      Final_Table_Made: number
+      Best_Finish: number
+      Money_Rank: number
+      Earnings: number
+    primary_key: &id001
+    - Poker_Player_ID
+    grain: *id001
+    observed_unique:
+    - - People_ID
+    foreign_keys:
+    - columns:
+      - People_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+  people:
+    columns:
+      People_ID: number
+      Nationality: text
+      Name: text
+      Birth_Date: text
+      Height: number
+    primary_key: &id002
+    - People_ID
+    grain: *id002

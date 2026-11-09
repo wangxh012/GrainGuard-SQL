@@ -1,0 +1,47 @@
+tables:
+  museum:
+    columns:
+      Museum_ID: number
+      Name: text
+      Num_of_Staff: number
+      Open_Year: text
+    primary_key: &id001
+    - Museum_ID
+    grain: *id001
+  visitor:
+    columns:
+      ID: number
+      Name: text
+      Level_of_membership: number
+      Age: number
+    primary_key: &id002
+    - ID
+    grain: *id002
+  visit:
+    columns:
+      Museum_ID: number
+      visitor_ID: text
+      Num_of_Ticket: number
+      Total_spent: number
+    primary_key: &id003
+    - Museum_ID
+    - visitor_ID
+    grain: *id003
+    observed_non_unique:
+    - - visitor_ID
+    - - Museum_ID
+    foreign_keys:
+    - columns:
+      - visitor_ID
+      references:
+        table: visitor
+        columns:
+        - ID
+      many_allowed: true
+    - columns:
+      - Museum_ID
+      references:
+        table: museum
+        columns:
+        - Museum_ID
+      many_allowed: true

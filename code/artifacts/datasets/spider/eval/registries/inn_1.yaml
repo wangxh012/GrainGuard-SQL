@@ -1,0 +1,37 @@
+tables:
+  Rooms:
+    columns:
+      RoomId: text
+      roomName: text
+      beds: number
+      bedType: text
+      maxOccupancy: number
+      basePrice: number
+      decor: text
+    primary_key: &id001
+    - RoomId
+    grain: *id001
+  Reservations:
+    columns:
+      Code: number
+      Room: text
+      CheckIn: text
+      CheckOut: text
+      Rate: number
+      LastName: text
+      FirstName: text
+      Adults: number
+      Kids: number
+    primary_key: &id002
+    - Code
+    grain: *id002
+    observed_non_unique:
+    - - Room
+    foreign_keys:
+    - columns:
+      - Room
+      references:
+        table: Rooms
+        columns:
+        - RoomId
+      many_allowed: true

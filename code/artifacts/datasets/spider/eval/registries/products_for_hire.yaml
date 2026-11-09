@@ -1,0 +1,157 @@
+tables:
+  Discount_Coupons:
+    columns:
+      coupon_id: number
+      date_issued: time
+      coupon_amount: number
+    primary_key: &id001
+    - coupon_id
+    grain: *id001
+  Customers:
+    columns:
+      customer_id: number
+      coupon_id: number
+      good_or_bad_customer: text
+      first_name: text
+      last_name: text
+      gender_mf: text
+      date_became_customer: time
+      date_last_hire: time
+    primary_key: &id002
+    - customer_id
+    grain: *id002
+    observed_non_unique:
+    - - coupon_id
+    foreign_keys:
+    - columns:
+      - coupon_id
+      references:
+        table: Discount_Coupons
+        columns:
+        - coupon_id
+      many_allowed: true
+  Bookings:
+    columns:
+      booking_id: number
+      customer_id: number
+      booking_status_code: text
+      returned_damaged_yn: text
+      booking_start_date: time
+      booking_end_date: time
+      count_hired: text
+      amount_payable: number
+      amount_of_discount: number
+      amount_outstanding: number
+      amount_of_refund: number
+    primary_key: &id003
+    - booking_id
+    grain: *id003
+    observed_non_unique:
+    - - customer_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+  Products_for_Hire:
+    columns:
+      product_id: number
+      product_type_code: text
+      daily_hire_cost: number
+      product_name: text
+      product_description: text
+    primary_key: &id004
+    - product_id
+    grain: *id004
+  Payments:
+    columns:
+      payment_id: number
+      booking_id: number
+      customer_id: number
+      payment_type_code: text
+      amount_paid_in_full_yn: text
+      payment_date: time
+      amount_due: number
+      amount_paid: number
+    primary_key: &id005
+    - payment_id
+    grain: *id005
+    observed_non_unique:
+    - - customer_id
+    - - booking_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+    - columns:
+      - booking_id
+      references:
+        table: Bookings
+        columns:
+        - booking_id
+      many_allowed: true
+  Products_Booked:
+    columns:
+      booking_id: number
+      product_id: number
+      returned_yn: text
+      returned_late_yn: text
+      booked_count: number
+      booked_amount: number
+    primary_key: &id006
+    - booking_id
+    - product_id
+    grain: *id006
+    observed_non_unique:
+    - - product_id
+    - - booking_id
+    foreign_keys:
+    - columns:
+      - product_id
+      references:
+        table: Products_for_Hire
+        columns:
+        - product_id
+      many_allowed: true
+    - columns:
+      - booking_id
+      references:
+        table: Bookings
+        columns:
+        - booking_id
+      many_allowed: true
+  View_Product_Availability:
+    columns:
+      product_id: number
+      booking_id: number
+      status_date: time
+      available_yn: text
+    primary_key: &id007
+    - status_date
+    grain: *id007
+    observed_unique:
+    - - product_id
+    observed_non_unique:
+    - - booking_id
+    foreign_keys:
+    - columns:
+      - product_id
+      references:
+        table: Products_for_Hire
+        columns:
+        - product_id
+      many_allowed: true
+    - columns:
+      - booking_id
+      references:
+        table: Bookings
+        columns:
+        - booking_id
+      many_allowed: true

@@ -1,0 +1,7 @@
+variant	n	tp	fp	fn	tn	precision_pct	recall_pct	f1_pct	coverage_pct
+unrestricted_witness_scope	1160	89	62	22	987	58.94	80.18	67.94	98.97
+defer_tst_only	1160	88	53	23	996	62.41	79.28	69.84	98.10
+full	1160	86	17	25	1032	83.50	77.48	80.37	94.83
+wo_spec_static	1160	93	690	18	359	11.88	83.78	20.81	99.66
+wo_contract_preservation	1160	89	64	22	985	58.17	80.18	67.42	99.14
+wo_signature_stabilization	1160	3	4	108	1045	42.86	2.70	5.08	98.45

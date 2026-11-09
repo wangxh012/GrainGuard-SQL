@@ -1,0 +1,32 @@
+tables:
+  body_builder:
+    columns:
+      Body_Builder_ID: number
+      People_ID: number
+      Snatch: number
+      Clean_Jerk: number
+      Total: number
+    primary_key: &id001
+    - Body_Builder_ID
+    grain: *id001
+    observed_unique:
+    - - People_ID
+    foreign_keys:
+    - columns:
+      - People_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+  people:
+    columns:
+      People_ID: number
+      Name: text
+      Height: number
+      Weight: number
+      Birth_Date: text
+      Birth_Place: text
+    primary_key: &id002
+    - People_ID
+    grain: *id002

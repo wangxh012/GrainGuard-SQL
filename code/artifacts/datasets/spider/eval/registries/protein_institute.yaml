@@ -1,0 +1,58 @@
+tables:
+  building:
+    columns:
+      building_id: text
+      Name: text
+      Street_address: text
+      Years_as_tallest: text
+      Height_feet: number
+      Floors: number
+    primary_key: &id001
+    - building_id
+    grain: *id001
+  Institution:
+    columns:
+      Institution_id: text
+      Institution: text
+      Location: text
+      Founded: number
+      Type: text
+      Enrollment: number
+      Team: text
+      Primary_Conference: text
+      building_id: text
+    primary_key: &id002
+    - Institution_id
+    grain: *id002
+    observed_non_unique:
+    - - building_id
+    foreign_keys:
+    - columns:
+      - building_id
+      references:
+        table: building
+        columns:
+        - building_id
+      many_allowed: true
+  protein:
+    columns:
+      common_name: text
+      protein_name: text
+      divergence_from_human_lineage: number
+      accession_number: text
+      sequence_length: number
+      sequence_identity_to_human_protein: text
+      Institution_id: text
+    primary_key: &id003
+    - common_name
+    grain: *id003
+    observed_non_unique:
+    - - Institution_id
+    foreign_keys:
+    - columns:
+      - Institution_id
+      references:
+        table: Institution
+        columns:
+        - Institution_id
+      many_allowed: true

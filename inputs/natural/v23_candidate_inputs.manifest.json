@@ -1,0 +1,55 @@
+{
+  "protocol": "natural_candidate_validation_v2.3_contract_v2.1",
+  "selection_policy": "All and only the 580 frozen Contract V2.1 questions, crossed with both frozen candidate models; no label- or executor-outcome selection.",
+  "label_blinding": "Candidate SQL is copied from frozen review artifacts, but final labels are not serialized into replay inputs and are consumed only after execution.",
+  "contracts": {
+    "bird": {
+      "path": "inputs/controlled/bird.auto_contracts.v21.jsonl",
+      "sha256": "ed45892803764a9834219d02c255997c3bb4ced1e841ebb6c332076cb1480be0",
+      "accepted_questions": 322
+    },
+    "spider": {
+      "path": "inputs/controlled/spider.auto_contracts.v21.jsonl",
+      "sha256": "ad52f534ee64c5bbbb6f405bef62e98a89c6ec8d186ad0eed3118f0cb4357893",
+      "accepted_questions": 258
+    }
+  },
+  "label_sources": [
+    {
+      "path": "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.jsonl",
+      "sha256": "11849aca6e20aa8206e3aa5ae3f46cab87b570c38db6c781bf35e4d6e9aa6049"
+    },
+    {
+      "path": "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.jsonl",
+      "sha256": "fec47039ce797c9ef06534c26b763817be07ff133a61f144f03ae87fc606e69a"
+    }
+  ],
+  "candidate_sql_source_counts": {
+    "final_reference_labels.paper_core.v2.jsonl": 1114,
+    "supplemental_spec_failures.final.jsonl": 46
+  },
+  "outputs": {
+    "bird_glm": {
+      "path": "artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/inputs/bird_glm_candidate.v23.jsonl",
+      "rows": 322,
+      "sha256": "c946f717e92066d9c83d4a86f560b2eab4b0628d5a82b6e957811195693a84df"
+    },
+    "bird_qwen": {
+      "path": "artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/inputs/bird_qwen_candidate.v23.jsonl",
+      "rows": 322,
+      "sha256": "a0b069caa5658196e2fe16b894694175b2e1bc21d3f3d1e23217bd4bf2bd5b65"
+    },
+    "spider_glm": {
+      "path": "artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/inputs/spider_glm_candidate.v23.jsonl",
+      "rows": 258,
+      "sha256": "37a54cde51387f2759248e1bf2f2877b75e726a4699dcb8ee05035084f58ee6a"
+    },
+    "spider_qwen": {
+      "path": "artifacts/runs/v23_natural_candidate_validation/run_016_predeclared_evidence_scope/inputs/spider_qwen_candidate.v23.jsonl",
+      "rows": 258,
+      "sha256": "3c292fcdf610658e7374429ed74a10c5edda3331cfcb91152c4fbae64d2bca59"
+    }
+  },
+  "accepted_questions": 580,
+  "candidate_rows": 1160
+}

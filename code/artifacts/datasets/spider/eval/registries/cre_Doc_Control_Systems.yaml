@@ -1,0 +1,215 @@
+tables:
+  Ref_Document_Types:
+    columns:
+      document_type_code: text
+      document_type_description: text
+    primary_key: &id001
+    - document_type_code
+    grain: *id001
+  Roles:
+    columns:
+      role_code: text
+      role_description: text
+    primary_key: &id002
+    - role_code
+    grain: *id002
+  Addresses:
+    columns:
+      address_id: number
+      address_details: text
+    primary_key: &id003
+    - address_id
+    grain: *id003
+  Ref_Document_Status:
+    columns:
+      document_status_code: text
+      document_status_description: text
+    primary_key: &id004
+    - document_status_code
+    grain: *id004
+  Ref_Shipping_Agents:
+    columns:
+      shipping_agent_code: text
+      shipping_agent_name: text
+      shipping_agent_description: text
+    primary_key: &id005
+    - shipping_agent_code
+    grain: *id005
+  Documents:
+    columns:
+      document_id: number
+      document_status_code: text
+      document_type_code: text
+      shipping_agent_code: text
+      receipt_date: time
+      receipt_number: text
+      other_details: text
+    primary_key: &id006
+    - document_id
+    grain: *id006
+    observed_non_unique:
+    - - shipping_agent_code
+    - - document_status_code
+    - - document_type_code
+    foreign_keys:
+    - columns:
+      - shipping_agent_code
+      references:
+        table: Ref_Shipping_Agents
+        columns:
+        - shipping_agent_code
+      many_allowed: true
+    - columns:
+      - document_status_code
+      references:
+        table: Ref_Document_Status
+        columns:
+        - document_status_code
+      many_allowed: true
+    - columns:
+      - document_type_code
+      references:
+        table: Ref_Document_Types
+        columns:
+        - document_type_code
+      many_allowed: true
+  Employees:
+    columns:
+      employee_id: number
+      role_code: text
+      employee_name: text
+      other_details: text
+    primary_key: &id007
+    - employee_id
+    grain: *id007
+    observed_non_unique:
+    - - role_code
+    foreign_keys:
+    - columns:
+      - role_code
+      references:
+        table: Roles
+        columns:
+        - role_code
+      many_allowed: true
+  Document_Drafts:
+    columns:
+      document_id: number
+      draft_number: number
+      draft_details: text
+    primary_key: &id008
+    - document_id
+    - draft_number
+    grain: *id008
+    observed_non_unique:
+    - - document_id
+    foreign_keys:
+    - columns:
+      - document_id
+      references:
+        table: Documents
+        columns:
+        - document_id
+      many_allowed: true
+  Draft_Copies:
+    columns:
+      document_id: number
+      draft_number: number
+      copy_number: number
+    primary_key: &id009
+    - document_id
+    - draft_number
+    - copy_number
+    grain: *id009
+    observed_non_unique:
+    - - document_id
+    - - draft_number
+    foreign_keys:
+    - columns:
+      - document_id
+      references:
+        table: Document_Drafts
+        columns:
+        - document_id
+      many_allowed: true
+    - columns:
+      - draft_number
+      references:
+        table: Document_Drafts
+        columns:
+        - draft_number
+      many_allowed: true
+  Circulation_History:
+    columns:
+      document_id: number
+      draft_number: number
+      copy_number: number
+      employee_id: number
+    primary_key: &id010
+    - document_id
+    - draft_number
+    - copy_number
+    - employee_id
+    grain: *id010
+    observed_unique:
+    - - document_id
+    - - draft_number
+    - - copy_number
+    observed_non_unique:
+    - - employee_id
+    foreign_keys:
+    - columns:
+      - employee_id
+      references:
+        table: Employees
+        columns:
+        - employee_id
+      many_allowed: true
+    - columns:
+      - document_id
+      references:
+        table: Draft_Copies
+        columns:
+        - document_id
+      many_allowed: true
+    - columns:
+      - draft_number
+      references:
+        table: Draft_Copies
+        columns:
+        - draft_number
+      many_allowed: true
+    - columns:
+      - copy_number
+      references:
+        table: Draft_Copies
+        columns:
+        - copy_number
+      many_allowed: true
+  Documents_Mailed:
+    columns:
+      document_id: number
+      mailed_to_address_id: number
+      mailing_date: time
+    primary_key: &id011
+    - document_id
+    - mailed_to_address_id
+    grain: *id011
+    observed_non_unique:
+    - - mailed_to_address_id
+    - - document_id
+    foreign_keys:
+    - columns:
+      - mailed_to_address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+    - columns:
+      - document_id
+      references:
+        table: Documents
+        columns:
+        - document_id
+      many_allowed: true

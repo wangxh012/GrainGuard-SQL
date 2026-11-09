@@ -1,0 +1,9 @@
+{
+  "review_type": "compact_final_contract_v21_review_export",
+  "dataset": "bird",
+  "packet_size": 322,
+  "all_accepted_contracts_reviewed": true,
+  "rationale_export_note": "Rationales are intentionally excluded from the compact artifact.",
+  "gold_sql_visibility_scope": "not_exported_in_compact_artifact",
+  "system_reference_sql_access": false
+}

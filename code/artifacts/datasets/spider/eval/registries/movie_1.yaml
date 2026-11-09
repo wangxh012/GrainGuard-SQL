@@ -1,0 +1,44 @@
+tables:
+  Movie:
+    columns:
+      mID: number
+      title: text
+      year: number
+      director: text
+    primary_key: &id001
+    - mID
+    grain: *id001
+  Reviewer:
+    columns:
+      rID: number
+      name: text
+    primary_key: &id002
+    - rID
+    grain: *id002
+  Rating:
+    columns:
+      rID: number
+      mID: number
+      stars: number
+      ratingDate: time
+    primary_key: []
+    grain:
+    - rID
+    observed_non_unique:
+    - - rID
+    - - mID
+    foreign_keys:
+    - columns:
+      - rID
+      references:
+        table: Reviewer
+        columns:
+        - rID
+      many_allowed: true
+    - columns:
+      - mID
+      references:
+        table: Movie
+        columns:
+        - mID
+      many_allowed: true

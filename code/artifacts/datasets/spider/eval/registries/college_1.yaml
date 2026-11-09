@@ -1,0 +1,162 @@
+tables:
+  CLASS:
+    columns:
+      CLASS_CODE: text
+      CRS_CODE: text
+      CLASS_SECTION: text
+      CLASS_TIME: text
+      CLASS_ROOM: text
+      PROF_NUM: number
+    primary_key: &id001
+    - CLASS_CODE
+    grain: *id001
+    observed_non_unique:
+    - - PROF_NUM
+    - - CRS_CODE
+    foreign_keys:
+    - columns:
+      - PROF_NUM
+      references:
+        table: EMPLOYEE
+        columns:
+        - EMP_NUM
+      many_allowed: true
+    - columns:
+      - CRS_CODE
+      references:
+        table: COURSE
+        columns:
+        - CRS_CODE
+      many_allowed: true
+  COURSE:
+    columns:
+      CRS_CODE: text
+      DEPT_CODE: text
+      CRS_DESCRIPTION: text
+      CRS_CREDIT: number
+    primary_key: &id002
+    - CRS_CODE
+    grain: *id002
+    observed_non_unique:
+    - - DEPT_CODE
+    foreign_keys:
+    - columns:
+      - DEPT_CODE
+      references:
+        table: DEPARTMENT
+        columns:
+        - DEPT_CODE
+      many_allowed: true
+  DEPARTMENT:
+    columns:
+      DEPT_CODE: text
+      DEPT_NAME: text
+      SCHOOL_CODE: text
+      EMP_NUM: number
+      DEPT_ADDRESS: text
+      DEPT_EXTENSION: text
+    primary_key: &id003
+    - DEPT_CODE
+    grain: *id003
+    observed_unique:
+    - - EMP_NUM
+    foreign_keys:
+    - columns:
+      - EMP_NUM
+      references:
+        table: EMPLOYEE
+        columns:
+        - EMP_NUM
+      many_allowed: true
+  EMPLOYEE:
+    columns:
+      EMP_NUM: number
+      EMP_LNAME: text
+      EMP_FNAME: text
+      EMP_INITIAL: text
+      EMP_JOBCODE: text
+      EMP_HIREDATE: time
+      EMP_DOB: time
+    primary_key: &id004
+    - EMP_NUM
+    grain: *id004
+  ENROLL:
+    columns:
+      CLASS_CODE: text
+      STU_NUM: number
+      ENROLL_GRADE: text
+    primary_key: []
+    grain: []
+    observed_non_unique:
+    - - STU_NUM
+    - - CLASS_CODE
+    foreign_keys:
+    - columns:
+      - STU_NUM
+      references:
+        table: STUDENT
+        columns:
+        - STU_NUM
+      many_allowed: true
+    - columns:
+      - CLASS_CODE
+      references:
+        table: CLASS
+        columns:
+        - CLASS_CODE
+      many_allowed: true
+  PROFESSOR:
+    columns:
+      EMP_NUM: number
+      DEPT_CODE: text
+      PROF_OFFICE: text
+      PROF_EXTENSION: text
+      PROF_HIGH_DEGREE: text
+    primary_key: []
+    grain: []
+    observed_unique:
+    - - EMP_NUM
+    observed_non_unique:
+    - - DEPT_CODE
+    foreign_keys:
+    - columns:
+      - DEPT_CODE
+      references:
+        table: DEPARTMENT
+        columns:
+        - DEPT_CODE
+      many_allowed: true
+    - columns:
+      - EMP_NUM
+      references:
+        table: EMPLOYEE
+        columns:
+        - EMP_NUM
+      many_allowed: true
+  STUDENT:
+    columns:
+      STU_NUM: number
+      STU_LNAME: text
+      STU_FNAME: text
+      STU_INIT: text
+      STU_DOB: time
+      STU_HRS: number
+      STU_CLASS: text
+      STU_GPA: number
+      STU_TRANSFER: number
+      DEPT_CODE: text
+      STU_PHONE: text
+      PROF_NUM: number
+    primary_key: &id005
+    - STU_NUM
+    grain: *id005
+    observed_non_unique:
+    - - DEPT_CODE
+    foreign_keys:
+    - columns:
+      - DEPT_CODE
+      references:
+        table: DEPARTMENT
+        columns:
+        - DEPT_CODE
+      many_allowed: true

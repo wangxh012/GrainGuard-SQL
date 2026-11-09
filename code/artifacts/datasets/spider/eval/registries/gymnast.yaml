@@ -1,0 +1,32 @@
+tables:
+  gymnast:
+    columns:
+      Gymnast_ID: number
+      Floor_Exercise_Points: number
+      Pommel_Horse_Points: number
+      Rings_Points: number
+      Vault_Points: number
+      Parallel_Bars_Points: number
+      Horizontal_Bar_Points: number
+      Total_Points: number
+    primary_key: &id001
+    - Gymnast_ID
+    grain: *id001
+    foreign_keys:
+    - columns:
+      - Gymnast_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+  people:
+    columns:
+      People_ID: number
+      Name: text
+      Age: number
+      Height: number
+      Hometown: text
+    primary_key: &id002
+    - People_ID
+    grain: *id002

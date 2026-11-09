@@ -1,0 +1,52 @@
+tables:
+  film:
+    columns:
+      Film_ID: number
+      Rank_in_series: number
+      Number_in_season: number
+      Title: text
+      Directed_by: text
+      Original_air_date: text
+      Production_code: text
+    primary_key: &id001
+    - Film_ID
+    grain: *id001
+  cinema:
+    columns:
+      Cinema_ID: number
+      Name: text
+      Openning_year: number
+      Capacity: number
+      Location: text
+    primary_key: &id002
+    - Cinema_ID
+    grain: *id002
+  schedule:
+    columns:
+      Cinema_ID: number
+      Film_ID: number
+      Date: text
+      Show_times_per_day: number
+      Price: number
+    primary_key: &id003
+    - Cinema_ID
+    - Film_ID
+    grain: *id003
+    observed_non_unique:
+    - - Cinema_ID
+    - - Film_ID
+    foreign_keys:
+    - columns:
+      - Cinema_ID
+      references:
+        table: cinema
+        columns:
+        - Cinema_ID
+      many_allowed: true
+    - columns:
+      - Film_ID
+      references:
+        table: film
+        columns:
+        - Film_ID
+      many_allowed: true

@@ -1,0 +1,76 @@
+tables:
+  member:
+    columns:
+      Member_ID: number
+      Card_Number: text
+      Name: text
+      Hometown: text
+      Level: number
+    primary_key: &id001
+    - Member_ID
+    grain: *id001
+  branch:
+    columns:
+      Branch_ID: number
+      Name: text
+      Open_year: text
+      Address_road: text
+      City: text
+      membership_amount: text
+    primary_key: &id002
+    - Branch_ID
+    grain: *id002
+  membership_register_branch:
+    columns:
+      Member_ID: number
+      Branch_ID: text
+      Register_Year: text
+    primary_key: &id003
+    - Member_ID
+    grain: *id003
+    observed_non_unique:
+    - - Branch_ID
+    foreign_keys:
+    - columns:
+      - Branch_ID
+      references:
+        table: branch
+        columns:
+        - Branch_ID
+      many_allowed: true
+    - columns:
+      - Member_ID
+      references:
+        table: member
+        columns:
+        - Member_ID
+      many_allowed: true
+  purchase:
+    columns:
+      Member_ID: number
+      Branch_ID: text
+      Year: text
+      Total_pounds: number
+    primary_key: &id004
+    - Member_ID
+    - Branch_ID
+    - Year
+    grain: *id004
+    observed_non_unique:
+    - - Branch_ID
+    - - Member_ID
+    foreign_keys:
+    - columns:
+      - Branch_ID
+      references:
+        table: branch
+        columns:
+        - Branch_ID
+      many_allowed: true
+    - columns:
+      - Member_ID
+      references:
+        table: member
+        columns:
+        - Member_ID
+      many_allowed: true

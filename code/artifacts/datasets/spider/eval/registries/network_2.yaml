@@ -1,0 +1,37 @@
+tables:
+  Person:
+    columns:
+      name: text
+      age: number
+      city: text
+      gender: text
+      job: text
+    primary_key: &id001
+    - name
+    grain: *id001
+  PersonFriend:
+    columns:
+      name: text
+      friend: text
+      year: number
+    primary_key: []
+    grain: []
+    observed_unique:
+    - - friend
+    observed_non_unique:
+    - - name
+    foreign_keys:
+    - columns:
+      - friend
+      references:
+        table: Person
+        columns:
+        - name
+      many_allowed: true
+    - columns:
+      - name
+      references:
+        table: Person
+        columns:
+        - name
+      many_allowed: true

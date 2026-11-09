@@ -1,0 +1,75 @@
+tables:
+  swimmer:
+    columns:
+      ID: number
+      name: text
+      Nationality: text
+      meter_100: number
+      meter_200: text
+      meter_300: text
+      meter_400: text
+      meter_500: text
+      meter_600: text
+      meter_700: text
+      Time: text
+    primary_key: &id001
+    - ID
+    grain: *id001
+  stadium:
+    columns:
+      ID: number
+      name: text
+      Capacity: number
+      City: text
+      Country: text
+      Opening_year: number
+    primary_key: &id002
+    - ID
+    grain: *id002
+  event:
+    columns:
+      ID: number
+      Name: text
+      Stadium_ID: number
+      Year: text
+    primary_key: &id003
+    - ID
+    grain: *id003
+    observed_unique:
+    - - Stadium_ID
+    foreign_keys:
+    - columns:
+      - Stadium_ID
+      references:
+        table: stadium
+        columns:
+        - ID
+      many_allowed: true
+  record:
+    columns:
+      ID: number
+      Result: text
+      Swimmer_ID: number
+      Event_ID: number
+    primary_key: &id004
+    - Swimmer_ID
+    - Event_ID
+    grain: *id004
+    observed_non_unique:
+    - - Swimmer_ID
+    - - Event_ID
+    foreign_keys:
+    - columns:
+      - Swimmer_ID
+      references:
+        table: swimmer
+        columns:
+        - ID
+      many_allowed: true
+    - columns:
+      - Event_ID
+      references:
+        table: event
+        columns:
+        - ID
+      many_allowed: true

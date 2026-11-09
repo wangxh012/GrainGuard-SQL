@@ -1,0 +1,86 @@
+tables:
+  atom:
+    columns:
+      atom_id: text
+      molecule_id: text
+      element: text
+    primary_key: &id001
+    - atom_id
+    grain: *id001
+    observed_non_unique:
+    - - molecule_id
+    foreign_keys:
+    - columns:
+      - molecule_id
+      references:
+        table: molecule
+        columns:
+        - molecule_id
+      many_allowed: true
+  bond:
+    columns:
+      bond_id: text
+      molecule_id: text
+      bond_type: text
+    primary_key: &id002
+    - bond_id
+    grain: *id002
+    observed_non_unique:
+    - - molecule_id
+    foreign_keys:
+    - columns:
+      - molecule_id
+      references:
+        table: molecule
+        columns:
+        - molecule_id
+      many_allowed: true
+  connected:
+    columns:
+      atom_id: text
+      atom_id2: text
+      bond_id: text
+    primary_key: &id003
+    - atom_id
+    - atom_id2
+    grain: *id003
+    observed_unique:
+    - - bond_id
+      - atom_id2
+    - - bond_id
+      - atom_id
+    - - atom_id2
+      - atom_id
+    observed_non_unique:
+    - - bond_id
+    - - atom_id2
+    - - atom_id
+    foreign_keys:
+    - columns:
+      - bond_id
+      references:
+        table: bond
+        columns:
+        - bond_id
+      many_allowed: true
+    - columns:
+      - atom_id2
+      references:
+        table: atom
+        columns:
+        - atom_id
+      many_allowed: true
+    - columns:
+      - atom_id
+      references:
+        table: atom
+        columns:
+        - atom_id
+      many_allowed: true
+  molecule:
+    columns:
+      molecule_id: text
+      label: text
+    primary_key: &id004
+    - molecule_id
+    grain: *id004

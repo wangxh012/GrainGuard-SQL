@@ -1,0 +1,56 @@
+tables:
+  follows:
+    columns:
+      f1: number
+      f2: number
+    primary_key: &id001
+    - f1
+    - f2
+    grain: *id001
+    observed_non_unique:
+    - - f2
+    - - f1
+    foreign_keys:
+    - columns:
+      - f2
+      references:
+        table: user_profiles
+        columns:
+        - uid
+      many_allowed: true
+    - columns:
+      - f1
+      references:
+        table: user_profiles
+        columns:
+        - uid
+      many_allowed: true
+  tweets:
+    columns:
+      id: number
+      uid: number
+      text: text
+      createdate: time
+    primary_key: &id002
+    - id
+    grain: *id002
+    observed_non_unique:
+    - - uid
+    foreign_keys:
+    - columns:
+      - uid
+      references:
+        table: user_profiles
+        columns:
+        - uid
+      many_allowed: true
+  user_profiles:
+    columns:
+      uid: number
+      name: text
+      email: text
+      partitionid: number
+      followers: number
+    primary_key: &id003
+    - uid
+    grain: *id003

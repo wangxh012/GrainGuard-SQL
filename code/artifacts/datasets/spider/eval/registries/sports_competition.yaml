@@ -1,0 +1,102 @@
+tables:
+  club:
+    columns:
+      Club_ID: number
+      name: text
+      Region: text
+      Start_year: text
+    primary_key: &id001
+    - Club_ID
+    grain: *id001
+  club_rank:
+    columns:
+      Rank: number
+      Club_ID: number
+      Gold: number
+      Silver: number
+      Bronze: number
+      Total: number
+    primary_key: &id002
+    - Rank
+    - Club_ID
+    grain: *id002
+    observed_unique:
+    - - Club_ID
+    foreign_keys:
+    - columns:
+      - Club_ID
+      references:
+        table: club
+        columns:
+        - Club_ID
+      many_allowed: true
+  player:
+    columns:
+      Player_ID: number
+      name: text
+      Position: text
+      Club_ID: number
+      Apps: number
+      Tries: number
+      Goals: text
+      Points: number
+    primary_key: &id003
+    - Player_ID
+    grain: *id003
+    observed_non_unique:
+    - - Club_ID
+    foreign_keys:
+    - columns:
+      - Club_ID
+      references:
+        table: club
+        columns:
+        - Club_ID
+      many_allowed: true
+  competition:
+    columns:
+      Competition_ID: number
+      Year: number
+      Competition_type: text
+      Country: text
+    primary_key: &id004
+    - Competition_ID
+    grain: *id004
+  competition_result:
+    columns:
+      Competition_ID: number
+      Club_ID_1: number
+      Club_ID_2: number
+      Score: text
+    primary_key: &id005
+    - Competition_ID
+    - Club_ID_1
+    - Club_ID_2
+    grain: *id005
+    observed_unique:
+    - - Competition_ID
+    observed_non_unique:
+    - - Club_ID_2
+    - - Club_ID_1
+    foreign_keys:
+    - columns:
+      - Competition_ID
+      references:
+        table: competition
+        columns:
+        - Competition_ID
+      many_allowed: true
+    - columns:
+      - Club_ID_2
+      references:
+        table: club
+        columns:
+        - Club_ID
+      many_allowed: true
+    - columns:
+      - Club_ID_1
+      references:
+        table: club
+        columns:
+        - Club_ID
+      many_allowed: true

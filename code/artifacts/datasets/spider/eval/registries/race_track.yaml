@@ -1,0 +1,31 @@
+tables:
+  race:
+    columns:
+      Race_ID: number
+      Name: text
+      Class: text
+      Date: text
+      Track_ID: text
+    primary_key: &id001
+    - Race_ID
+    grain: *id001
+    observed_non_unique:
+    - - Track_ID
+    foreign_keys:
+    - columns:
+      - Track_ID
+      references:
+        table: track
+        columns:
+        - Track_ID
+      many_allowed: true
+  track:
+    columns:
+      Track_ID: number
+      Name: text
+      Location: text
+      Seating: number
+      Year_Opened: number
+    primary_key: &id002
+    - Track_ID
+    grain: *id002

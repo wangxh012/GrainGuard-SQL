@@ -1,0 +1,57 @@
+tables:
+  grapes:
+    columns:
+      ID: number
+      Grape: text
+      Color: text
+    primary_key: &id001
+    - ID
+    grain: *id001
+    unique:
+    - - Grape
+  appellations:
+    columns:
+      'No': number
+      Appelation: text
+      County: text
+      State: text
+      Area: text
+      isAVA: text
+    primary_key: &id002
+    - 'No'
+    grain: *id002
+    unique:
+    - - Appelation
+  wine:
+    columns:
+      'No': number
+      Grape: text
+      Winery: text
+      Appelation: text
+      State: text
+      Name: text
+      Year: number
+      Price: number
+      Score: number
+      Cases: number
+      Drink: text
+    primary_key: []
+    grain: []
+    observed_non_unique:
+    - - Appelation
+    - - Grape
+    foreign_keys:
+    - columns:
+      - Appelation
+      references:
+        table: appellations
+        columns:
+        - Appelation
+      many_allowed: true
+    - columns:
+      - Grape
+      references:
+        table: grapes
+        columns:
+        - Grape
+      many_allowed: true

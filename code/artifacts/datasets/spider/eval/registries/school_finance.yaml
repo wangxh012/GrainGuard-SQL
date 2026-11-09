@@ -1,0 +1,56 @@
+tables:
+  School:
+    columns:
+      School_id: text
+      School_name: text
+      Location: text
+      Mascot: text
+      Enrollment: number
+      IHSAA_Class: text
+      IHSAA_Football_Class: text
+      County: text
+    primary_key: &id001
+    - School_id
+    grain: *id001
+  budget:
+    columns:
+      School_id: number
+      Year: number
+      Budgeted: number
+      total_budget_percent_budgeted: number
+      Invested: number
+      total_budget_percent_invested: number
+      Budget_invested_percent: text
+    primary_key: &id002
+    - School_id
+    - Year
+    grain: *id002
+    observed_non_unique:
+    - - School_id
+    foreign_keys:
+    - columns:
+      - School_id
+      references:
+        table: School
+        columns:
+        - School_id
+      many_allowed: true
+  endowment:
+    columns:
+      endowment_id: number
+      School_id: number
+      donator_name: text
+      amount: number
+    primary_key: &id003
+    - endowment_id
+    grain: *id003
+    observed_non_unique:
+    - - School_id
+    foreign_keys:
+    - columns:
+      - School_id
+      references:
+        table: School
+        columns:
+        - School_id
+      many_allowed: true

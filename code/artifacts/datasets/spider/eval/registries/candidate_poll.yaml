@@ -1,0 +1,35 @@
+tables:
+  candidate:
+    columns:
+      Candidate_ID: number
+      People_ID: number
+      Poll_Source: text
+      Date: text
+      Support_rate: number
+      Consider_rate: number
+      Oppose_rate: number
+      Unsure_rate: number
+    primary_key: &id001
+    - Candidate_ID
+    grain: *id001
+    observed_unique:
+    - - People_ID
+    foreign_keys:
+    - columns:
+      - People_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+  people:
+    columns:
+      People_ID: number
+      Sex: text
+      Name: text
+      Date_of_Birth: text
+      Height: number
+      Weight: number
+    primary_key: &id002
+    - People_ID
+    grain: *id002

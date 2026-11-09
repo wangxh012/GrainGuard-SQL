@@ -1,0 +1,49 @@
+tables:
+  department:
+    columns:
+      Department_ID: number
+      Name: text
+      Creation: text
+      Ranking: number
+      Budget_in_Billions: number
+      Num_Employees: number
+    primary_key: &id001
+    - Department_ID
+    grain: *id001
+  head:
+    columns:
+      head_ID: number
+      name: text
+      born_state: text
+      age: number
+    primary_key: &id002
+    - head_ID
+    grain: *id002
+  management:
+    columns:
+      department_ID: number
+      head_ID: number
+      temporary_acting: text
+    primary_key: &id003
+    - department_ID
+    - head_ID
+    grain: *id003
+    observed_unique:
+    - - head_ID
+    observed_non_unique:
+    - - department_ID
+    foreign_keys:
+    - columns:
+      - head_ID
+      references:
+        table: head
+        columns:
+        - head_ID
+      many_allowed: true
+    - columns:
+      - department_ID
+      references:
+        table: department
+        columns:
+        - Department_ID
+      many_allowed: true

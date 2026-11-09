@@ -1,0 +1,66 @@
+tables:
+  routes:
+    columns:
+      rid: number
+      dst_apid: number
+      dst_ap: text
+      src_apid: number
+      src_ap: text
+      alid: number
+      airline: text
+      codeshare: text
+    primary_key: &id001
+    - rid
+    grain: *id001
+    observed_non_unique:
+    - - alid
+    - - src_apid
+    - - dst_apid
+    foreign_keys:
+    - columns:
+      - alid
+      references:
+        table: airlines
+        columns:
+        - alid
+      many_allowed: true
+    - columns:
+      - src_apid
+      references:
+        table: airports
+        columns:
+        - apid
+      many_allowed: true
+    - columns:
+      - dst_apid
+      references:
+        table: airports
+        columns:
+        - apid
+      many_allowed: true
+  airports:
+    columns:
+      apid: number
+      name: text
+      city: text
+      country: text
+      x: number
+      y: number
+      elevation: number
+      iata: text
+      icao: text
+    primary_key: &id002
+    - apid
+    grain: *id002
+  airlines:
+    columns:
+      alid: number
+      name: text
+      iata: text
+      icao: text
+      callsign: text
+      country: text
+      active: text
+    primary_key: &id003
+    - alid
+    grain: *id003

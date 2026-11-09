@@ -1,0 +1,49 @@
+tables:
+  medicine:
+    columns:
+      id: number
+      name: text
+      Trade_Name: text
+      FDA_approved: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  enzyme:
+    columns:
+      id: number
+      name: text
+      Location: text
+      Product: text
+      Chromosome: text
+      OMIM: number
+      Porphyria: text
+    primary_key: &id002
+    - id
+    grain: *id002
+  medicine_enzyme_interaction:
+    columns:
+      enzyme_id: number
+      medicine_id: number
+      interaction_type: text
+    primary_key: &id003
+    - enzyme_id
+    - medicine_id
+    grain: *id003
+    observed_non_unique:
+    - - medicine_id
+    - - enzyme_id
+    foreign_keys:
+    - columns:
+      - medicine_id
+      references:
+        table: medicine
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - enzyme_id
+      references:
+        table: enzyme
+        columns:
+        - id
+      many_allowed: true

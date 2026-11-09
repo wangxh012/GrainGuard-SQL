@@ -1,0 +1,67 @@
+tables:
+  city:
+    columns:
+      ID: number
+      Name: text
+      CountryCode: text
+      District: text
+      Population: number
+    primary_key: &id001
+    - ID
+    grain: *id001
+    observed_non_unique:
+    - - CountryCode
+    foreign_keys:
+    - columns:
+      - CountryCode
+      references:
+        table: country
+        columns:
+        - Code
+      many_allowed: true
+  sqlite_sequence:
+    columns:
+      name: text
+      seq: text
+    primary_key: []
+    grain: []
+  country:
+    columns:
+      Code: text
+      Name: text
+      Continent: text
+      Region: text
+      SurfaceArea: number
+      IndepYear: number
+      Population: number
+      LifeExpectancy: number
+      GNP: number
+      GNPOld: number
+      LocalName: text
+      GovernmentForm: text
+      HeadOfState: text
+      Capital: number
+      Code2: text
+    primary_key: &id002
+    - Code
+    grain: *id002
+  countrylanguage:
+    columns:
+      CountryCode: text
+      Language: text
+      IsOfficial: text
+      Percentage: number
+    primary_key: &id003
+    - CountryCode
+    - Language
+    grain: *id003
+    observed_non_unique:
+    - - CountryCode
+    foreign_keys:
+    - columns:
+      - CountryCode
+      references:
+        table: country
+        columns:
+        - Code
+      many_allowed: true

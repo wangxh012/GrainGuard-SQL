@@ -1,0 +1,70 @@
+tables:
+  train:
+    columns:
+      id: number
+      train_number: number
+      name: text
+      origin: text
+      destination: text
+      time: text
+      interval: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  station:
+    columns:
+      id: number
+      network_name: text
+      services: text
+      local_authority: text
+    primary_key: &id002
+    - id
+    grain: *id002
+  route:
+    columns:
+      train_id: number
+      station_id: number
+    primary_key: &id003
+    - train_id
+    - station_id
+    grain: *id003
+    observed_non_unique:
+    - - station_id
+    - - train_id
+    foreign_keys:
+    - columns:
+      - station_id
+      references:
+        table: station
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - train_id
+      references:
+        table: train
+        columns:
+        - id
+      many_allowed: true
+  weekly_weather:
+    columns:
+      station_id: number
+      day_of_week: text
+      high_temperature: number
+      low_temperature: number
+      precipitation: number
+      wind_speed_mph: number
+    primary_key: &id004
+    - station_id
+    - day_of_week
+    grain: *id004
+    observed_non_unique:
+    - - station_id
+    foreign_keys:
+    - columns:
+      - station_id
+      references:
+        table: station
+        columns:
+        - id
+      many_allowed: true

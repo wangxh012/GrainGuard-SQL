@@ -1,0 +1,58 @@
+tables:
+  people:
+    columns:
+      People_ID: number
+      District: text
+      Name: text
+      Party: text
+      Age: number
+    primary_key: &id001
+    - People_ID
+    grain: *id001
+  debate:
+    columns:
+      Debate_ID: number
+      Date: text
+      Venue: text
+      Num_of_Audience: number
+    primary_key: &id002
+    - Debate_ID
+    grain: *id002
+  debate_people:
+    columns:
+      Debate_ID: number
+      Affirmative: number
+      Negative: number
+      If_Affirmative_Win: others
+    primary_key: &id003
+    - Debate_ID
+    - Affirmative
+    - Negative
+    grain: *id003
+    observed_unique:
+    - - Debate_ID
+    observed_non_unique:
+    - - Negative
+    - - Affirmative
+    foreign_keys:
+    - columns:
+      - Negative
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+    - columns:
+      - Affirmative
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+    - columns:
+      - Debate_ID
+      references:
+        table: debate
+        columns:
+        - Debate_ID
+      many_allowed: true

@@ -1,0 +1,50 @@
+tables:
+  station:
+    columns:
+      Station_ID: number
+      Name: text
+      Annual_entry_exit: number
+      Annual_interchanges: number
+      Total_Passengers: number
+      Location: text
+      Main_Services: text
+      Number_of_Platforms: number
+    primary_key: &id001
+    - Station_ID
+    grain: *id001
+  train:
+    columns:
+      Train_ID: number
+      Name: text
+      Time: text
+      Service: text
+    primary_key: &id002
+    - Train_ID
+    grain: *id002
+  train_station:
+    columns:
+      Train_ID: number
+      Station_ID: number
+    primary_key: &id003
+    - Train_ID
+    - Station_ID
+    grain: *id003
+    observed_unique:
+    - - Train_ID
+    observed_non_unique:
+    - - Station_ID
+    foreign_keys:
+    - columns:
+      - Station_ID
+      references:
+        table: station
+        columns:
+        - Station_ID
+      many_allowed: true
+    - columns:
+      - Train_ID
+      references:
+        table: train
+        columns:
+        - Train_ID
+      many_allowed: true

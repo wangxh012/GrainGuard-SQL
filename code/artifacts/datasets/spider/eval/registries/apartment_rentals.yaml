@@ -1,0 +1,119 @@
+tables:
+  Apartment_Buildings:
+    columns:
+      building_id: number
+      building_short_name: text
+      building_full_name: text
+      building_description: text
+      building_address: text
+      building_manager: text
+      building_phone: text
+    primary_key: &id001
+    - building_id
+    grain: *id001
+  Apartments:
+    columns:
+      apt_id: number
+      building_id: number
+      apt_type_code: text
+      apt_number: text
+      bathroom_count: number
+      bedroom_count: number
+      room_count: text
+    primary_key: &id002
+    - apt_id
+    grain: *id002
+    observed_non_unique:
+    - - building_id
+    foreign_keys:
+    - columns:
+      - building_id
+      references:
+        table: Apartment_Buildings
+        columns:
+        - building_id
+      many_allowed: true
+  Apartment_Facilities:
+    columns:
+      apt_id: number
+      facility_code: text
+    primary_key: &id003
+    - apt_id
+    - facility_code
+    grain: *id003
+    observed_unique:
+    - - apt_id
+    foreign_keys:
+    - columns:
+      - apt_id
+      references:
+        table: Apartments
+        columns:
+        - apt_id
+      many_allowed: true
+  Guests:
+    columns:
+      guest_id: number
+      gender_code: text
+      guest_first_name: text
+      guest_last_name: text
+      date_of_birth: time
+    primary_key: &id004
+    - guest_id
+    grain: *id004
+  Apartment_Bookings:
+    columns:
+      apt_booking_id: number
+      apt_id: number
+      guest_id: number
+      booking_status_code: text
+      booking_start_date: time
+      booking_end_date: time
+    primary_key: &id005
+    - apt_booking_id
+    grain: *id005
+    observed_non_unique:
+    - - guest_id
+    - - apt_id
+    foreign_keys:
+    - columns:
+      - guest_id
+      references:
+        table: Guests
+        columns:
+        - guest_id
+      many_allowed: true
+    - columns:
+      - apt_id
+      references:
+        table: Apartments
+        columns:
+        - apt_id
+      many_allowed: true
+  View_Unit_Status:
+    columns:
+      apt_id: number
+      apt_booking_id: number
+      status_date: time
+      available_yn: others
+    primary_key: &id006
+    - status_date
+    grain: *id006
+    observed_non_unique:
+    - - apt_booking_id
+    - - apt_id
+    foreign_keys:
+    - columns:
+      - apt_booking_id
+      references:
+        table: Apartment_Bookings
+        columns:
+        - apt_booking_id
+      many_allowed: true
+    - columns:
+      - apt_id
+      references:
+        table: Apartments
+        columns:
+        - apt_id
+      many_allowed: true

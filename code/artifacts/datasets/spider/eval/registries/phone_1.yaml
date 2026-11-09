@@ -1,0 +1,55 @@
+tables:
+  chip_model:
+    columns:
+      Model_name: text
+      Launch_year: number
+      RAM_MiB: number
+      ROM_MiB: number
+      Slots: text
+      WiFi: text
+      Bluetooth: text
+    primary_key: &id001
+    - Model_name
+    grain: *id001
+  screen_mode:
+    columns:
+      Graphics_mode: number
+      Char_cells: text
+      Pixels: text
+      Hardware_colours: number
+      used_kb: number
+      map: text
+      Type: text
+    primary_key: &id002
+    - Graphics_mode
+    grain: *id002
+  phone:
+    columns:
+      Company_name: text
+      Hardware_Model_name: text
+      Accreditation_type: text
+      Accreditation_level: text
+      Date: text
+      chip_model: text
+      screen_mode: text
+    primary_key: &id003
+    - Hardware_Model_name
+    grain: *id003
+    observed_non_unique:
+    - - chip_model
+    - - screen_mode
+    foreign_keys:
+    - columns:
+      - chip_model
+      references:
+        table: chip_model
+        columns:
+        - Model_name
+      many_allowed: true
+    - columns:
+      - screen_mode
+      references:
+        table: screen_mode
+        columns:
+        - Graphics_mode
+      many_allowed: true

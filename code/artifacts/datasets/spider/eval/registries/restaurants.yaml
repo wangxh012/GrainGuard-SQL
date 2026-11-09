@@ -1,0 +1,44 @@
+tables:
+  GEOGRAPHIC:
+    columns:
+      CITY_NAME: text
+      COUNTY: text
+      REGION: text
+    primary_key: &id001
+    - CITY_NAME
+    grain: *id001
+  RESTAURANT:
+    columns:
+      ID: number
+      NAME: text
+      FOOD_TYPE: text
+      CITY_NAME: text
+      RATING: number
+    primary_key: &id002
+    - ID
+    grain: *id002
+    foreign_keys:
+    - columns:
+      - CITY_NAME
+      references:
+        table: GEOGRAPHIC
+        columns:
+        - CITY_NAME
+      many_allowed: true
+  LOCATION:
+    columns:
+      RESTAURANT_ID: number
+      HOUSE_NUMBER: number
+      STREET_NAME: text
+      CITY_NAME: text
+    primary_key: &id003
+    - RESTAURANT_ID
+    grain: *id003
+    foreign_keys:
+    - columns:
+      - CITY_NAME
+      references:
+        table: GEOGRAPHIC
+        columns:
+        - CITY_NAME
+      many_allowed: true

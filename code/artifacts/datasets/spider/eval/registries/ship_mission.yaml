@@ -1,0 +1,33 @@
+tables:
+  mission:
+    columns:
+      Mission_ID: number
+      Ship_ID: number
+      Code: text
+      Launched_Year: number
+      Location: text
+      Speed_knots: number
+      Fate: text
+    primary_key: &id001
+    - Mission_ID
+    grain: *id001
+    observed_unique:
+    - - Ship_ID
+    foreign_keys:
+    - columns:
+      - Ship_ID
+      references:
+        table: ship
+        columns:
+        - Ship_ID
+      many_allowed: true
+  ship:
+    columns:
+      Ship_ID: number
+      Name: text
+      Type: text
+      Nationality: text
+      Tonnage: number
+    primary_key: &id002
+    - Ship_ID
+    grain: *id002

@@ -1,0 +1,76 @@
+tables:
+  school:
+    columns:
+      School_ID: number
+      School: text
+      Location: text
+      Enrollment: number
+      Founded: number
+      Denomination: text
+      Boys_or_Girls: text
+      Day_or_Boarding: text
+      Year_Entered_Competition: number
+      School_Colors: text
+    primary_key: &id001
+    - School_ID
+    grain: *id001
+  school_details:
+    columns:
+      School_ID: number
+      Nickname: text
+      Colors: text
+      League: text
+      Class: text
+      Division: text
+    primary_key: &id002
+    - School_ID
+    grain: *id002
+    foreign_keys:
+    - columns:
+      - School_ID
+      references:
+        table: school
+        columns:
+        - School_ID
+      many_allowed: true
+  school_performance:
+    columns:
+      School_Id: number
+      School_Year: text
+      Class_A: text
+      Class_AA: text
+    primary_key: &id003
+    - School_Id
+    - School_Year
+    grain: *id003
+    observed_non_unique:
+    - - School_Id
+    foreign_keys:
+    - columns:
+      - School_Id
+      references:
+        table: school
+        columns:
+        - School_ID
+      many_allowed: true
+  player:
+    columns:
+      Player_ID: number
+      Player: text
+      Team: text
+      Age: number
+      Position: text
+      School_ID: number
+    primary_key: &id004
+    - Player_ID
+    grain: *id004
+    observed_non_unique:
+    - - School_ID
+    foreign_keys:
+    - columns:
+      - School_ID
+      references:
+        table: school
+        columns:
+        - School_ID
+      many_allowed: true

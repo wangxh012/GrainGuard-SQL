@@ -1,0 +1,49 @@
+tables:
+  Student:
+    columns:
+      StuID: number
+      LName: text
+      Fname: text
+      Age: number
+      Sex: text
+      Major: number
+      Advisor: number
+      city_code: text
+    primary_key: &id001
+    - StuID
+    grain: *id001
+  Has_Pet:
+    columns:
+      StuID: number
+      PetID: number
+    primary_key: []
+    grain:
+    - StuID
+    observed_unique:
+    - - PetID
+    observed_non_unique:
+    - - StuID
+    foreign_keys:
+    - columns:
+      - StuID
+      references:
+        table: Student
+        columns:
+        - StuID
+      many_allowed: true
+    - columns:
+      - PetID
+      references:
+        table: Pets
+        columns:
+        - PetID
+      many_allowed: true
+  Pets:
+    columns:
+      PetID: number
+      PetType: text
+      pet_age: number
+      weight: number
+    primary_key: &id002
+    - PetID
+    grain: *id002

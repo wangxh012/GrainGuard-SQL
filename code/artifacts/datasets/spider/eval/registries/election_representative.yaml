@@ -1,0 +1,33 @@
+tables:
+  election:
+    columns:
+      Election_ID: number
+      Representative_ID: number
+      Date: text
+      Votes: number
+      Vote_Percent: number
+      Seats: number
+      Place: number
+    primary_key: &id001
+    - Election_ID
+    grain: *id001
+    observed_unique:
+    - - Representative_ID
+    foreign_keys:
+    - columns:
+      - Representative_ID
+      references:
+        table: representative
+        columns:
+        - Representative_ID
+      many_allowed: true
+  representative:
+    columns:
+      Representative_ID: number
+      Name: text
+      State: text
+      Party: text
+      Lifespan: text
+    primary_key: &id002
+    - Representative_ID
+    grain: *id002

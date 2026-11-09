@@ -1,0 +1,47 @@
+tables:
+  storm:
+    columns:
+      Storm_ID: number
+      Name: text
+      Dates_active: text
+      Max_speed: number
+      Damage_millions_USD: number
+      Number_Deaths: number
+    primary_key: &id001
+    - Storm_ID
+    grain: *id001
+  region:
+    columns:
+      Region_id: number
+      Region_code: text
+      Region_name: text
+    primary_key: &id002
+    - Region_id
+    grain: *id002
+  affected_region:
+    columns:
+      Region_id: number
+      Storm_ID: number
+      Number_city_affected: number
+    primary_key: &id003
+    - Region_id
+    - Storm_ID
+    grain: *id003
+    observed_non_unique:
+    - - Storm_ID
+    - - Region_id
+    foreign_keys:
+    - columns:
+      - Storm_ID
+      references:
+        table: storm
+        columns:
+        - Storm_ID
+      many_allowed: true
+    - columns:
+      - Region_id
+      references:
+        table: region
+        columns:
+        - Region_id
+      many_allowed: true

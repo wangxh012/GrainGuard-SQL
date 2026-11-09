@@ -1,0 +1,39 @@
+tables:
+  county_public_safety:
+    columns:
+      County_ID: number
+      Name: text
+      Population: number
+      Police_officers: number
+      Residents_per_officer: number
+      Case_burden: number
+      Crime_rate: number
+      Police_force: text
+      Location: text
+    primary_key: &id001
+    - County_ID
+    grain: *id001
+  city:
+    columns:
+      City_ID: number
+      County_ID: number
+      Name: text
+      White: number
+      Black: number
+      Amerindian: number
+      Asian: number
+      Multiracial: number
+      Hispanic: number
+    primary_key: &id002
+    - City_ID
+    grain: *id002
+    observed_non_unique:
+    - - County_ID
+    foreign_keys:
+    - columns:
+      - County_ID
+      references:
+        table: county_public_safety
+        columns:
+        - County_ID
+      many_allowed: true

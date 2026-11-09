@@ -1,0 +1,54 @@
+tables:
+  battle:
+    columns:
+      id: number
+      name: text
+      date: text
+      bulgarian_commander: text
+      latin_commander: text
+      result: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  ship:
+    columns:
+      lost_in_battle: number
+      id: number
+      name: text
+      tonnage: text
+      ship_type: text
+      location: text
+      disposition_of_ship: text
+    primary_key: &id002
+    - id
+    grain: *id002
+    observed_non_unique:
+    - - lost_in_battle
+    foreign_keys:
+    - columns:
+      - lost_in_battle
+      references:
+        table: battle
+        columns:
+        - id
+      many_allowed: true
+  death:
+    columns:
+      caused_by_ship_id: number
+      id: number
+      note: text
+      killed: number
+      injured: number
+    primary_key: &id003
+    - id
+    grain: *id003
+    observed_non_unique:
+    - - caused_by_ship_id
+    foreign_keys:
+    - columns:
+      - caused_by_ship_id
+      references:
+        table: ship
+        columns:
+        - id
+      many_allowed: true

@@ -1,0 +1,77 @@
+tables:
+  program:
+    columns:
+      Program_ID: number
+      Name: text
+      Origin: text
+      Launch: number
+      Owner: text
+    primary_key: &id001
+    - Program_ID
+    grain: *id001
+  channel:
+    columns:
+      Channel_ID: number
+      Name: text
+      Owner: text
+      Share_in_percent: number
+      Rating_in_percent: number
+    primary_key: &id002
+    - Channel_ID
+    grain: *id002
+  broadcast:
+    columns:
+      Channel_ID: number
+      Program_ID: number
+      Time_of_day: text
+    primary_key: &id003
+    - Channel_ID
+    - Program_ID
+    grain: *id003
+    observed_non_unique:
+    - - Program_ID
+    - - Channel_ID
+    foreign_keys:
+    - columns:
+      - Program_ID
+      references:
+        table: program
+        columns:
+        - Program_ID
+      many_allowed: true
+    - columns:
+      - Channel_ID
+      references:
+        table: channel
+        columns:
+        - Channel_ID
+      many_allowed: true
+  broadcast_share:
+    columns:
+      Channel_ID: number
+      Program_ID: number
+      Date: text
+      Share_in_percent: number
+    primary_key: &id004
+    - Channel_ID
+    - Program_ID
+    grain: *id004
+    observed_unique:
+    - - Channel_ID
+    observed_non_unique:
+    - - Program_ID
+    foreign_keys:
+    - columns:
+      - Program_ID
+      references:
+        table: program
+        columns:
+        - Program_ID
+      many_allowed: true
+    - columns:
+      - Channel_ID
+      references:
+        table: channel
+        columns:
+        - Channel_ID
+      many_allowed: true

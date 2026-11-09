@@ -1,0 +1,212 @@
+tables:
+  Addresses:
+    columns:
+      address_id: number
+      line_1: text
+      line_2: text
+      line_3: text
+      city: text
+      zip_postcode: text
+      state_province_county: text
+      country: text
+      other_address_details: text
+    primary_key: &id001
+    - address_id
+    grain: *id001
+  Courses:
+    columns:
+      course_id: number
+      course_name: text
+      course_description: text
+      other_details: text
+    primary_key: &id002
+    - course_id
+    grain: *id002
+  Departments:
+    columns:
+      department_id: number
+      department_name: text
+      department_description: text
+      other_details: text
+    primary_key: &id003
+    - department_id
+    grain: *id003
+  Degree_Programs:
+    columns:
+      degree_program_id: number
+      department_id: number
+      degree_summary_name: text
+      degree_summary_description: text
+      other_details: text
+    primary_key: &id004
+    - degree_program_id
+    grain: *id004
+    observed_non_unique:
+    - - department_id
+    foreign_keys:
+    - columns:
+      - department_id
+      references:
+        table: Departments
+        columns:
+        - department_id
+      many_allowed: true
+  Sections:
+    columns:
+      section_id: number
+      course_id: number
+      section_name: text
+      section_description: text
+      other_details: text
+    primary_key: &id005
+    - section_id
+    grain: *id005
+    observed_non_unique:
+    - - course_id
+    foreign_keys:
+    - columns:
+      - course_id
+      references:
+        table: Courses
+        columns:
+        - course_id
+      many_allowed: true
+  Semesters:
+    columns:
+      semester_id: number
+      semester_name: text
+      semester_description: text
+      other_details: text
+    primary_key: &id006
+    - semester_id
+    grain: *id006
+  Students:
+    columns:
+      student_id: number
+      current_address_id: number
+      permanent_address_id: number
+      first_name: text
+      middle_name: text
+      last_name: text
+      cell_mobile_number: text
+      email_address: text
+      ssn: text
+      date_first_registered: time
+      date_left: time
+      other_student_details: text
+    primary_key: &id007
+    - student_id
+    grain: *id007
+    observed_non_unique:
+    - - permanent_address_id
+    - - current_address_id
+    foreign_keys:
+    - columns:
+      - permanent_address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+    - columns:
+      - current_address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+  Student_Enrolment:
+    columns:
+      student_enrolment_id: number
+      degree_program_id: number
+      semester_id: number
+      student_id: number
+      other_details: text
+    primary_key: &id008
+    - student_enrolment_id
+    grain: *id008
+    observed_non_unique:
+    - - student_id
+    - - semester_id
+    - - degree_program_id
+    foreign_keys:
+    - columns:
+      - student_id
+      references:
+        table: Students
+        columns:
+        - student_id
+      many_allowed: true
+    - columns:
+      - semester_id
+      references:
+        table: Semesters
+        columns:
+        - semester_id
+      many_allowed: true
+    - columns:
+      - degree_program_id
+      references:
+        table: Degree_Programs
+        columns:
+        - degree_program_id
+      many_allowed: true
+  Student_Enrolment_Courses:
+    columns:
+      student_course_id: number
+      course_id: number
+      student_enrolment_id: number
+    primary_key: &id009
+    - student_course_id
+    grain: *id009
+    observed_non_unique:
+    - - student_enrolment_id
+    - - course_id
+    foreign_keys:
+    - columns:
+      - student_enrolment_id
+      references:
+        table: Student_Enrolment
+        columns:
+        - student_enrolment_id
+      many_allowed: true
+    - columns:
+      - course_id
+      references:
+        table: Courses
+        columns:
+        - course_id
+      many_allowed: true
+  Transcripts:
+    columns:
+      transcript_id: number
+      transcript_date: time
+      other_details: text
+    primary_key: &id010
+    - transcript_id
+    grain: *id010
+  Transcript_Contents:
+    columns:
+      student_course_id: number
+      transcript_id: number
+    primary_key: []
+    grain:
+    - student_course_id
+    observed_non_unique:
+    - - transcript_id
+    - - student_course_id
+    foreign_keys:
+    - columns:
+      - transcript_id
+      references:
+        table: Transcripts
+        columns:
+        - transcript_id
+      many_allowed: true
+    - columns:
+      - student_course_id
+      references:
+        table: Student_Enrolment_Courses
+        columns:
+        - student_course_id
+      many_allowed: true

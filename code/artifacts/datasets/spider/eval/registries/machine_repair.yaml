@@ -1,0 +1,68 @@
+tables:
+  repair:
+    columns:
+      repair_ID: number
+      name: text
+      Launch_Date: text
+      Notes: text
+    primary_key: &id001
+    - repair_ID
+    grain: *id001
+  machine:
+    columns:
+      Machine_ID: number
+      Making_Year: number
+      Class: text
+      Team: text
+      Machine_series: text
+      value_points: number
+      quality_rank: number
+    primary_key: &id002
+    - Machine_ID
+    grain: *id002
+  technician:
+    columns:
+      technician_id: number
+      Name: text
+      Team: text
+      Starting_Year: number
+      Age: number
+    primary_key: &id003
+    - technician_id
+    grain: *id003
+  repair_assignment:
+    columns:
+      technician_id: number
+      repair_ID: number
+      Machine_ID: number
+    primary_key: &id004
+    - technician_id
+    - repair_ID
+    - Machine_ID
+    grain: *id004
+    observed_non_unique:
+    - - Machine_ID
+    - - repair_ID
+    - - technician_id
+    foreign_keys:
+    - columns:
+      - Machine_ID
+      references:
+        table: machine
+        columns:
+        - Machine_ID
+      many_allowed: true
+    - columns:
+      - repair_ID
+      references:
+        table: repair
+        columns:
+        - repair_ID
+      many_allowed: true
+    - columns:
+      - technician_id
+      references:
+        table: technician
+        columns:
+        - technician_id
+      many_allowed: true

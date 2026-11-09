@@ -1,0 +1,16 @@
+scope	dataset	model	n	positive	tp	fp	fn	tn	precision_pct	recall_pct	f1_pct	decided	decision_coverage_pct
+full_pool	bird	glm-5.1	479	34	12	5	22	440	70.59	35.29	47.06	293	61.17
+full_pool	bird	qwen3.6-27b	479	128	71	9	57	342	88.75	55.47	68.27	295	61.59
+full_pool	spider	glm-5.1	338	8	1	1	7	329	50.00	12.50	20.00	256	75.74
+full_pool	spider	qwen3.6-27b	338	22	2	2	20	314	50.00	9.09	15.38	256	75.74
+full_pool	all	all	1634	192	86	17	106	1425	83.50	44.79	58.31	1100	67.32
+gate_valid	bird	glm-5.1	322	18	12	5	6	299	70.59	66.67	68.57	293	90.99
+gate_valid	bird	qwen3.6-27b	322	84	71	9	13	229	88.75	84.52	86.59	295	91.61
+gate_valid	spider	glm-5.1	258	3	1	1	2	254	50.00	33.33	40.00	256	99.22
+gate_valid	spider	qwen3.6-27b	258	6	2	2	4	250	50.00	33.33	40.00	256	99.22
+gate_valid	all	all	1160	111	86	17	25	1032	83.50	77.48	80.37	1100	94.83
+adequate_contract	bird	glm-5.1	316	15	11	5	4	296	68.75	73.33	70.97	287	90.82
+adequate_contract	bird	qwen3.6-27b	316	81	69	9	12	226	88.46	85.19	86.79	289	91.46
+adequate_contract	spider	glm-5.1	257	3	1	1	2	253	50.00	33.33	40.00	255	99.22
+adequate_contract	spider	qwen3.6-27b	257	6	2	2	4	249	50.00	33.33	40.00	255	99.22
+adequate_contract	all	all	1146	105	83	17	22	1024	83.00	79.05	80.98	1086	94.76

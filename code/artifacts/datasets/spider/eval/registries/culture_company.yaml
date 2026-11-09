@@ -1,0 +1,54 @@
+tables:
+  book_club:
+    columns:
+      book_club_id: number
+      Year: number
+      Author_or_Editor: text
+      Book_Title: text
+      Publisher: text
+      Category: text
+      Result: text
+    primary_key: &id001
+    - book_club_id
+    grain: *id001
+  movie:
+    columns:
+      movie_id: number
+      Title: text
+      Year: number
+      Director: text
+      Budget_million: number
+      Gross_worldwide: number
+    primary_key: &id002
+    - movie_id
+    grain: *id002
+  culture_company:
+    columns:
+      Company_name: text
+      Type: text
+      Incorporated_in: text
+      Group_Equity_Shareholding: number
+      book_club_id: text
+      movie_id: text
+    primary_key: &id003
+    - Company_name
+    grain: *id003
+    observed_unique:
+    - - movie_id
+    observed_non_unique:
+    - - book_club_id
+    foreign_keys:
+    - columns:
+      - movie_id
+      references:
+        table: movie
+        columns:
+        - movie_id
+      many_allowed: true
+    - columns:
+      - book_club_id
+      references:
+        table: book_club
+        columns:
+        - book_club_id
+      many_allowed: true

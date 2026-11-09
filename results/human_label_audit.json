@@ -1,0 +1,95 @@
+{
+  "protocol": "v23_frozen_abc_decision_chain_audit_v1",
+  "mutation_policy": "read_only_frozen_labels_no_decision_changed",
+  "candidate_rows": 1160,
+  "outcomes": {
+    "TN": 1032,
+    "FN": 25,
+    "FP": 17,
+    "TP": 86
+  },
+  "selected_label_sources": {
+    "primary": 1114,
+    "supplemental": 46
+  },
+  "selected_a_b_relations": {
+    "agree": 1109,
+    "disagree": 34,
+    "b_abstained": 17
+  },
+  "positive_resolution": {
+    "primary:disagree:independent_c_review": 14,
+    "primary:agree:a_b_supported_agreement": 86,
+    "supplemental:agree:a_b_supported_agreement": 6,
+    "supplemental:disagree:independent_c_review": 5
+  },
+  "contract_reviews": {
+    "bird": {
+      "rows": 322,
+      "a_decisions": {
+        "ACCEPT": 317,
+        "REJECT": 5
+      },
+      "b_decisions": {
+        "ACCEPT": 316,
+        "REJECT": 6
+      },
+      "a_b_exact_decision_agreement": 321,
+      "a_b_disagreements": 1,
+      "c_adjudications": 1,
+      "final_accept": 316,
+      "identical_a_b_rationales": 321,
+      "rationale_export_note": "For agreement cases, exported rationale fields use standardized rubric summaries for archival consistency and are not independent free-text review records.",
+      "gold_sql_visibility_scope": "retrospective_contract_adequacy_review_only",
+      "system_reference_sql_access": false,
+      "reviewer_a_sha256": "7a681241b1c5ec9b477001e178528b57549ac1d2e668380f8e8e3f3ca379df31",
+      "reviewer_b_sha256": "7d46f18b3e216b6e23e3a1c3c124cacac88b7705cdd0154607f2e8c281b5fb60",
+      "reviewer_c_sha256": "ecbead82314b23904aa404e9b1508eea34fed94bd32d4d167fd4a3db135f2cd7"
+    },
+    "spider": {
+      "rows": 258,
+      "a_decisions": {
+        "ACCEPT": 256,
+        "REJECT": 1,
+        "REVIEW_NEEDED": 1
+      },
+      "b_decisions": {
+        "ACCEPT": 256,
+        "REJECT": 2
+      },
+      "a_b_exact_decision_agreement": 257,
+      "a_b_disagreements": 1,
+      "c_adjudications": 1,
+      "final_accept": 257,
+      "identical_a_b_rationales": 257,
+      "rationale_export_note": "For agreement cases, exported rationale fields use standardized rubric summaries for archival consistency and are not independent free-text review records.",
+      "gold_sql_visibility_scope": "retrospective_contract_adequacy_review_only",
+      "system_reference_sql_access": false,
+      "reviewer_a_sha256": "7a681241b1c5ec9b477001e178528b57549ac1d2e668380f8e8e3f3ca379df31",
+      "reviewer_b_sha256": "7d46f18b3e216b6e23e3a1c3c124cacac88b7705cdd0154607f2e8c281b5fb60",
+      "reviewer_c_sha256": "ecbead82314b23904aa404e9b1508eea34fed94bd32d4d167fd4a3db135f2cd7"
+    }
+  },
+  "contract_final_accept": 573,
+  "target_alignment_audit_rows": 246,
+  "target_alignment_estimand_scope": "The packet exhaustively covers frozen SQL positives, V2.3 alarms, and A/B disagreements or abstentions, plus a deterministic 10% audit of remaining double negatives. It can adjudicate alarm precision and the target relation of known SQL-level positives. It does not by itself provide a full-census target-relative recall denominator unless the unaudited double negatives are assumed not to contain label false negatives.",
+  "provenance_audit": {
+    "primary_reference_status": "final_independent_reference",
+    "supplemental_reference_status": "final_independent_sql_expert_reference",
+    "supplemental_note": "SQL experts A and B reviewed separately ordered masked packets independently; senior SQL expert C independently resolved every case without supported A--B agreement."
+  },
+  "inputs": {
+    "traces": {
+      "path": "code/artifacts/reproduced/natural_v23/replay/natural_candidate_v23.traces.jsonl",
+      "sha256": "bf44385300f6f4b474973333950293d95d169ff5bcd3976b007359e912567fee"
+    },
+    "primary_labels": {
+      "path": "code/artifacts/annotations/sql_labels/final_reference_labels.paper_core.v2.jsonl",
+      "sha256": "11849aca6e20aa8206e3aa5ae3f46cab87b570c38db6c781bf35e4d6e9aa6049"
+    },
+    "supplemental_labels": {
+      "path": "code/artifacts/annotations/sql_labels/supplemental_spec_failures.final.jsonl",
+      "sha256": "fec47039ce797c9ef06534c26b763817be07ff133a61f144f03ae87fc606e69a"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+tables:
+  employee:
+    columns:
+      Employee_ID: number
+      Name: text
+      Age: number
+      City: text
+    primary_key: &id001
+    - Employee_ID
+    grain: *id001
+  shop:
+    columns:
+      Shop_ID: number
+      Name: text
+      Location: text
+      District: text
+      Number_products: number
+      Manager_name: text
+    primary_key: &id002
+    - Shop_ID
+    grain: *id002
+  hiring:
+    columns:
+      Shop_ID: number
+      Employee_ID: number
+      Start_from: text
+      Is_full_time: others
+    primary_key: &id003
+    - Employee_ID
+    grain: *id003
+    observed_non_unique:
+    - - Shop_ID
+    foreign_keys:
+    - columns:
+      - Employee_ID
+      references:
+        table: employee
+        columns:
+        - Employee_ID
+      many_allowed: true
+    - columns:
+      - Shop_ID
+      references:
+        table: shop
+        columns:
+        - Shop_ID
+      many_allowed: true
+  evaluation:
+    columns:
+      Employee_ID: text
+      Year_awarded: text
+      Bonus: number
+    primary_key: &id004
+    - Employee_ID
+    - Year_awarded
+    grain: *id004
+    observed_non_unique:
+    - - Employee_ID
+    foreign_keys:
+    - columns:
+      - Employee_ID
+      references:
+        table: employee
+        columns:
+        - Employee_ID
+      many_allowed: true

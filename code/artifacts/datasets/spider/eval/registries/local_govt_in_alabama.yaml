@@ -1,0 +1,60 @@
+tables:
+  Services:
+    columns:
+      Service_ID: number
+      Service_Type_Code: text
+    primary_key: &id001
+    - Service_ID
+    grain: *id001
+  Participants:
+    columns:
+      Participant_ID: number
+      Participant_Type_Code: text
+      Participant_Details: text
+    primary_key: &id002
+    - Participant_ID
+    grain: *id002
+  Events:
+    columns:
+      Event_ID: number
+      Service_ID: number
+      Event_Details: text
+    primary_key: &id003
+    - Event_ID
+    grain: *id003
+    observed_non_unique:
+    - - Service_ID
+    foreign_keys:
+    - columns:
+      - Service_ID
+      references:
+        table: Services
+        columns:
+        - Service_ID
+      many_allowed: true
+  Participants_in_Events:
+    columns:
+      Event_ID: number
+      Participant_ID: number
+    primary_key: &id004
+    - Event_ID
+    - Participant_ID
+    grain: *id004
+    observed_non_unique:
+    - - Event_ID
+    - - Participant_ID
+    foreign_keys:
+    - columns:
+      - Event_ID
+      references:
+        table: Events
+        columns:
+        - Event_ID
+      many_allowed: true
+    - columns:
+      - Participant_ID
+      references:
+        table: Participants
+        columns:
+        - Participant_ID
+      many_allowed: true

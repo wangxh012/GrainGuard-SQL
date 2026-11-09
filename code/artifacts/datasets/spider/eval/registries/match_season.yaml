@@ -1,0 +1,70 @@
+tables:
+  country:
+    columns:
+      Country_id: number
+      Country_name: text
+      Capital: text
+      Official_native_language: text
+    primary_key: &id001
+    - Country_id
+    grain: *id001
+  team:
+    columns:
+      Team_id: number
+      Name: text
+    primary_key: &id002
+    - Team_id
+    grain: *id002
+  match_season:
+    columns:
+      Season: number
+      Player: text
+      Position: text
+      Country: number
+      Team: number
+      Draft_Pick_Number: number
+      Draft_Class: text
+      College: text
+    primary_key: &id003
+    - Season
+    grain: *id003
+    observed_non_unique:
+    - - Team
+    - - Country
+    foreign_keys:
+    - columns:
+      - Team
+      references:
+        table: team
+        columns:
+        - Team_id
+      many_allowed: true
+    - columns:
+      - Country
+      references:
+        table: country
+        columns:
+        - Country_id
+      many_allowed: true
+  player:
+    columns:
+      Player_ID: number
+      Player: text
+      Years_Played: text
+      Total_WL: text
+      Singles_WL: text
+      Doubles_WL: text
+      Team: number
+    primary_key: &id004
+    - Player_ID
+    grain: *id004
+    observed_non_unique:
+    - - Team
+    foreign_keys:
+    - columns:
+      - Team
+      references:
+        table: team
+        columns:
+        - Team_id
+      many_allowed: true

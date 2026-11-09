@@ -1,0 +1,46 @@
+tables:
+  Web_client_accelerator:
+    columns:
+      id: number
+      name: text
+      Operating_system: text
+      Client: text
+      Connection: text
+    primary_key: &id001
+    - id
+    grain: *id001
+  browser:
+    columns:
+      id: number
+      name: text
+      market_share: number
+    primary_key: &id002
+    - id
+    grain: *id002
+  accelerator_compatible_browser:
+    columns:
+      accelerator_id: number
+      browser_id: number
+      compatible_since_year: number
+    primary_key: &id003
+    - accelerator_id
+    - browser_id
+    grain: *id003
+    observed_non_unique:
+    - - browser_id
+    - - accelerator_id
+    foreign_keys:
+    - columns:
+      - browser_id
+      references:
+        table: browser
+        columns:
+        - id
+      many_allowed: true
+    - columns:
+      - accelerator_id
+      references:
+        table: Web_client_accelerator
+        columns:
+        - id
+      many_allowed: true

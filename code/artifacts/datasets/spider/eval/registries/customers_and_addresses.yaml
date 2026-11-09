@@ -1,0 +1,124 @@
+tables:
+  Addresses:
+    columns:
+      address_id: number
+      address_content: text
+      city: text
+      zip_postcode: text
+      state_province_county: text
+      country: text
+      other_address_details: text
+    primary_key: &id001
+    - address_id
+    grain: *id001
+  Products:
+    columns:
+      product_id: number
+      product_details: text
+    primary_key: &id002
+    - product_id
+    grain: *id002
+  Customers:
+    columns:
+      customer_id: number
+      payment_method: text
+      customer_name: text
+      date_became_customer: time
+      other_customer_details: text
+    primary_key: &id003
+    - customer_id
+    grain: *id003
+  Customer_Addresses:
+    columns:
+      customer_id: number
+      address_id: number
+      date_address_from: time
+      address_type: text
+      date_address_to: time
+    primary_key: []
+    grain:
+    - customer_id
+    observed_non_unique:
+    - - customer_id
+    - - address_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+    - columns:
+      - address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+  Customer_Contact_Channels:
+    columns:
+      customer_id: number
+      channel_code: text
+      active_from_date: time
+      active_to_date: time
+      contact_number: text
+    primary_key: []
+    grain:
+    - customer_id
+    observed_non_unique:
+    - - customer_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+  Customer_Orders:
+    columns:
+      order_id: number
+      customer_id: number
+      order_status: text
+      order_date: time
+      order_details: text
+    primary_key: &id004
+    - order_id
+    grain: *id004
+    observed_non_unique:
+    - - customer_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+  Order_Items:
+    columns:
+      order_id: number
+      product_id: number
+      order_quantity: text
+    primary_key: []
+    grain:
+    - order_id
+    observed_non_unique:
+    - - order_id
+    - - product_id
+    foreign_keys:
+    - columns:
+      - order_id
+      references:
+        table: Customer_Orders
+        columns:
+        - order_id
+      many_allowed: true
+    - columns:
+      - product_id
+      references:
+        table: Products
+        columns:
+        - product_id
+      many_allowed: true

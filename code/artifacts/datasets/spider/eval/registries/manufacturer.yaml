@@ -1,0 +1,48 @@
+tables:
+  manufacturer:
+    columns:
+      Manufacturer_ID: number
+      Open_Year: number
+      Name: text
+      Num_of_Factories: number
+      Num_of_Shops: number
+    primary_key: &id001
+    - Manufacturer_ID
+    grain: *id001
+  furniture:
+    columns:
+      Furniture_ID: number
+      Name: text
+      Num_of_Component: number
+      Market_Rate: number
+    primary_key: &id002
+    - Furniture_ID
+    grain: *id002
+  furniture_manufacte:
+    columns:
+      Manufacturer_ID: number
+      Furniture_ID: number
+      Price_in_Dollar: number
+    primary_key: &id003
+    - Manufacturer_ID
+    - Furniture_ID
+    grain: *id003
+    observed_unique:
+    - - Furniture_ID
+    observed_non_unique:
+    - - Manufacturer_ID
+    foreign_keys:
+    - columns:
+      - Furniture_ID
+      references:
+        table: furniture
+        columns:
+        - Furniture_ID
+      many_allowed: true
+    - columns:
+      - Manufacturer_ID
+      references:
+        table: manufacturer
+        columns:
+        - Manufacturer_ID
+      many_allowed: true

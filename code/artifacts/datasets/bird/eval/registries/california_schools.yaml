@@ -1,0 +1,121 @@
+tables:
+  frpm:
+    columns:
+      CDSCode: text
+      Academic Year: text
+      County Code: text
+      District Code: integer
+      School Code: text
+      County Name: text
+      District Name: text
+      School Name: text
+      District Type: text
+      School Type: text
+      Educational Option Type: text
+      NSLP Provision Status: text
+      Charter School (Y/N): integer
+      Charter School Number: text
+      Charter Funding Type: text
+      IRC: integer
+      Low Grade: text
+      High Grade: text
+      Enrollment (K-12): real
+      Free Meal Count (K-12): real
+      Percent (%) Eligible Free (K-12): real
+      FRPM Count (K-12): real
+      Percent (%) Eligible FRPM (K-12): real
+      Enrollment (Ages 5-17): real
+      Free Meal Count (Ages 5-17): real
+      Percent (%) Eligible Free (Ages 5-17): real
+      FRPM Count (Ages 5-17): real
+      Percent (%) Eligible FRPM (Ages 5-17): real
+      2013-14 CALPADS Fall 1 Certification Status: integer
+    primary_key: &id001
+    - CDSCode
+    grain: *id001
+    foreign_keys:
+    - columns:
+      - CDSCode
+      references:
+        table: schools
+        columns:
+        - CDSCode
+      many_allowed: true
+  satscores:
+    columns:
+      cds: text
+      rtype: text
+      sname: text
+      dname: text
+      cname: text
+      enroll12: integer
+      NumTstTakr: integer
+      AvgScrRead: integer
+      AvgScrMath: integer
+      AvgScrWrite: integer
+      NumGE1500: integer
+    primary_key: &id002
+    - cds
+    grain: *id002
+    foreign_keys:
+    - columns:
+      - cds
+      references:
+        table: schools
+        columns:
+        - CDSCode
+      many_allowed: true
+  schools:
+    columns:
+      CDSCode: text
+      NCESDist: text
+      NCESSchool: text
+      StatusType: text
+      County: text
+      District: text
+      School: text
+      Street: text
+      StreetAbr: text
+      City: text
+      Zip: text
+      State: text
+      MailStreet: text
+      MailStrAbr: text
+      MailCity: text
+      MailZip: text
+      MailState: text
+      Phone: text
+      Ext: text
+      Website: text
+      OpenDate: date
+      ClosedDate: date
+      Charter: integer
+      CharterNum: text
+      FundingType: text
+      DOC: text
+      DOCType: text
+      SOC: text
+      SOCType: text
+      EdOpsCode: text
+      EdOpsName: text
+      EILCode: text
+      EILName: text
+      GSoffered: text
+      GSserved: text
+      Virtual: text
+      Magnet: integer
+      Latitude: real
+      Longitude: real
+      AdmFName1: text
+      AdmLName1: text
+      AdmEmail1: text
+      AdmFName2: text
+      AdmLName2: text
+      AdmEmail2: text
+      AdmFName3: text
+      AdmLName3: text
+      AdmEmail3: text
+      LastUpdate: date
+    primary_key: &id003
+    - CDSCode
+    grain: *id003

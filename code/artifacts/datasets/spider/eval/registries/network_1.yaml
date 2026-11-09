@@ -1,0 +1,62 @@
+tables:
+  Highschooler:
+    columns:
+      ID: number
+      name: text
+      grade: number
+    primary_key: &id001
+    - ID
+    grain: *id001
+  Friend:
+    columns:
+      student_id: number
+      friend_id: number
+    primary_key: &id002
+    - student_id
+    - friend_id
+    grain: *id002
+    observed_non_unique:
+    - - friend_id
+    - - student_id
+    foreign_keys:
+    - columns:
+      - friend_id
+      references:
+        table: Highschooler
+        columns:
+        - ID
+      many_allowed: true
+    - columns:
+      - student_id
+      references:
+        table: Highschooler
+        columns:
+        - ID
+      many_allowed: true
+  Likes:
+    columns:
+      student_id: number
+      liked_id: number
+    primary_key: &id003
+    - student_id
+    - liked_id
+    grain: *id003
+    observed_unique:
+    - - student_id
+    observed_non_unique:
+    - - liked_id
+    foreign_keys:
+    - columns:
+      - student_id
+      references:
+        table: Highschooler
+        columns:
+        - ID
+      many_allowed: true
+    - columns:
+      - liked_id
+      references:
+        table: Highschooler
+        columns:
+        - ID
+      many_allowed: true

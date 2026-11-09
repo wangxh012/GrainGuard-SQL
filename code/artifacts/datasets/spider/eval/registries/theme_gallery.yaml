@@ -1,0 +1,50 @@
+tables:
+  artist:
+    columns:
+      Artist_ID: number
+      Name: text
+      Country: text
+      Year_Join: number
+      Age: number
+    primary_key: &id001
+    - Artist_ID
+    grain: *id001
+  exhibition:
+    columns:
+      Exhibition_ID: number
+      Year: number
+      Theme: text
+      Artist_ID: number
+      Ticket_Price: number
+    primary_key: &id002
+    - Exhibition_ID
+    grain: *id002
+    observed_non_unique:
+    - - Artist_ID
+    foreign_keys:
+    - columns:
+      - Artist_ID
+      references:
+        table: artist
+        columns:
+        - Artist_ID
+      many_allowed: true
+  exhibition_record:
+    columns:
+      Exhibition_ID: number
+      Date: text
+      Attendance: number
+    primary_key: &id003
+    - Exhibition_ID
+    - Date
+    grain: *id003
+    observed_non_unique:
+    - - Exhibition_ID
+    foreign_keys:
+    - columns:
+      - Exhibition_ID
+      references:
+        table: exhibition
+        columns:
+        - Exhibition_ID
+      many_allowed: true

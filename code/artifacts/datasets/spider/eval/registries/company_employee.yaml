@@ -1,0 +1,51 @@
+tables:
+  people:
+    columns:
+      People_ID: number
+      Age: number
+      Name: text
+      Nationality: text
+      Graduation_College: text
+    primary_key: &id001
+    - People_ID
+    grain: *id001
+  company:
+    columns:
+      Company_ID: number
+      Name: text
+      Headquarters: text
+      Industry: text
+      Sales_in_Billion: number
+      Profits_in_Billion: number
+      Assets_in_Billion: number
+      Market_Value_in_Billion: number
+    primary_key: &id002
+    - Company_ID
+    grain: *id002
+  employment:
+    columns:
+      Company_ID: number
+      People_ID: number
+      Year_working: number
+    primary_key: &id003
+    - Company_ID
+    - People_ID
+    grain: *id003
+    observed_unique:
+    - - People_ID
+    - - Company_ID
+    foreign_keys:
+    - columns:
+      - People_ID
+      references:
+        table: people
+        columns:
+        - People_ID
+      many_allowed: true
+    - columns:
+      - Company_ID
+      references:
+        table: company
+        columns:
+        - Company_ID
+      many_allowed: true

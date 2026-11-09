@@ -1,0 +1,49 @@
+tables:
+  driver:
+    columns:
+      Driver_ID: number
+      Name: text
+      Party: text
+      Home_city: text
+      Age: number
+    primary_key: &id001
+    - Driver_ID
+    grain: *id001
+  school:
+    columns:
+      School_ID: number
+      Grade: text
+      School: text
+      Location: text
+      Type: text
+    primary_key: &id002
+    - School_ID
+    grain: *id002
+  school_bus:
+    columns:
+      School_ID: number
+      Driver_ID: number
+      Years_Working: number
+      If_full_time: others
+    primary_key: &id003
+    - School_ID
+    - Driver_ID
+    grain: *id003
+    observed_unique:
+    - - Driver_ID
+    - - School_ID
+    foreign_keys:
+    - columns:
+      - Driver_ID
+      references:
+        table: driver
+        columns:
+        - Driver_ID
+      many_allowed: true
+    - columns:
+      - School_ID
+      references:
+        table: school
+        columns:
+        - School_ID
+      many_allowed: true

@@ -1,0 +1,230 @@
+tables:
+  actor:
+    columns:
+      aid: number
+      gender: text
+      name: text
+      nationality: text
+      birth_city: text
+      birth_year: number
+    primary_key: &id001
+    - aid
+    grain: *id001
+  copyright:
+    columns:
+      id: number
+      msid: number
+      cid: number
+    primary_key: &id002
+    - id
+    grain: *id002
+  cast:
+    columns:
+      id: number
+      msid: number
+      aid: number
+      role: number
+    primary_key: &id003
+    - id
+    grain: *id003
+    foreign_keys:
+    - columns:
+      - msid
+      references:
+        table: copyright
+        columns:
+        - msid
+      many_allowed: true
+    - columns:
+      - aid
+      references:
+        table: actor
+        columns:
+        - aid
+      many_allowed: true
+  genre:
+    columns:
+      gid: number
+      genre: text
+    primary_key: &id004
+    - gid
+    grain: *id004
+  classification:
+    columns:
+      id: number
+      msid: number
+      gid: number
+    primary_key: &id005
+    - id
+    grain: *id005
+    foreign_keys:
+    - columns:
+      - msid
+      references:
+        table: copyright
+        columns:
+        - msid
+      many_allowed: true
+    - columns:
+      - gid
+      references:
+        table: genre
+        columns:
+        - gid
+      many_allowed: true
+  company:
+    columns:
+      id: number
+      name: text
+      country_code: text
+    primary_key: &id006
+    - id
+    grain: *id006
+  director:
+    columns:
+      did: number
+      gender: text
+      name: text
+      nationality: text
+      birth_city: text
+      birth_year: number
+    primary_key: &id007
+    - did
+    grain: *id007
+  producer:
+    columns:
+      pid: number
+      gender: text
+      name: text
+      nationality: text
+      birth_city: text
+      birth_year: number
+    primary_key: &id008
+    - pid
+    grain: *id008
+  directed_by:
+    columns:
+      id: number
+      msid: number
+      did: number
+    primary_key: &id009
+    - id
+    grain: *id009
+    foreign_keys:
+    - columns:
+      - did
+      references:
+        table: director
+        columns:
+        - did
+      many_allowed: true
+    - columns:
+      - msid
+      references:
+        table: copyright
+        columns:
+        - msid
+      many_allowed: true
+  keyword:
+    columns:
+      id: number
+      keyword: text
+    primary_key: &id010
+    - id
+    grain: *id010
+  made_by:
+    columns:
+      id: number
+      msid: number
+      pid: number
+    primary_key: &id011
+    - id
+    grain: *id011
+    foreign_keys:
+    - columns:
+      - pid
+      references:
+        table: producer
+        columns:
+        - pid
+      many_allowed: true
+    - columns:
+      - msid
+      references:
+        table: copyright
+        columns:
+        - msid
+      many_allowed: true
+  movie:
+    columns:
+      mid: number
+      title: text
+      release_year: number
+      title_aka: text
+      budget: text
+    primary_key: &id012
+    - mid
+    grain: *id012
+  tags:
+    columns:
+      id: number
+      msid: number
+      kid: number
+    primary_key: &id013
+    - id
+    grain: *id013
+    foreign_keys:
+    - columns:
+      - msid
+      references:
+        table: copyright
+        columns:
+        - msid
+      many_allowed: true
+  tv_series:
+    columns:
+      sid: number
+      title: text
+      release_year: number
+      num_of_seasons: number
+      num_of_episodes: number
+      title_aka: text
+      budget: text
+    primary_key: &id014
+    - sid
+    grain: *id014
+  writer:
+    columns:
+      wid: number
+      gender: text
+      name: number
+      nationality: number
+      num_of_episodes: number
+      birth_city: text
+      birth_year: number
+    primary_key: &id015
+    - wid
+    grain: *id015
+  written_by:
+    columns:
+      id: number
+      msid: number
+      wid: number
+    primary_key: []
+    grain:
+    - id
+    foreign_keys:
+    - columns:
+      - wid
+      references:
+        table: writer
+        columns:
+        - wid
+      many_allowed: true
+    - columns:
+      - msid
+      references:
+        table: copyright
+        columns:
+        - msid
+      many_allowed: true

@@ -1,0 +1,114 @@
+tables:
+  state:
+    columns:
+      state_name: text
+      population: number
+      area: number
+      country_name: text
+      capital: text
+      density: number
+    primary_key: &id001
+    - state_name
+    grain: *id001
+  city:
+    columns:
+      city_name: text
+      population: number
+      country_name: text
+      state_name: text
+    primary_key: &id002
+    - city_name
+    - state_name
+    grain: *id002
+    foreign_keys:
+    - columns:
+      - state_name
+      references:
+        table: state
+        columns:
+        - state_name
+      many_allowed: true
+  border_info:
+    columns:
+      state_name: text
+      border: text
+    primary_key: &id003
+    - border
+    - state_name
+    grain: *id003
+    foreign_keys:
+    - columns:
+      - border
+      references:
+        table: state
+        columns:
+        - state_name
+      many_allowed: true
+    - columns:
+      - state_name
+      references:
+        table: state
+        columns:
+        - state_name
+      many_allowed: true
+  highlow:
+    columns:
+      state_name: text
+      highest_elevation: text
+      lowest_point: text
+      highest_point: text
+      lowest_elevation: text
+    primary_key: &id004
+    - state_name
+    grain: *id004
+    foreign_keys:
+    - columns:
+      - state_name
+      references:
+        table: state
+        columns:
+        - state_name
+      many_allowed: true
+  lake:
+    columns:
+      lake_name: text
+      area: number
+      country_name: text
+      state_name: text
+    primary_key: []
+    grain: []
+  mountain:
+    columns:
+      mountain_name: text
+      mountain_altitude: number
+      country_name: text
+      state_name: text
+    primary_key: &id005
+    - mountain_name
+    - state_name
+    grain: *id005
+    foreign_keys:
+    - columns:
+      - state_name
+      references:
+        table: state
+        columns:
+        - state_name
+      many_allowed: true
+  river:
+    columns:
+      river_name: text
+      length: number
+      country_name: text
+      traverse: text
+    primary_key: &id006
+    - river_name
+    grain: *id006
+    foreign_keys:
+    - columns:
+      - traverse
+      references:
+        table: state
+        columns:
+        - state_name
+      many_allowed: true

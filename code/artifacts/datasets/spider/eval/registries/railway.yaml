@@ -1,0 +1,72 @@
+tables:
+  railway:
+    columns:
+      Railway_ID: number
+      Railway: text
+      Builder: text
+      Built: text
+      Wheels: text
+      Location: text
+      ObjectNumber: text
+    primary_key: &id001
+    - Railway_ID
+    grain: *id001
+  train:
+    columns:
+      Train_ID: number
+      Train_Num: text
+      Name: text
+      From: text
+      Arrival: text
+      Railway_ID: number
+    primary_key: &id002
+    - Train_ID
+    grain: *id002
+    observed_non_unique:
+    - - Railway_ID
+    foreign_keys:
+    - columns:
+      - Railway_ID
+      references:
+        table: railway
+        columns:
+        - Railway_ID
+      many_allowed: true
+  manager:
+    columns:
+      Manager_ID: number
+      Name: text
+      Country: text
+      Working_year_starts: text
+      Age: number
+      Level: number
+    primary_key: &id003
+    - Manager_ID
+    grain: *id003
+  railway_manage:
+    columns:
+      Railway_ID: number
+      Manager_ID: number
+      From_Year: text
+    primary_key: &id004
+    - Railway_ID
+    - Manager_ID
+    grain: *id004
+    observed_unique:
+    - - Railway_ID
+    - - Manager_ID
+    foreign_keys:
+    - columns:
+      - Railway_ID
+      references:
+        table: railway
+        columns:
+        - Railway_ID
+      many_allowed: true
+    - columns:
+      - Manager_ID
+      references:
+        table: manager
+        columns:
+        - Manager_ID
+      many_allowed: true

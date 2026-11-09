@@ -1,0 +1,48 @@
+tables:
+  phone:
+    columns:
+      Name: text
+      Phone_ID: number
+      Memory_in_G: number
+      Carrier: text
+      Price: number
+    primary_key: &id001
+    - Phone_ID
+    grain: *id001
+  market:
+    columns:
+      Market_ID: number
+      District: text
+      Num_of_employees: number
+      Num_of_shops: number
+      Ranking: number
+    primary_key: &id002
+    - Market_ID
+    grain: *id002
+  phone_market:
+    columns:
+      Market_ID: number
+      Phone_ID: text
+      Num_of_stock: number
+    primary_key: &id003
+    - Market_ID
+    - Phone_ID
+    grain: *id003
+    observed_non_unique:
+    - - Phone_ID
+    - - Market_ID
+    foreign_keys:
+    - columns:
+      - Phone_ID
+      references:
+        table: phone
+        columns:
+        - Phone_ID
+      many_allowed: true
+    - columns:
+      - Market_ID
+      references:
+        table: market
+        columns:
+        - Market_ID
+      many_allowed: true

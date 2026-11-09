@@ -1,0 +1,111 @@
+tables:
+  Ref_Document_Types:
+    columns:
+      Document_Type_Code: text
+      Document_Type_Name: text
+      Document_Type_Description: text
+    primary_key: &id001
+    - Document_Type_Code
+    grain: *id001
+  Ref_Budget_Codes:
+    columns:
+      Budget_Type_Code: text
+      Budget_Type_Description: text
+    primary_key: &id002
+    - Budget_Type_Code
+    grain: *id002
+  Projects:
+    columns:
+      Project_ID: number
+      Project_Details: text
+    primary_key: &id003
+    - Project_ID
+    grain: *id003
+  Documents:
+    columns:
+      Document_ID: number
+      Document_Type_Code: text
+      Project_ID: number
+      Document_Date: time
+      Document_Name: text
+      Document_Description: text
+      Other_Details: text
+    primary_key: &id004
+    - Document_ID
+    grain: *id004
+    observed_non_unique:
+    - - Project_ID
+    - - Document_Type_Code
+    foreign_keys:
+    - columns:
+      - Project_ID
+      references:
+        table: Projects
+        columns:
+        - Project_ID
+      many_allowed: true
+    - columns:
+      - Document_Type_Code
+      references:
+        table: Ref_Document_Types
+        columns:
+        - Document_Type_Code
+      many_allowed: true
+  Statements:
+    columns:
+      Statement_ID: number
+      Statement_Details: text
+    primary_key: &id005
+    - Statement_ID
+    grain: *id005
+    foreign_keys:
+    - columns:
+      - Statement_ID
+      references:
+        table: Documents
+        columns:
+        - Document_ID
+      many_allowed: true
+  Documents_with_Expenses:
+    columns:
+      Document_ID: number
+      Budget_Type_Code: text
+      Document_Details: text
+    primary_key: &id006
+    - Document_ID
+    grain: *id006
+    observed_non_unique:
+    - - Budget_Type_Code
+    foreign_keys:
+    - columns:
+      - Document_ID
+      references:
+        table: Documents
+        columns:
+        - Document_ID
+      many_allowed: true
+    - columns:
+      - Budget_Type_Code
+      references:
+        table: Ref_Budget_Codes
+        columns:
+        - Budget_Type_Code
+      many_allowed: true
+  Accounts:
+    columns:
+      Account_ID: number
+      Statement_ID: number
+      Account_Details: text
+    primary_key: &id007
+    - Account_ID
+    grain: *id007
+    observed_non_unique:
+    - - Statement_ID
+    foreign_keys:
+    - columns:
+      - Statement_ID
+      references:
+        table: Statements
+        columns:
+        - Statement_ID
+      many_allowed: true

@@ -1,0 +1,136 @@
+tables:
+  regions:
+    columns:
+      REGION_ID: number
+      REGION_NAME: text
+    primary_key: &id001
+    - REGION_ID
+    grain: *id001
+  countries:
+    columns:
+      COUNTRY_ID: text
+      COUNTRY_NAME: text
+      REGION_ID: number
+    primary_key: &id002
+    - COUNTRY_ID
+    grain: *id002
+    observed_non_unique:
+    - - REGION_ID
+    foreign_keys:
+    - columns:
+      - REGION_ID
+      references:
+        table: regions
+        columns:
+        - REGION_ID
+      many_allowed: true
+  departments:
+    columns:
+      DEPARTMENT_ID: number
+      DEPARTMENT_NAME: text
+      MANAGER_ID: number
+      LOCATION_ID: number
+    primary_key: &id003
+    - DEPARTMENT_ID
+    grain: *id003
+  jobs:
+    columns:
+      JOB_ID: text
+      JOB_TITLE: text
+      MIN_SALARY: number
+      MAX_SALARY: number
+    primary_key: &id004
+    - JOB_ID
+    grain: *id004
+  employees:
+    columns:
+      EMPLOYEE_ID: number
+      FIRST_NAME: text
+      LAST_NAME: text
+      EMAIL: text
+      PHONE_NUMBER: text
+      HIRE_DATE: time
+      JOB_ID: text
+      SALARY: number
+      COMMISSION_PCT: number
+      MANAGER_ID: number
+      DEPARTMENT_ID: number
+    primary_key: &id005
+    - EMPLOYEE_ID
+    grain: *id005
+    observed_non_unique:
+    - - JOB_ID
+    - - DEPARTMENT_ID
+    foreign_keys:
+    - columns:
+      - JOB_ID
+      references:
+        table: jobs
+        columns:
+        - JOB_ID
+      many_allowed: true
+    - columns:
+      - DEPARTMENT_ID
+      references:
+        table: departments
+        columns:
+        - DEPARTMENT_ID
+      many_allowed: true
+  job_history:
+    columns:
+      EMPLOYEE_ID: number
+      START_DATE: time
+      END_DATE: time
+      JOB_ID: text
+      DEPARTMENT_ID: number
+    primary_key: &id006
+    - EMPLOYEE_ID
+    - START_DATE
+    grain: *id006
+    observed_non_unique:
+    - - JOB_ID
+    - - DEPARTMENT_ID
+    - - EMPLOYEE_ID
+    foreign_keys:
+    - columns:
+      - JOB_ID
+      references:
+        table: jobs
+        columns:
+        - JOB_ID
+      many_allowed: true
+    - columns:
+      - DEPARTMENT_ID
+      references:
+        table: departments
+        columns:
+        - DEPARTMENT_ID
+      many_allowed: true
+    - columns:
+      - EMPLOYEE_ID
+      references:
+        table: employees
+        columns:
+        - EMPLOYEE_ID
+      many_allowed: true
+  locations:
+    columns:
+      LOCATION_ID: number
+      STREET_ADDRESS: text
+      POSTAL_CODE: text
+      CITY: text
+      STATE_PROVINCE: text
+      COUNTRY_ID: text
+    primary_key: &id007
+    - LOCATION_ID
+    grain: *id007
+    observed_non_unique:
+    - - COUNTRY_ID
+    foreign_keys:
+    - columns:
+      - COUNTRY_ID
+      references:
+        table: countries
+        columns:
+        - COUNTRY_ID
+      many_allowed: true

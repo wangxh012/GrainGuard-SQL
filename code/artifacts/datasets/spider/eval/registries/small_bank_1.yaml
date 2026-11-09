@@ -1,0 +1,38 @@
+tables:
+  ACCOUNTS:
+    columns:
+      custid: number
+      name: text
+    primary_key: &id001
+    - custid
+    grain: *id001
+  SAVINGS:
+    columns:
+      custid: number
+      balance: number
+    primary_key: &id002
+    - custid
+    grain: *id002
+    foreign_keys:
+    - columns:
+      - custid
+      references:
+        table: ACCOUNTS
+        columns:
+        - custid
+      many_allowed: true
+  CHECKING:
+    columns:
+      custid: number
+      balance: number
+    primary_key: &id003
+    - custid
+    grain: *id003
+    foreign_keys:
+    - columns:
+      - custid
+      references:
+        table: ACCOUNTS
+        columns:
+        - custid
+      many_allowed: true

@@ -1,0 +1,120 @@
+tables:
+  Investors:
+    columns:
+      investor_id: number
+      Investor_details: text
+    primary_key: &id001
+    - investor_id
+    grain: *id001
+  Lots:
+    columns:
+      lot_id: number
+      investor_id: number
+      lot_details: text
+    primary_key: &id002
+    - lot_id
+    grain: *id002
+    observed_non_unique:
+    - - investor_id
+    foreign_keys:
+    - columns:
+      - investor_id
+      references:
+        table: Investors
+        columns:
+        - investor_id
+      many_allowed: true
+  Ref_Transaction_Types:
+    columns:
+      transaction_type_code: text
+      transaction_type_description: text
+    primary_key: &id003
+    - transaction_type_code
+    grain: *id003
+  Transactions:
+    columns:
+      transaction_id: number
+      investor_id: number
+      transaction_type_code: text
+      date_of_transaction: time
+      amount_of_transaction: number
+      share_count: text
+      other_details: text
+    primary_key: &id004
+    - transaction_id
+    grain: *id004
+    observed_non_unique:
+    - - transaction_type_code
+    - - investor_id
+    foreign_keys:
+    - columns:
+      - transaction_type_code
+      references:
+        table: Ref_Transaction_Types
+        columns:
+        - transaction_type_code
+      many_allowed: true
+    - columns:
+      - investor_id
+      references:
+        table: Investors
+        columns:
+        - investor_id
+      many_allowed: true
+  Sales:
+    columns:
+      sales_transaction_id: number
+      sales_details: text
+    primary_key: &id005
+    - sales_transaction_id
+    grain: *id005
+    foreign_keys:
+    - columns:
+      - sales_transaction_id
+      references:
+        table: Transactions
+        columns:
+        - transaction_id
+      many_allowed: true
+  Purchases:
+    columns:
+      purchase_transaction_id: number
+      purchase_details: text
+    primary_key: []
+    grain:
+    - purchase_transaction_id
+    observed_unique:
+    - - purchase_transaction_id
+    foreign_keys:
+    - columns:
+      - purchase_transaction_id
+      references:
+        table: Transactions
+        columns:
+        - transaction_id
+      many_allowed: true
+  Transactions_Lots:
+    columns:
+      transaction_id: number
+      lot_id: number
+    primary_key: []
+    grain:
+    - transaction_id
+    observed_non_unique:
+    - - transaction_id
+    - - lot_id
+    foreign_keys:
+    - columns:
+      - transaction_id
+      references:
+        table: Transactions
+        columns:
+        - transaction_id
+      many_allowed: true
+    - columns:
+      - lot_id
+      references:
+        table: Lots
+        columns:
+        - lot_id
+      many_allowed: true

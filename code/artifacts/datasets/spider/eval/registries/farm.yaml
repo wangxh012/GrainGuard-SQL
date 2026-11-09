@@ -1,0 +1,74 @@
+tables:
+  city:
+    columns:
+      City_ID: number
+      Official_Name: text
+      Status: text
+      Area_km_2: number
+      Population: number
+      Census_Ranking: text
+    primary_key: &id001
+    - City_ID
+    grain: *id001
+  farm:
+    columns:
+      Farm_ID: number
+      Year: number
+      Total_Horses: number
+      Working_Horses: number
+      Total_Cattle: number
+      Oxen: number
+      Bulls: number
+      Cows: number
+      Pigs: number
+      Sheep_and_Goats: number
+    primary_key: &id002
+    - Farm_ID
+    grain: *id002
+  farm_competition:
+    columns:
+      Competition_ID: number
+      Year: number
+      Theme: text
+      Host_city_ID: number
+      Hosts: text
+    primary_key: &id003
+    - Competition_ID
+    grain: *id003
+    observed_non_unique:
+    - - Host_city_ID
+    foreign_keys:
+    - columns:
+      - Host_city_ID
+      references:
+        table: city
+        columns:
+        - City_ID
+      many_allowed: true
+  competition_record:
+    columns:
+      Competition_ID: number
+      Farm_ID: number
+      Rank: number
+    primary_key: &id004
+    - Competition_ID
+    - Farm_ID
+    grain: *id004
+    observed_non_unique:
+    - - Farm_ID
+    - - Competition_ID
+    foreign_keys:
+    - columns:
+      - Farm_ID
+      references:
+        table: farm
+        columns:
+        - Farm_ID
+      many_allowed: true
+    - columns:
+      - Competition_ID
+      references:
+        table: farm_competition
+        columns:
+        - Competition_ID
+      many_allowed: true

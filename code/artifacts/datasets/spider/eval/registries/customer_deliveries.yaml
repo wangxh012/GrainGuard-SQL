@@ -1,0 +1,253 @@
+tables:
+  Products:
+    columns:
+      product_id: number
+      product_name: text
+      product_price: number
+      product_description: text
+    primary_key: &id001
+    - product_id
+    grain: *id001
+  Addresses:
+    columns:
+      address_id: number
+      address_details: text
+      city: text
+      zip_postcode: text
+      state_province_county: text
+      country: text
+    primary_key: &id002
+    - address_id
+    grain: *id002
+  Customers:
+    columns:
+      customer_id: number
+      payment_method: text
+      customer_name: text
+      customer_phone: text
+      customer_email: text
+      date_became_customer: time
+    primary_key: &id003
+    - customer_id
+    grain: *id003
+  Regular_Orders:
+    columns:
+      regular_order_id: number
+      distributer_id: number
+    primary_key: &id004
+    - regular_order_id
+    grain: *id004
+    observed_non_unique:
+    - - distributer_id
+    foreign_keys:
+    - columns:
+      - distributer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+  Regular_Order_Products:
+    columns:
+      regular_order_id: number
+      product_id: number
+    primary_key: []
+    grain:
+    - regular_order_id
+    observed_non_unique:
+    - - regular_order_id
+    - - product_id
+    foreign_keys:
+    - columns:
+      - regular_order_id
+      references:
+        table: Regular_Orders
+        columns:
+        - regular_order_id
+      many_allowed: true
+    - columns:
+      - product_id
+      references:
+        table: Products
+        columns:
+        - product_id
+      many_allowed: true
+  Actual_Orders:
+    columns:
+      actual_order_id: number
+      order_status_code: text
+      regular_order_id: number
+      actual_order_date: time
+    primary_key: &id005
+    - actual_order_id
+    grain: *id005
+    observed_non_unique:
+    - - regular_order_id
+    foreign_keys:
+    - columns:
+      - regular_order_id
+      references:
+        table: Regular_Orders
+        columns:
+        - regular_order_id
+      many_allowed: true
+  Actual_Order_Products:
+    columns:
+      actual_order_id: number
+      product_id: number
+    primary_key: []
+    grain:
+    - actual_order_id
+    observed_non_unique:
+    - - actual_order_id
+    - - product_id
+    foreign_keys:
+    - columns:
+      - actual_order_id
+      references:
+        table: Actual_Orders
+        columns:
+        - actual_order_id
+      many_allowed: true
+    - columns:
+      - product_id
+      references:
+        table: Products
+        columns:
+        - product_id
+      many_allowed: true
+  Customer_Addresses:
+    columns:
+      customer_id: number
+      address_id: number
+      date_from: time
+      address_type: text
+      date_to: time
+    primary_key: []
+    grain:
+    - customer_id
+    observed_non_unique:
+    - - address_id
+    - - customer_id
+    foreign_keys:
+    - columns:
+      - address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+  Delivery_Routes:
+    columns:
+      route_id: number
+      route_name: text
+      other_route_details: text
+    primary_key: &id006
+    - route_id
+    grain: *id006
+  Delivery_Route_Locations:
+    columns:
+      location_code: text
+      route_id: number
+      location_address_id: number
+      location_name: text
+    primary_key: &id007
+    - location_code
+    grain: *id007
+    observed_non_unique:
+    - - route_id
+    - - location_address_id
+    foreign_keys:
+    - columns:
+      - route_id
+      references:
+        table: Delivery_Routes
+        columns:
+        - route_id
+      many_allowed: true
+    - columns:
+      - location_address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+  Trucks:
+    columns:
+      truck_id: number
+      truck_licence_number: text
+      truck_details: text
+    primary_key: &id008
+    - truck_id
+    grain: *id008
+  Employees:
+    columns:
+      employee_id: number
+      employee_address_id: number
+      employee_name: text
+      employee_phone: text
+    primary_key: &id009
+    - employee_id
+    grain: *id009
+    observed_non_unique:
+    - - employee_address_id
+    foreign_keys:
+    - columns:
+      - employee_address_id
+      references:
+        table: Addresses
+        columns:
+        - address_id
+      many_allowed: true
+  Order_Deliveries:
+    columns:
+      location_code: text
+      actual_order_id: number
+      delivery_status_code: text
+      driver_employee_id: number
+      truck_id: number
+      delivery_date: time
+    primary_key: []
+    grain:
+    - actual_order_id
+    observed_non_unique:
+    - - driver_employee_id
+    - - location_code
+    - - actual_order_id
+    - - truck_id
+    foreign_keys:
+    - columns:
+      - driver_employee_id
+      references:
+        table: Employees
+        columns:
+        - employee_id
+      many_allowed: true
+    - columns:
+      - location_code
+      references:
+        table: Delivery_Route_Locations
+        columns:
+        - location_code
+      many_allowed: true
+    - columns:
+      - actual_order_id
+      references:
+        table: Actual_Orders
+        columns:
+        - actual_order_id
+      many_allowed: true
+    - columns:
+      - truck_id
+      references:
+        table: Trucks
+        columns:
+        - truck_id
+      many_allowed: true

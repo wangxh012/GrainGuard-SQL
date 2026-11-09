@@ -1,0 +1,88 @@
+tables:
+  genre:
+    columns:
+      g_name: text
+      rating: text
+      most_popular_in: text
+    primary_key: &id001
+    - g_name
+    grain: *id001
+  artist:
+    columns:
+      artist_name: text
+      country: text
+      gender: text
+      preferred_genre: text
+    primary_key: &id002
+    - artist_name
+    grain: *id002
+    observed_unique:
+    - - preferred_genre
+    foreign_keys:
+    - columns:
+      - preferred_genre
+      references:
+        table: genre
+        columns:
+        - g_name
+      many_allowed: true
+  files:
+    columns:
+      f_id: number
+      artist_name: text
+      file_size: text
+      duration: text
+      formats: text
+    primary_key: &id003
+    - f_id
+    grain: *id003
+    observed_unique:
+    - - artist_name
+    foreign_keys:
+    - columns:
+      - artist_name
+      references:
+        table: artist
+        columns:
+        - artist_name
+      many_allowed: true
+  song:
+    columns:
+      song_name: text
+      artist_name: text
+      country: text
+      f_id: number
+      genre_is: text
+      rating: number
+      languages: text
+      releasedate: time
+      resolution: number
+    primary_key: &id004
+    - song_name
+    grain: *id004
+    observed_unique:
+    - - genre_is
+    - - f_id
+    - - artist_name
+    foreign_keys:
+    - columns:
+      - genre_is
+      references:
+        table: genre
+        columns:
+        - g_name
+      many_allowed: true
+    - columns:
+      - f_id
+      references:
+        table: files
+        columns:
+        - f_id
+      many_allowed: true
+    - columns:
+      - artist_name
+      references:
+        table: artist
+        columns:
+        - artist_name
+      many_allowed: true

@@ -1,0 +1,104 @@
+tables:
+  continents:
+    columns:
+      ContId: number
+      Continent: text
+    primary_key: &id001
+    - ContId
+    grain: *id001
+  countries:
+    columns:
+      CountryId: number
+      CountryName: text
+      Continent: number
+    primary_key: &id002
+    - CountryId
+    grain: *id002
+    observed_non_unique:
+    - - Continent
+    foreign_keys:
+    - columns:
+      - Continent
+      references:
+        table: continents
+        columns:
+        - ContId
+      many_allowed: true
+  car_makers:
+    columns:
+      Id: number
+      Maker: text
+      FullName: text
+      Country: text
+    primary_key: &id003
+    - Id
+    grain: *id003
+    observed_non_unique:
+    - - Country
+    foreign_keys:
+    - columns:
+      - Country
+      references:
+        table: countries
+        columns:
+        - CountryId
+      many_allowed: true
+  model_list:
+    columns:
+      ModelId: number
+      Maker: number
+      Model: text
+    primary_key: &id004
+    - ModelId
+    grain: *id004
+    unique:
+    - - Model
+    observed_non_unique:
+    - - Maker
+    foreign_keys:
+    - columns:
+      - Maker
+      references:
+        table: car_makers
+        columns:
+        - Id
+      many_allowed: true
+  car_names:
+    columns:
+      MakeId: number
+      Model: text
+      Make: text
+    primary_key: &id005
+    - MakeId
+    grain: *id005
+    observed_non_unique:
+    - - Model
+    foreign_keys:
+    - columns:
+      - Model
+      references:
+        table: model_list
+        columns:
+        - Model
+      many_allowed: true
+  cars_data:
+    columns:
+      Id: number
+      MPG: text
+      Cylinders: number
+      Edispl: number
+      Horsepower: text
+      Weight: number
+      Accelerate: number
+      Year: number
+    primary_key: &id006
+    - Id
+    grain: *id006
+    foreign_keys:
+    - columns:
+      - Id
+      references:
+        table: car_names
+        columns:
+        - MakeId
+      many_allowed: true

@@ -1,0 +1,33 @@
+tables:
+  wrestler:
+    columns:
+      Wrestler_ID: number
+      Name: text
+      Reign: text
+      Days_held: text
+      Location: text
+      Event: text
+    primary_key: &id001
+    - Wrestler_ID
+    grain: *id001
+  Elimination:
+    columns:
+      Elimination_ID: text
+      Wrestler_ID: text
+      Team: text
+      Eliminated_By: text
+      Elimination_Move: text
+      Time: text
+    primary_key: &id002
+    - Elimination_ID
+    grain: *id002
+    observed_unique:
+    - - Wrestler_ID
+    foreign_keys:
+    - columns:
+      - Wrestler_ID
+      references:
+        table: wrestler
+        columns:
+        - Wrestler_ID
+      many_allowed: true

@@ -1,0 +1,79 @@
+tables:
+  region:
+    columns:
+      Region_ID: number
+      Region_name: text
+      Date: text
+      Label: text
+      Format: text
+      Catalogue: text
+    primary_key: &id001
+    - Region_ID
+    grain: *id001
+  party:
+    columns:
+      Party_ID: number
+      Minister: text
+      Took_office: text
+      Left_office: text
+      Region_ID: number
+      Party_name: text
+    primary_key: &id002
+    - Party_ID
+    grain: *id002
+    observed_unique:
+    - - Region_ID
+    foreign_keys:
+    - columns:
+      - Region_ID
+      references:
+        table: region
+        columns:
+        - Region_ID
+      many_allowed: true
+  member:
+    columns:
+      Member_ID: number
+      Member_Name: text
+      Party_ID: text
+      In_office: text
+    primary_key: &id003
+    - Member_ID
+    grain: *id003
+    observed_non_unique:
+    - - Party_ID
+    foreign_keys:
+    - columns:
+      - Party_ID
+      references:
+        table: party
+        columns:
+        - Party_ID
+      many_allowed: true
+  party_events:
+    columns:
+      Event_ID: number
+      Event_Name: text
+      Party_ID: number
+      Member_in_charge_ID: number
+    primary_key: &id004
+    - Event_ID
+    grain: *id004
+    observed_non_unique:
+    - - Member_in_charge_ID
+    - - Party_ID
+    foreign_keys:
+    - columns:
+      - Member_in_charge_ID
+      references:
+        table: member
+        columns:
+        - Member_ID
+      many_allowed: true
+    - columns:
+      - Party_ID
+      references:
+        table: party
+        columns:
+        - Party_ID
+      many_allowed: true

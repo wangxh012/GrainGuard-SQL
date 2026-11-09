@@ -1,0 +1,127 @@
+tables:
+  Customers:
+    columns:
+      customer_id: number
+      customer_name: text
+      customer_details: text
+    primary_key: &id001
+    - customer_id
+    grain: *id001
+  Invoices:
+    columns:
+      invoice_number: number
+      invoice_date: time
+      invoice_details: text
+    primary_key: &id002
+    - invoice_number
+    grain: *id002
+  Orders:
+    columns:
+      order_id: number
+      customer_id: number
+      order_status: text
+      date_order_placed: time
+      order_details: text
+    primary_key: &id003
+    - order_id
+    grain: *id003
+    observed_non_unique:
+    - - customer_id
+    foreign_keys:
+    - columns:
+      - customer_id
+      references:
+        table: Customers
+        columns:
+        - customer_id
+      many_allowed: true
+  Products:
+    columns:
+      product_id: number
+      product_name: text
+      product_details: text
+    primary_key: &id004
+    - product_id
+    grain: *id004
+  Order_Items:
+    columns:
+      order_item_id: number
+      product_id: number
+      order_id: number
+      order_item_status: text
+      order_item_details: text
+    primary_key: &id005
+    - order_item_id
+    grain: *id005
+    observed_non_unique:
+    - - product_id
+    - - order_id
+    foreign_keys:
+    - columns:
+      - product_id
+      references:
+        table: Products
+        columns:
+        - product_id
+      many_allowed: true
+    - columns:
+      - order_id
+      references:
+        table: Orders
+        columns:
+        - order_id
+      many_allowed: true
+  Shipments:
+    columns:
+      shipment_id: number
+      order_id: number
+      invoice_number: number
+      shipment_tracking_number: text
+      shipment_date: time
+      other_shipment_details: text
+    primary_key: &id006
+    - shipment_id
+    grain: *id006
+    observed_non_unique:
+    - - invoice_number
+    - - order_id
+    foreign_keys:
+    - columns:
+      - invoice_number
+      references:
+        table: Invoices
+        columns:
+        - invoice_number
+      many_allowed: true
+    - columns:
+      - order_id
+      references:
+        table: Orders
+        columns:
+        - order_id
+      many_allowed: true
+  Shipment_Items:
+    columns:
+      shipment_id: number
+      order_item_id: number
+    primary_key: []
+    grain:
+    - shipment_id
+    observed_non_unique:
+    - - shipment_id
+    - - order_item_id
+    foreign_keys:
+    - columns:
+      - shipment_id
+      references:
+        table: Shipments
+        columns:
+        - shipment_id
+      many_allowed: true
+    - columns:
+      - order_item_id
+      references:
+        table: Order_Items
+        columns:
+        - order_item_id
+      many_allowed: true

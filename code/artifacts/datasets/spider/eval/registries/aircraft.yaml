@@ -1,0 +1,91 @@
+tables:
+  pilot:
+    columns:
+      Pilot_Id: number
+      Name: text
+      Age: number
+    primary_key: &id001
+    - Pilot_Id
+    grain: *id001
+  aircraft:
+    columns:
+      Aircraft_ID: number
+      Aircraft: text
+      Description: text
+      Max_Gross_Weight: text
+      Total_disk_area: text
+      Max_disk_Loading: text
+    primary_key: &id002
+    - Aircraft_ID
+    grain: *id002
+  match:
+    columns:
+      Round: number
+      Location: text
+      Country: text
+      Date: text
+      Fastest_Qualifying: text
+      Winning_Pilot: text
+      Winning_Aircraft: text
+    primary_key: &id003
+    - Round
+    grain: *id003
+    observed_non_unique:
+    - - Winning_Pilot
+    - - Winning_Aircraft
+    foreign_keys:
+    - columns:
+      - Winning_Pilot
+      references:
+        table: pilot
+        columns:
+        - Pilot_Id
+      many_allowed: true
+    - columns:
+      - Winning_Aircraft
+      references:
+        table: aircraft
+        columns:
+        - Aircraft_ID
+      many_allowed: true
+  airport:
+    columns:
+      Airport_ID: number
+      Airport_Name: text
+      Total_Passengers: number
+      '%_Change_2007': text
+      International_Passengers: number
+      Domestic_Passengers: number
+      Transit_Passengers: number
+      Aircraft_Movements: number
+      Freight_Metric_Tonnes: number
+    primary_key: &id004
+    - Airport_ID
+    grain: *id004
+  airport_aircraft:
+    columns:
+      ID: number
+      Airport_ID: number
+      Aircraft_ID: number
+    primary_key: &id005
+    - Airport_ID
+    - Aircraft_ID
+    grain: *id005
+    observed_unique:
+    - - Aircraft_ID
+    - - Airport_ID
+    foreign_keys:
+    - columns:
+      - Aircraft_ID
+      references:
+        table: aircraft
+        columns:
+        - Aircraft_ID
+      many_allowed: true
+    - columns:
+      - Airport_ID
+      references:
+        table: airport
+        columns:
+        - Airport_ID
+      many_allowed: true

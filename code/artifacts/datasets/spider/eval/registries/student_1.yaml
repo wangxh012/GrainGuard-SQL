@@ -1,0 +1,20 @@
+tables:
+  list:
+    columns:
+      LastName: text
+      FirstName: text
+      Grade: number
+      Classroom: number
+    primary_key: &id001
+    - LastName
+    - FirstName
+    grain: *id001
+  teachers:
+    columns:
+      LastName: text
+      FirstName: text
+      Classroom: number
+    primary_key: &id002
+    - LastName
+    - FirstName
+    grain: *id002

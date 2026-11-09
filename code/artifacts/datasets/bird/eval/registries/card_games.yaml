@@ -1,0 +1,190 @@
+tables:
+  cards:
+    columns:
+      id: integer
+      artist: text
+      asciiName: text
+      availability: text
+      borderColor: text
+      cardKingdomFoilId: text
+      cardKingdomId: text
+      colorIdentity: text
+      colorIndicator: text
+      colors: text
+      convertedManaCost: real
+      duelDeck: text
+      edhrecRank: integer
+      faceConvertedManaCost: real
+      faceName: text
+      flavorName: text
+      flavorText: text
+      frameEffects: text
+      frameVersion: text
+      hand: text
+      hasAlternativeDeckLimit: integer
+      hasContentWarning: integer
+      hasFoil: integer
+      hasNonFoil: integer
+      isAlternative: integer
+      isFullArt: integer
+      isOnlineOnly: integer
+      isOversized: integer
+      isPromo: integer
+      isReprint: integer
+      isReserved: integer
+      isStarter: integer
+      isStorySpotlight: integer
+      isTextless: integer
+      isTimeshifted: integer
+      keywords: text
+      layout: text
+      leadershipSkills: text
+      life: text
+      loyalty: text
+      manaCost: text
+      mcmId: text
+      mcmMetaId: text
+      mtgArenaId: text
+      mtgjsonV4Id: text
+      mtgoFoilId: text
+      mtgoId: text
+      multiverseId: text
+      name: text
+      number: text
+      originalReleaseDate: text
+      originalText: text
+      originalType: text
+      otherFaceIds: text
+      power: text
+      printings: text
+      promoTypes: text
+      purchaseUrls: text
+      rarity: text
+      scryfallId: text
+      scryfallIllustrationId: text
+      scryfallOracleId: text
+      setCode: text
+      side: text
+      subtypes: text
+      supertypes: text
+      tcgplayerProductId: text
+      text: text
+      toughness: text
+      type: text
+      types: text
+      uuid: text
+      variations: text
+      watermark: text
+    primary_key: &id001
+    - id
+    grain: *id001
+    unique:
+    - - uuid
+  foreign_data:
+    columns:
+      id: integer
+      flavorText: text
+      language: text
+      multiverseid: integer
+      name: text
+      text: text
+      type: text
+      uuid: text
+    primary_key: &id002
+    - id
+    grain: *id002
+    observed_non_unique:
+    - - uuid
+    foreign_keys:
+    - columns:
+      - uuid
+      references:
+        table: cards
+        columns:
+        - uuid
+      many_allowed: true
+  legalities:
+    columns:
+      id: integer
+      format: text
+      status: text
+      uuid: text
+    primary_key: &id003
+    - id
+    grain: *id003
+    observed_non_unique:
+    - - uuid
+    foreign_keys:
+    - columns:
+      - uuid
+      references:
+        table: cards
+        columns:
+        - uuid
+      many_allowed: true
+  sets:
+    columns:
+      id: integer
+      baseSetSize: integer
+      block: text
+      booster: text
+      code: text
+      isFoilOnly: integer
+      isForeignOnly: integer
+      isNonFoilOnly: integer
+      isOnlineOnly: integer
+      isPartialPreview: integer
+      keyruneCode: text
+      mcmId: integer
+      mcmIdExtras: integer
+      mcmName: text
+      mtgoCode: text
+      name: text
+      parentCode: text
+      releaseDate: date
+      tcgplayerGroupId: integer
+      totalSetSize: integer
+      type: text
+    primary_key: &id004
+    - id
+    grain: *id004
+    unique:
+    - - code
+  set_translations:
+    columns:
+      id: integer
+      language: text
+      setCode: text
+      translation: text
+    primary_key: &id005
+    - id
+    grain: *id005
+    observed_non_unique:
+    - - setCode
+    foreign_keys:
+    - columns:
+      - setCode
+      references:
+        table: sets
+        columns:
+        - code
+      many_allowed: true
+  rulings:
+    columns:
+      id: integer
+      date: date
+      text: text
+      uuid: text
+    primary_key: &id006
+    - id
+    grain: *id006
+    observed_non_unique:
+    - - uuid
+    foreign_keys:
+    - columns:
+      - uuid
+      references:
+        table: cards
+        columns:
+        - uuid
+      many_allowed: true

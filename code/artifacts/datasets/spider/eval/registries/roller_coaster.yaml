@@ -1,0 +1,35 @@
+tables:
+  roller_coaster:
+    columns:
+      Roller_Coaster_ID: number
+      Name: text
+      Park: text
+      Country_ID: number
+      Length: number
+      Height: number
+      Speed: text
+      Opened: text
+      Status: text
+    primary_key: &id001
+    - Roller_Coaster_ID
+    grain: *id001
+    observed_non_unique:
+    - - Country_ID
+    foreign_keys:
+    - columns:
+      - Country_ID
+      references:
+        table: country
+        columns:
+        - Country_ID
+      many_allowed: true
+  country:
+    columns:
+      Country_ID: number
+      Name: text
+      Population: number
+      Area: number
+      Languages: text
+    primary_key: &id002
+    - Country_ID
+    grain: *id002

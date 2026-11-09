@@ -1,0 +1,33 @@
+tables:
+  captain:
+    columns:
+      Captain_ID: number
+      Name: text
+      Ship_ID: number
+      age: text
+      Class: text
+      Rank: text
+    primary_key: &id001
+    - Captain_ID
+    grain: *id001
+    observed_non_unique:
+    - - Ship_ID
+    foreign_keys:
+    - columns:
+      - Ship_ID
+      references:
+        table: Ship
+        columns:
+        - Ship_ID
+      many_allowed: true
+  Ship:
+    columns:
+      Ship_ID: number
+      Name: text
+      Type: text
+      Built_Year: number
+      Class: text
+      Flag: text
+    primary_key: &id002
+    - Ship_ID
+    grain: *id002
