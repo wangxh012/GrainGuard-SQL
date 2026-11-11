@@ -4,6 +4,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Any
 
@@ -64,6 +65,44 @@ def require_contract_hashes(records: list[dict[str, Any]], context: str) -> None
                     f"contract-review provenance mismatch: {context}: "
                     f"{record.get('dataset')}: reviewer {reviewer.upper()}"
                 )
+
+
+def verify_controlled() -> None:
+    summary = json.loads((ROOT / 'results/controlled_validation.json').read_text())
+    rows = [json.loads(line) for line in (ROOT / 'results/controlled_supported_rows.jsonl').open()]
+    if summary['settings']['evidence_scope_policy'] != 'supported':
+        raise SystemExit('controlled replay must use the supported policy')
+    for kind in ('challenge', 'control'):
+        selected = [row for row in rows if row['kind'] == kind]
+        keys = {(row['dataset'], row['db_id'], row['question_id'], row['operator'], row['contract_index']) for row in selected}
+        if len(selected) != 580 or len(keys) != 580:
+            raise SystemExit(f'incomplete controlled cohort: {kind}')
+        if dict(Counter(row['status'] for row in selected)) != summary['counts'][kind]:
+            raise SystemExit(f'controlled status-count mismatch: {kind}')
+        for operator, counts in summary['by_operator'][kind].items():
+            actual = Counter(row['status'] for row in selected if row['operator'] == operator)
+            if dict(actual) != counts:
+                raise SystemExit(f'controlled operator-count mismatch: {kind}/{operator}')
+    for name, record in summary['inputs'].items():
+        require_hash(record, ROOT / 'inputs/controlled' / name, f'controlled input: {name}')
+    witnesses = [json.loads(line) for line in (ROOT / 'data/controlled_supported_witnesses.jsonl').open()]
+    audit = summary['witness_audit']
+    if len(witnesses) != audit['retained'] or audit['retained'] != summary['counts']['challenge']['VIOLATION']:
+        raise SystemExit('controlled witness-count mismatch')
+    if sum(w['independent_checks']['code_audit_valid'] for w in witnesses) != audit['valid']:
+        raise SystemExit('controlled independent-check mismatch')
+    if any(w['evidence_scope'] != 'SUPPORTED' for w in witnesses):
+        raise SystemExit('deferred evidence in confirmed controlled witnesses')
+    with (ROOT / 'results/controlled_validation.tsv').open() as stream:
+        for row in csv.DictReader(stream, delimiter='\t'):
+            kind, operator = row['kind'], row['operator']
+            counts = summary['counts'][kind] if operator == 'all' else summary['by_operator'][kind][operator]
+            if int(row['n']) != sum(counts.values()):
+                raise SystemExit('controlled TSV denominator mismatch')
+            for column, status in [('violation', 'VIOLATION'), ('pass', 'PASS'), ('abstain', 'ABSTAIN'), ('invalid', 'INVALID_WITNESS')]:
+                if int(row[column]) != counts.get(status, 0):
+                    raise SystemExit('controlled TSV outcome mismatch')
+    print(f"Controlled supported replay verified: 337 alerts, 37 challenge abstentions, 575 control PASS, four control abstentions; {audit['valid']}/{audit['retained']} independent checks.")
 
 
 def main() -> None:
@@ -127,11 +166,13 @@ def main() -> None:
         if Path(record["path"]).is_absolute():
             raise SystemExit(f"absolute provenance path in human-label audit: {name}")
 
+    verify_controlled()
     verify_llm_judges()
     print(
         "Artifact verified: 580 contracts, 1,160 candidates, 1,160 canonical "
         "candidate labels, complete reviewer exports A=2,364/B=2,364/C=115, "
-        "contract-review exports A=580/B=580/C=2, 365 witnesses, 579 controls."
+        "contract-review exports A=580/B=580/C=2; supported and archived "
+        "controlled records verified."
     )
 
 

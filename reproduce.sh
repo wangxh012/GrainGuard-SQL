@@ -13,7 +13,7 @@ fi
 "$PYTHON_BIN" "$ARTIFACT_DIR/scripts/verify_artifact.py"
 
 NATURAL_OUT="${NATURAL_OUT:-$CODE_DIR/artifacts/reproduced/natural_v23}"
-CONTROLLED_OUT="${CONTROLLED_OUT:-$CODE_DIR/artifacts/reproduced/controlled_v22}"
+CONTROLLED_OUT="${CONTROLLED_OUT:-$CODE_DIR/artifacts/reproduced/controlled_supported}"
 BIRD_DB_DIR="$CODE_DIR/artifacts/datasets/bird/raw/dev_20240627/dev_databases"
 
 if [[ ! -d "$BIRD_DB_DIR" ]]; then
@@ -51,11 +51,9 @@ export PYTHONPATH="$CODE_DIR${PYTHONPATH:+:$PYTHONPATH}"
   --traces "$NATURAL_OUT/replay/natural_candidate_v23.traces.jsonl" \
   --output-dir "$NATURAL_OUT/review_audit"
 
-OUTPUT_DIR="$CONTROLLED_OUT" PYTHON_BIN="$PYTHON_BIN" \
-  BIRD_V21="$ARTIFACT_DIR/inputs/controlled/bird.auto_contracts.v21.jsonl" \
-  SPIDER_V21="$ARTIFACT_DIR/inputs/controlled/spider.auto_contracts.v21.jsonl" \
-  bash workflows/09_executor_validation_v22/run_executor_validation_v22.sh
+"$PYTHON_BIN" workflows/09_executor_validation_v22/replay_controlled_supported.py \
+  --input-dir "$ARTIFACT_DIR/inputs/controlled" --output-dir "$CONTROLLED_OUT"
 
 echo "Reproduction complete."
 echo "Natural results:   $NATURAL_OUT/effectiveness/v23_effectiveness.summary.json"
-echo "Controlled results: $CONTROLLED_OUT/v22_executor_validation.summary.json"
+echo "Controlled results: $CONTROLLED_OUT/controlled_validation.json"

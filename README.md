@@ -35,8 +35,11 @@ natural-candidate and controlled-validation experiments.
 | `data/contract_annotator_a_labels.jsonl` | 580 | A's final Contract V2.1 decisions |
 | `data/contract_annotator_b_labels.jsonl` | 580 | B's final Contract V2.1 decisions |
 | `data/contract_annotator_c_labels.jsonl` | 2 | C's actual Contract V2.1 adjudications only |
-| `data/controlled_witnesses.jsonl` | 365 | Replayed controlled violations and audit records |
-| `data/matched_controls.jsonl` | 579 | Compatible certified controls with no trigger |
+| `data/controlled_supported_witnesses.jsonl` | 337 | Retained alerts under the final verification settings, with independent checks |
+| `inputs/controlled/challenges.jsonl` | 580 | Frozen controlled challenge SQL and contracts |
+| `inputs/controlled/controls.jsonl` | 580 | Frozen, independently constructed synthetic negative controls and contracts |
+| `data/controlled_witnesses.jsonl` | 365 | Archived unrestricted canonical-pair diagnostic witnesses |
+| `data/matched_controls.jsonl` | 579 | Archived unrestricted canonical-pair completed controls |
 
 The SQL A/B exports cover all 2,364 final, non-retired records cited by the
 experiments: 2,190 primary records and 174 supplemental specification-failure
@@ -81,7 +84,10 @@ decision-chain metadata needed for exact validation; use the six files under
 | `results/baseline_coverage_audit.json` | Baseline input and coverage audit |
 | `results/llm_judge_predictions/*.jsonl` | Eight frozen prediction files for prompt-only and contract-aware judges, crossed with two judge models and two BIRD candidate generators |
 | `results/ablations.{json,tsv}` | Frozen ablation summary and paper-facing table |
-| `results/controlled_validation.{json,tsv}` | Controlled witness/challenge and matched-control validation |
+| `results/controlled_validation.{json,tsv}` | Controlled results using the same supported policy and search as natural candidates |
+| `results/controlled_supported_rows.jsonl` | All 1,160 controlled outcomes and search traces |
+| `results/controlled_deferred_controls.jsonl` | Four deferred ranking-control pairs and replay outputs |
+| `results/controlled_executor_diagnostic.{json,tsv}` | Archived unrestricted canonical-pair executor study |
 | `results/canonical_source_manifest.json` | Source-run provenance for the packaged results |
 
 JSON files are the detailed machine-readable summaries, TSV files are concise
@@ -104,6 +110,13 @@ generator using the explicit omitted-question lists in the summary.
 
 The main natural result recorded in `manifest.json` is 86 TP, 17 FP, and 25 FN:
 precision 83.50%, recall 77.48%, F1 80.37%, and decision coverage 94.83%.
+
+**Evaluation scope.** The paper reports candidate-level effectiveness on 1,160
+SQL candidates associated with 580 accepted contracts out of 817 questions.
+Decision coverage of 94.83% is conditional on contract acceptance. The result
+files additionally retain a gate-inclusive analysis over 1,634 candidates,
+treating contract-construction failures as non-alerts; this yields 44.79% recall,
+58.31% F1, and 67.32% decision coverage.
 
 ## Integrity check
 
@@ -156,15 +169,28 @@ controlled challenge/control pairs. Outputs are written to
 overwrite a non-empty natural output directory; set `NATURAL_OUT` and
 `CONTROLLED_OUT` to choose other locations.
 
-The two studies use different, explicit evidence-admission policies. Natural
-candidate verification uses `supported`: ranking-only TST evidence is deferred
-and does not confirm a violation. Controlled executor validation uses
-`unrestricted` to measure whether the executor constructs a valid replayable
-witness, including exploratory TST witnesses. Its 365 triggered witnesses
-include 10 TST cases; they are not 365 confirmed violations under the natural
-candidate decision rule. The 580 controlled challenges produce 365 triggers,
-191 non-triggers, and 24 invalid witnesses; 579 matched controls complete with
-zero false triggers. The controlled output summary records this policy.
+Controlled and natural-candidate experiments use the `supported` policy,
+the same catalogue of up to ten deduplicated numeric profiles, BIRD
+candidate-specific uniqueness profiling, and exact output comparison.
+Controlled replay retains all 580 challenges and all 580 controls. Challenges
+yield 337 confirmed alerts, 182 PASS, 37 ABSTAIN, and 24 INVALID_WITNESS;
+controls yield 575 PASS, four ABSTAIN, and one INVALID_WITNESS, with no
+confirmed false alerts. Independent schema, contract-value, perturbation-scope,
+and replay checks accept 336 of the 337 retained witnesses. The remaining
+multihop CGR pair changes `disp`, an intermediate relation outside the audit's
+admitted table set. All outcomes remain in the released files.
+
+The four deferred controls have ranking-only evidence. Numeric offsets change
+the number-dependent sum after event splitting. In three cases the winner is
+unchanged but its projected metric changes; in the other the winner changes.
+These outcomes are recorded as ABSTAIN, with their pairs and outputs under
+`results/controlled_deferred_controls.jsonl`.
+
+The earlier unrestricted canonical-pair executor study is retained under
+`results/controlled_executor_diagnostic.*` and the two archived data files above.
+It has 365 triggers (including ten TST cases), 191 PASS, and 24 invalid
+challenges; 579 controls complete without a trigger. These diagnostic counts
+are separate from the final supported controlled results.
 
 The LLM baseline scores are recomputed from frozen predictions without new API
 calls. Other baseline and ablation files are frozen reported summaries; their
@@ -182,8 +208,9 @@ historical exploratory runs and caches are not required by the main replay.
 - Main natural metrics and scope analysis: `results/natural_effectiveness.*`,
   `results/natural_replay.*`, and `results/evidence_scope.*`
 - Baselines and ablations: `results/baseline_*` and `results/ablations.*`
-- Controlled validation: `data/controlled_witnesses.jsonl`,
-  `data/matched_controls.jsonl`, and `results/controlled_validation.*`
+- Controlled validation: `inputs/controlled/{challenges,controls}.jsonl`,
+  `data/controlled_supported_witnesses.jsonl`,
+  `results/controlled_supported_rows.jsonl`, and `results/controlled_validation.*`
 - Implementation: `code/grain_test_sql/`
 - Reproduction entry point: `reproduce.sh`
 

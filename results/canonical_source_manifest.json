@@ -63,5 +63,15 @@
       "path": "code/artifacts/runs/v23_natural_candidate_validation/run_017_predeclared_scope_ablations/v23_ablations.table.tsv",
       "sha256": "79b3f0ab9f2e7af6c5a94f5fb9ed9906a246559edf56b1e6c3944f7a1e6286b0"
     }
+  },
+  "controlled_validation": {
+    "protocol": "controlled_supported_aligned_20261111",
+    "settings": "supported; all ten deduplicated numeric profiles; BIRD instance-uniqueness scope; exact comparator",
+    "summary": "results/controlled_validation.json",
+    "rows": "results/controlled_supported_rows.jsonl",
+    "witnesses": "data/controlled_supported_witnesses.jsonl",
+    "challenge_inputs": "inputs/controlled/challenges.jsonl",
+    "control_inputs": "inputs/controlled/controls.jsonl",
+    "unrestricted_diagnostic": "results/controlled_executor_diagnostic.json"
   }
 }
