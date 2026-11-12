@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -71,8 +72,12 @@ def parse_args() -> argparse.Namespace:
 
 
 def resolve(path: str) -> Path:
-    value = Path(path)
-    return value if value.is_absolute() else ROOT / value
+    value = Path(path).expanduser()
+    return (value if value.is_absolute() else ROOT / value).resolve()
+
+
+def display_path(path: Path) -> str:
+    return Path(os.path.relpath(path.resolve(), ROOT)).as_posix()
 
 
 def compact_sql(sql: Any) -> str:
@@ -150,7 +155,7 @@ def main() -> None:
                 raise ValueError(f"candidate SQL differs from frozen reviewed SQL: {key}")
             work.append((pool, dataset, model, row))
         input_manifest[pool] = {
-            "path": path.relative_to(ROOT).as_posix(),
+            "path": display_path(path),
             "rows": len(rows),
             "sha256": sha256(path),
         }
@@ -249,7 +254,7 @@ def main() -> None:
         "instance_uniqueness_role": "pre-execution witness-scope assignment only",
         "inputs": input_manifest,
         "label_sources": [
-            {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)}
+            {"path": display_path(path), "sha256": sha256(path)}
             for path in label_paths
         ],
         "evaluated_rows": len(traces),

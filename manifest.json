@@ -42,8 +42,8 @@
       "bytes": 4324
     },
     "README.md": {
-      "sha256": "604a044109e36fe71f3bba8e8ded3e55dd47b649d4aab922124cf417dfd8185f",
-      "bytes": 12187
+      "sha256": "1960e10dd41805d1b893bdc7d5f35d59f44a7396759746cccb65247331b5349b",
+      "bytes": 12168
     },
     "THIRD_PARTY_NOTICES.md": {
       "sha256": "89e60427ab2bfbec50448be12bed8a75ec2622f7b1d9738d20b1ef41946083c4",
@@ -930,12 +930,12 @@
       "bytes": 692
     },
     "code/workflows/10_natural_candidate_v23/run_natural_candidate_replay_v23.py": {
-      "sha256": "d6e986eaf437a4d1078801f3527c879ee2005942980d8d6b20d40118e1e17ef4",
-      "bytes": 11870
+      "sha256": "cd806bd15c99e46fbbc434dee85469f909e1a321e15f3a4a354b94e106496993",
+      "bytes": 11980
     },
     "code/workflows/10_natural_candidate_v23/summarize_effectiveness_v23.py": {
-      "sha256": "58accc5b0f53000ef77bea11d1602c3696b6c60ae1384bae8806450711f794cd",
-      "bytes": 23000
+      "sha256": "7e34279dc20713396940a2a8477f086bf5f9bb09803192afbbf0b03be7ad48ac",
+      "bytes": 22944
     },
     "code/workflows/10_natural_candidate_v23/summarize_risk_tiers_v23.py": {
       "sha256": "a6a3dc080604ade150670c5625664d5f2f2dcd52c17aa9b91de532d2f45a0f86",
@@ -1046,8 +1046,8 @@
       "bytes": 2522
     },
     "reproduce.sh": {
-      "sha256": "ff7ff9f7964c64120bb0bb2bea698d8a11d1968589c3c8d3df4759f558974399",
-      "bytes": 2535
+      "sha256": "9a9e895036c1cb7569b711c8a428cf0d4fb4c86e8668a4c1c9b0e58a208d57c6",
+      "bytes": 2818
     },
     "requirements.txt": {
       "sha256": "5bea4baaefa050bf205aefdcaedc8fa57b066966bfdd5b1f198e83eee4f1e3b9",

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ARTIFACT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ARTIFACT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 CODE_DIR="$ARTIFACT_DIR/code"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 
@@ -14,6 +14,8 @@ fi
 
 NATURAL_OUT="${NATURAL_OUT:-$CODE_DIR/artifacts/reproduced/natural_v23}"
 CONTROLLED_OUT="${CONTROLLED_OUT:-$CODE_DIR/artifacts/reproduced/controlled_supported}"
+NATURAL_OUT="$("$PYTHON_BIN" -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).expanduser().resolve())' "$NATURAL_OUT")"
+CONTROLLED_OUT="$("$PYTHON_BIN" -c 'from pathlib import Path; import sys; print(Path(sys.argv[1]).expanduser().resolve())' "$CONTROLLED_OUT")"
 BIRD_DB_DIR="$CODE_DIR/artifacts/datasets/bird/raw/dev_20240627/dev_databases"
 
 if [[ ! -d "$BIRD_DB_DIR" ]]; then

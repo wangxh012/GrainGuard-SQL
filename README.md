@@ -1,4 +1,4 @@
-# GrainGuard-SQL ICDE 2027 Artifact
+# GrainGuard-SQL
 
 ## Access and permitted use
 

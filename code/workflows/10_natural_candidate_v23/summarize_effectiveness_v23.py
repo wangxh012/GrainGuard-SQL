@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import math
 import random
 import sys
@@ -57,15 +58,12 @@ def parse_args() -> argparse.Namespace:
 
 
 def resolve(path: str) -> Path:
-    value = Path(path)
-    return value if value.is_absolute() else ROOT / value
+    value = Path(path).expanduser()
+    return (value if value.is_absolute() else ROOT / value).resolve()
 
 
 def display_path(path: Path) -> str:
-    try:
-        return path.relative_to(ROOT).as_posix()
-    except ValueError:
-        return path.as_posix()
+    return Path(os.path.relpath(path.resolve(), ROOT)).as_posix()
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -531,17 +529,17 @@ def main() -> None:
         "inputs": {
             "trace": {"path": display_path(trace_path), "sha256": sha256(trace_path)},
             "candidate_manifest": {
-                "path": manifest_path.relative_to(ROOT).as_posix(),
+                "path": display_path(manifest_path),
                 "sha256": sha256(manifest_path),
             },
             "labels": [
-                {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(path)}
+                {"path": display_path(path), "sha256": sha256(path)}
                 for path in label_paths
             ],
             "contract_reviews": [
                 {
                     "dataset": dataset,
-                    "directory": path.relative_to(ROOT).as_posix(),
+                    "directory": display_path(path),
                     "reviewer_a_sha256": sha256(review_label_path(path, "a")),
                     "reviewer_b_sha256": sha256(review_label_path(path, "b")),
                     "reviewer_c_sha256": sha256(review_label_path(path, "c")),
